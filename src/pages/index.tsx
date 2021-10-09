@@ -11,7 +11,7 @@ const HomePage: AppPage = () => {
       <NavBar />
 
       <main>
-        <div className="container max-w-2xl px-0 mx-auto">
+        <div className="container max-w-2xl px-0 pb-12 mx-auto">
           <AboutMe />
         </div>
       </main>
