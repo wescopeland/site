@@ -1,7 +1,8 @@
 import type { VFC } from "react";
-import { FaTrophy } from "react-icons/fa";
-import { TrophyMeta } from "../TrophyMeta";
+
 import { useBaseLayoutContext } from "@/core/layouts/BaseLayout/base-layout.context";
+
+import { TrophyMeta } from "../TrophyMeta";
 
 export const Footer: VFC = () => {
   const { mostRecentTrophy } = useBaseLayoutContext();

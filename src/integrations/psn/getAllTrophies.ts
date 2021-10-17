@@ -1,4 +1,5 @@
 import type { Trophy } from "psn-api";
+
 import type { PsnProfile } from "./models";
 
 export const getAllTrophies = (

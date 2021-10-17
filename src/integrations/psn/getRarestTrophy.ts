@@ -1,7 +1,7 @@
-import type { PsnProfile } from "./models";
 import type { Trophy } from "psn-api";
 
 import { getAllTrophies } from "./getAllTrophies";
+import type { PsnProfile } from "./models";
 
 export const getRarestTrophy = (profile: PsnProfile): Trophy => {
   const allTrophies = getAllTrophies(profile);

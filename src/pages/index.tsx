@@ -1,10 +1,10 @@
-import type { ReactElement } from "react";
 import { performance } from "perf_hooks";
+import type { ReactElement } from "react";
 
+import { AboutMe } from "@/core/components/AboutMe";
 import { NavBar } from "@/core/components/NavBar";
 import { BaseLayout } from "@/core/layouts/BaseLayout";
 import type { AppPage } from "@/core/models";
-import { AboutMe } from "@/core/components/AboutMe";
 import { authenticate } from "@/integrations/psn/authenticate";
 import { buildProfile } from "@/integrations/psn/buildProfile";
 import { getMostRecentTrophy } from "@/integrations/psn/getMostRecentTrophy";

@@ -1,13 +1,12 @@
-import {
-  getTrophiesForTitle,
-  getTrophyTitlesForUser,
-  getTrophiesEarnedForTitle
-} from "psn-api";
 import type {
-  Trophy,
+  TitleTrophiesResponse,
   TrophiesEarnedForTitleResponse,
-  TitleTrophiesResponse
-} from "psn-api";
+  Trophy} from "psn-api";
+import {
+  getTrophiesEarnedForTitle,
+  getTrophiesForTitle,
+  getTrophyTitlesForUser} from "psn-api";
+
 import type { PsnProfile } from "./models";
 
 export const buildProfile = async (

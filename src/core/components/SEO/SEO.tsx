@@ -1,5 +1,5 @@
-import type { VFC } from "react";
 import Head from "next/head";
+import type { VFC } from "react";
 
 const genericDescription =
   "Wes Copeland. Senior Software Engineer at ApartmentAdvisor. Building modern web experiences with React and Next.js.";

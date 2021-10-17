@@ -6,7 +6,12 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "format": "prettier --write . '**/*.{json,md,js,ts,tsx}'",
+    "format:write": "prettier --write . '**/*.{json,md,js,ts,tsx}'",
+    "format:check": "prettier --check . '**/*.{json,md,js,ts,tsx}'",
+    "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
+    "lint:fix": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx . --fix"
   },
   "dependencies": {
     "classcat": "^5.0.3",
@@ -24,7 +29,16 @@
     "@types/node": "^16.10.2",
     "@types/react": "^17.0.27",
     "@types/react-dom": "^17.0.9",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
     "autoprefixer": "^10.3.7",
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-sonarjs": "^0.10.0",
+    "eslint-plugin-unicorn": "^37.0.1",
     "postcss": "^8.3.9",
     "postcss-nested": "^5.0.6",
     "prettier": "2.4.1",

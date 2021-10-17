@@ -1,9 +1,11 @@
 import type { FC } from "react";
-import { Footer } from "@/core/components/Footer";
 import { useMemo } from "react";
-import { BaseLayoutContext } from "./base-layout.context";
-import type { BaseLayoutContextValue } from "./base-layout.context";
+
+import { Footer } from "@/core/components/Footer";
 import type { TrophyMetaProps } from "@/core/components/TrophyMeta";
+
+import type { BaseLayoutContextValue } from "./base-layout.context";
+import { BaseLayoutContext } from "./base-layout.context";
 
 export interface BaseLayoutProps {
   mostRecentTrophy: TrophyMetaProps;

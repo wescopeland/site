@@ -1,7 +1,8 @@
 import type { VFC } from "react";
 
-import { NavLink } from "./NavLink";
 import { AppRoutes } from "@/core/utils/AppRoutes";
+
+import { NavLink } from "./NavLink";
 
 export const NavBar: VFC = () => {
   return (

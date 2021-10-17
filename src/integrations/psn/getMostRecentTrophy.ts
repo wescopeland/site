@@ -1,6 +1,5 @@
-import type { PsnProfile } from "./models";
-
 import { getAllTrophies } from "./getAllTrophies";
+import type { PsnProfile } from "./models";
 
 export const getMostRecentTrophy = (profile: PsnProfile) => {
   const allTrophies = getAllTrophies(profile);

@@ -1,8 +1,7 @@
-import type { VFC } from "react";
-import { FaTrophy } from "react-icons/fa";
-import type { Trophy } from "psn-api";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import type { VFC } from "react";
+import { FaTrophy } from "react-icons/fa";
 
 dayjs.extend(relativeTime);
 
