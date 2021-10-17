@@ -10,9 +10,13 @@
   },
   "dependencies": {
     "classcat": "^5.0.3",
+    "dayjs": "^1.10.7",
     "next": "^11.1.2",
+    "psn-api": "^1.0.3",
     "react": "alpha",
     "react-dom": "alpha",
+    "react-icons": "^4.3.1",
+    "retroachievements-js": "^1.0.1",
     "tailwindcss": "^2.2.16",
     "urlcat": "^2.0.4"
   },
