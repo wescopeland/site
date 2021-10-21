@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-import type { BaseLayoutProps } from "./BaseLayout";
+import type { BaseLayoutProps } from "./base-layout-props.model";
 
 export type BaseLayoutContextValue = BaseLayoutProps | null;
 

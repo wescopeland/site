@@ -1,13 +1,10 @@
-import { performance } from "perf_hooks";
 import type { ReactElement } from "react";
 
 import { AboutMe } from "@/core/components/AboutMe";
 import { NavBar } from "@/core/components/NavBar";
 import { BaseLayout } from "@/core/layouts/BaseLayout";
 import type { AppPage } from "@/core/models";
-import { authenticate } from "@/integrations/psn/authenticate";
-import { buildProfile } from "@/integrations/psn/buildProfile";
-import { getMostRecentTrophy } from "@/integrations/psn/getMostRecentTrophy";
+import { getGlobalAchievementMetadata } from "@/queries/getGlobalAchievementMetadata";
 
 const HomePage: AppPage = () => {
   return (
@@ -25,30 +22,19 @@ const HomePage: AppPage = () => {
 
 HomePage.getLayout = (page: ReactElement) => {
   return (
-    <BaseLayout mostRecentTrophy={page.props.mostRecentTrophy}>
+    <BaseLayout gamingMetadata={page.props.layout.gamingMetadata}>
       {page}
     </BaseLayout>
   );
 };
 
 export async function getStaticProps() {
-  const start = performance.now();
-  const authorization = await authenticate();
-  const profile = await buildProfile(authorization.accessToken);
-  const end = performance.now();
-
-  const measurement = end - start;
-  console.log({ measurement });
-
-  const mostRecent = getMostRecentTrophy(profile);
+  const globalAchievementMetadata = await getGlobalAchievementMetadata();
 
   return {
     props: {
-      mostRecentTrophy: {
-        trophyName: mostRecent.trophyName,
-        trophyGame: mostRecent.gameName,
-        trophyGrade: mostRecent.trophyType,
-        earnedDate: mostRecent.earnedDateTime
+      layout: {
+        gamingMetadata: globalAchievementMetadata
       }
     }
   };

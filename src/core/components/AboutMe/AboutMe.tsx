@@ -2,9 +2,9 @@ import type { VFC } from "react";
 
 export const AboutMe: VFC = () => {
   return (
-    <div className="flex">
-      <div className="pr-16">
-        <h1 className="mb-1 text-5xl font-bold tracking-tight text-black">
+    <div className="flex flex-col-reverse sm:flex-row">
+      <div className="sm:pr-16">
+        <h1 className="mb-1 text-4xl font-bold tracking-tight text-black">
           Hi! 👋&nbsp; I'm Wes.
         </h1>
 
@@ -40,7 +40,7 @@ export const AboutMe: VFC = () => {
       <div style={{ minWidth: 140 }}>
         <img
           style={{ width: 140, height: 140 }}
-          className="rounded-full"
+          className="mb-6 rounded-full"
           src="https://pbs.twimg.com/profile_images/1308178916381790210/VhbqD70K_400x400.png"
         />
       </div>

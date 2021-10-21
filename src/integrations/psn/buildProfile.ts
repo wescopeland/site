@@ -1,11 +1,13 @@
 import type {
   TitleTrophiesResponse,
   TrophiesEarnedForTitleResponse,
-  Trophy} from "psn-api";
+  Trophy
+} from "psn-api";
 import {
   getTrophiesEarnedForTitle,
   getTrophiesForTitle,
-  getTrophyTitlesForUser} from "psn-api";
+  getTrophyTitlesForUser
+} from "psn-api";
 
 import type { PsnProfile } from "./models";
 

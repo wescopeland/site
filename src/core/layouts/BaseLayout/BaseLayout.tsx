@@ -1,32 +1,23 @@
 import type { FC } from "react";
-import { useMemo } from "react";
 
 import { Footer } from "@/core/components/Footer";
-import type { TrophyMetaProps } from "@/core/components/TrophyMeta";
 
-import type { BaseLayoutContextValue } from "./base-layout.context";
 import { BaseLayoutContext } from "./base-layout.context";
-
-export interface BaseLayoutProps {
-  mostRecentTrophy: TrophyMetaProps;
-}
+import type { BaseLayoutProps } from "./base-layout-props.model";
 
 export const BaseLayout: FC<BaseLayoutProps> = ({
   children,
-  mostRecentTrophy
+  gamingMetadata
 }) => {
-  const contextValue = useMemo(
-    (): BaseLayoutContextValue => ({
-      mostRecentTrophy
-    }),
-    [mostRecentTrophy]
-  );
+  const contextValue = { gamingMetadata };
 
   return (
     <BaseLayoutContext.Provider value={contextValue}>
-      <div className="antialiased">{children}</div>
+      <div className="px-8">
+        <div className="antialiased">{children}</div>
 
-      <Footer />
+        <Footer />
+      </div>
     </BaseLayoutContext.Provider>
   );
 };
