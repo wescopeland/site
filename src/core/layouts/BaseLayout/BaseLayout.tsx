@@ -1,6 +1,7 @@
 import type { FC } from "react";
 
 import { Footer } from "@/core/components/Footer";
+import { NavBar } from "@/core/components/NavBar";
 
 import { BaseLayoutContext } from "./base-layout.context";
 import type { BaseLayoutProps } from "./base-layout-props.model";
@@ -13,8 +14,10 @@ export const BaseLayout: FC<BaseLayoutProps> = ({
 
   return (
     <BaseLayoutContext.Provider value={contextValue}>
-      <div className="px-8">
-        <div className="antialiased">{children}</div>
+      <div className="container max-w-2xl px-8 pb-12 mx-auto">
+        <NavBar />
+
+        <main className="antialiased">{children}</main>
 
         <Footer />
       </div>

@@ -4,7 +4,7 @@ import { MostRecentTrophy } from "./MostRecentTrophy";
 
 export const Footer: VFC = () => {
   return (
-    <footer className="container max-w-2xl px-0 mx-auto mb-8">
+    <footer className="container max-w-2xl px-0 mx-auto my-8">
       <hr className="w-full mb-8 border-gray-200 border-1" />
 
       <MostRecentTrophy />

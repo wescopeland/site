@@ -1,19 +1,13 @@
 import type { ReactElement } from "react";
 
-import { AboutMe } from "@/core/components/AboutMe";
 import { BaseLayout } from "@/core/layouts/BaseLayout";
 import type { AppPage } from "@/core/models";
+import { ProjectsRoot } from "@/projects/components/+root";
 import { getGlobalAchievementMetadata } from "@/queries/getGlobalAchievementMetadata";
 
-const HomePage: AppPage = () => {
-  return (
-    <>
-      <AboutMe />
-    </>
-  );
-};
+const ProjectsPage: AppPage = () => <ProjectsRoot />;
 
-HomePage.getLayout = (page: ReactElement) => {
+ProjectsPage.getLayout = (page: ReactElement) => {
   return (
     <BaseLayout gamingMetadata={page.props.layout.gamingMetadata}>
       {page}
@@ -34,4 +28,4 @@ export async function getStaticProps() {
   };
 }
 
-export default HomePage;
+export default ProjectsPage;
