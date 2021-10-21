@@ -1,8 +1,0 @@
-.root {
-  @apply px-3 py-2 rounded-md;
-  @apply bg-white hover:bg-gray-100 text-gray-800;
-
-  &--active {
-    @apply font-semibold;
-  }
-}

@@ -2,19 +2,23 @@ import cc from "classcat";
 import Link from "next/link";
 import type { FC } from "react";
 
-import styles from "./NavLink.module.css";
-
 interface NavLinkProps {
   href: string;
   isActive: boolean;
 }
 
 export const NavLink: FC<NavLinkProps> = ({ children, href, isActive }) => {
-  const classes = cc([styles.root, isActive && styles["root--active"]]);
-
   return (
     <Link href={href} passHref>
-      <a className={classes}>{children}</a>
+      <a
+        className={cc([
+          "transition px-3 py-2 rounded-md",
+          "bg-white hover:bg-gray-100 hover:text-black",
+          isActive ? "font-semibold" : "text-gray-400"
+        ])}
+      >
+        {children}
+      </a>
     </Link>
   );
 };
