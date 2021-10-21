@@ -4,7 +4,7 @@ import { ProjectCard } from "@/projects/components/ProjectCard";
 
 export const ProjectsRoot: VFC = () => {
   return (
-    <div>
+    <>
       <div className="mb-8">
         <h1 className="mb-1 text-4xl font-bold tracking-tight text-black">
           My side-projects
@@ -38,6 +38,6 @@ export const ProjectsRoot: VFC = () => {
           repoUrl="https://github.com/wescopeland/kongtrac.kr"
         />
       </div>
-    </div>
+    </>
   );
 };

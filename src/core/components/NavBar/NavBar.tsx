@@ -25,6 +25,13 @@ export const NavBar: VFC = () => {
           >
             Projects
           </NavLink>
+
+          <NavLink
+            href={AppRoutes.TodayILearnedPage()}
+            isActive={route === AppRoutes.TodayILearnedPage()}
+          >
+            TIL
+          </NavLink>
         </div>
 
         <div>Content B</div>
