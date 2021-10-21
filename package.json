@@ -16,6 +16,8 @@
   "dependencies": {
     "classcat": "^5.0.3",
     "dayjs": "^1.10.7",
+    "esbuild": "^0.13.8",
+    "mdx-bundler": "^6.0.2",
     "next": "^11.1.2",
     "psn-api": "^1.0.3",
     "react": "alpha",
@@ -32,6 +34,7 @@
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "autoprefixer": "^10.3.7",
+    "contentlayer": "^0.0.27",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-typescript": "^2.5.0",
@@ -39,9 +42,11 @@
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-sonarjs": "^0.10.0",
     "eslint-plugin-unicorn": "^37.0.1",
+    "next-contentlayer": "^0.0.27",
     "postcss": "^8.3.9",
     "postcss-nested": "^5.0.6",
     "prettier": "2.4.1",
+    "rehype-slug": "^5.0.0",
     "typescript": "^4.4.3"
   },
   "prettier": {
