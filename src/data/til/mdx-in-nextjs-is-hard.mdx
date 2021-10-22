@@ -3,4 +3,9 @@ title: "MDX in Next.js is Hard"
 publishedAt: "2021-10-21"
 ---
 
-There isn't a good way to get Markdown working with Next.js. That is really unfortunate.
+There are several methods for getting MDX working with Next.js, outlined by Josh Comeau [here](https://www.joshwcomeau.com/blog/how-i-built-my-blog/).
+None of them are easy, but Kent C. Dodds' [mdx-bundler](https://github.com/kentcdodds/mdx-bundler)
+combined with [contentlayer](https://github.com/contentlayerdev/contentlayer) seems like a good way to go.
+
+Contentlayer's API reminds me of Prisma, where types are auto-generated at build-time. I've used [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote) on
+another project which required rolling your types by hand &mdash; just a dreadful process.

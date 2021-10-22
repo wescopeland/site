@@ -11,7 +11,7 @@ export const TILRoot: VFC<TILRootProps> = ({ posts }) => {
   return (
     <>
       <div className="mb-8">
-        <h1 className="mb-1 text-4xl font-bold tracking-tight text-black">
+        <h1 className="mb-1 text-4xl font-bold tracking-tight">
           Today I Learned
         </h1>
       </div>

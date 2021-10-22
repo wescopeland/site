@@ -14,9 +14,9 @@ export const BaseLayout: FC<BaseLayoutProps> = ({
 
   return (
     <BaseLayoutContext.Provider value={contextValue}>
-      <div className="container max-w-2xl px-8 pb-12 mx-auto">
-        <NavBar />
+      <NavBar />
 
+      <div className="container max-w-2xl px-8 pb-12 mx-auto">
         <main className="antialiased">{children}</main>
 
         <Footer />

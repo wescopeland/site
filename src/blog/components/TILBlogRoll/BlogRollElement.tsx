@@ -21,7 +21,13 @@ export const BlogRollElement: VFC<BlogRollElementProps> = ({
 
   return (
     <Link href={href} passHref>
-      <a className={cc([styles.root, "group"])}>
+      <a
+        className={cc([
+          styles.root,
+          "group dark:hover:bg-gray-700 dark:hover:border-gray-50",
+          "text-black dark:text-white"
+        ])}
+      >
         <div className="flex">
           <p className="mr-6 font-semibold text-gray-400 whitespace-nowrap">
             {formattedDate}

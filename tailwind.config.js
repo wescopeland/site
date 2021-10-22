@@ -7,7 +7,7 @@ module.exports = {
     enabled: true,
     content: ["./src/**/*.{js,ts,jsx,tsx}"]
   },
-  darkMode: false, // or 'media' or 'class'
+  darkMode: "class",
   theme: {
     container: {
       center: true,
@@ -22,7 +22,10 @@ module.exports = {
       },
 
       colors: {
-        primary: colors.lime
+        primary: colors.lime,
+        dark: {
+          DEFAULT: "hsl(210, 30%, 8%)"
+        }
       }
     }
   },

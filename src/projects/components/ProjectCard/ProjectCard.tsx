@@ -19,10 +19,12 @@ export const ProjectCard: VFC<ProjectCardProps> = ({
       className={cc([
         "p-4 transition cursor-pointer select-none",
         "border border-gray-200",
-        "shadow hover:-translate-y-1 hover:shadow-lg hover:bg-gray-50 hover:border-gray-600"
+        "text-black dark:text-white",
+        "shadow hover:-translate-y-1 hover:shadow-lg",
+        "hover:bg-gray-50 dark:hover:bg-gray-700 dark:hover:border-gray-200 hover:border-gray-600"
       ])}
     >
-      <p className="font-semibold">{name}</p>
+      <p className="font-bold">{name}</p>
       <p>{description}</p>
     </a>
   );

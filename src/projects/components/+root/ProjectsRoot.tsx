@@ -6,7 +6,7 @@ export const ProjectsRoot: VFC = () => {
   return (
     <>
       <div className="mb-8">
-        <h1 className="mb-1 text-4xl font-bold tracking-tight text-black">
+        <h1 className="mb-1 text-4xl font-bold tracking-tight">
           My side-projects
         </h1>
 

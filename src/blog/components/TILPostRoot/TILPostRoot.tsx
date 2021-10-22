@@ -15,13 +15,11 @@ export const TILPostRoot: FC<TILPostRootProps> = ({ children, post }) => {
 
   return (
     <>
-      <p className="font-semibold text-gray-500">
+      <p className="font-semibold text-gray-500 dark:text-gray-300">
         On {formattedDate}, I learned...
       </p>
 
-      <h1 className="mb-8 text-4xl font-bold tracking-tight text-black">
-        {post.title}
-      </h1>
+      <h1 className="mb-8 text-4xl font-bold tracking-tight">{post.title}</h1>
 
       {children}
     </>
