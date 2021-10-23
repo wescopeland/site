@@ -9,7 +9,10 @@ const ProjectsPage: AppPage = () => <ProjectsRoot />;
 
 ProjectsPage.getLayout = (page: ReactElement) => {
   return (
-    <BaseLayout gamingMetadata={page.props.layout.gamingMetadata}>
+    <BaseLayout
+      seo={page.props.seo}
+      gamingMetadata={page.props.layout.gamingMetadata}
+    >
       {page}
     </BaseLayout>
   );
@@ -22,6 +25,9 @@ export async function getStaticProps() {
     props: {
       layout: {
         gamingMetadata: globalAchievementMetadata
+      },
+      seo: {
+        pageTitle: "Projects"
       }
     },
     revalidate: 60 * 60 // Once an hour

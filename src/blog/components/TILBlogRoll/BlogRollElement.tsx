@@ -24,7 +24,7 @@ export const BlogRollElement: VFC<BlogRollElementProps> = ({
       <a
         className={cc([
           styles.root,
-          "group dark:hover:bg-gray-700 dark:hover:border-gray-50",
+          "group dark:hover:bg-gray-700 dark:hover:border-gray-50 hover:no-underline",
           "text-black dark:text-white"
         ])}
       >

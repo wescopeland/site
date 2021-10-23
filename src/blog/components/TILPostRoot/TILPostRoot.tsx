@@ -21,7 +21,7 @@ export const TILPostRoot: FC<TILPostRootProps> = ({ children, post }) => {
 
       <h1 className="mb-8 text-4xl font-bold tracking-tight">{post.title}</h1>
 
-      {children}
+      <div className="prose">{children}</div>
     </>
   );
 };

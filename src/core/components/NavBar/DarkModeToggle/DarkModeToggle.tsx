@@ -12,10 +12,12 @@ export const DarkModeToggle: VFC = () => {
     return null;
   }
 
-  const IconComponent = theme === "light" ? HiOutlineSun : HiSun;
+  const IconComponent = theme === "dark" ? HiSun : HiOutlineSun;
+  const a11yLabel = `Switch to ${theme === "dark" ? "light" : "dark"} mode`;
 
   return (
     <button
+      aria-label={a11yLabel}
       onClick={() => {
         setTheme(theme === "light" ? "dark" : "light");
       }}

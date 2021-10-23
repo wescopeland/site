@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.4.1",
+    "@tailwindcss/typography": "^0.4.1",
     "classcat": "^5.0.3",
     "dayjs": "^1.10.7",
     "esbuild": "^0.13.8",

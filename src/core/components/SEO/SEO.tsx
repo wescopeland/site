@@ -2,9 +2,9 @@ import Head from "next/head";
 import type { VFC } from "react";
 
 const genericDescription =
-  "Wes Copeland. Senior Software Engineer at ApartmentAdvisor. Building modern web experiences with React and Next.js.";
+  "Wes Copeland. Senior Software Engineer at ApartmentAdvisor. Building modern web experiences with React, TypeScript, and Next.js.";
 
-interface SEOProps {
+export interface SEOProps {
   pageDescription?: string;
   pageTitle?: string;
 }

@@ -18,7 +18,10 @@ const TodayILearnedPage: AppPage<TodayILearnedPageProps> = ({ posts }) => (
 
 TodayILearnedPage.getLayout = (page: ReactElement) => {
   return (
-    <BaseLayout gamingMetadata={page.props.layout.gamingMetadata}>
+    <BaseLayout
+      seo={page.props.seo}
+      gamingMetadata={page.props.layout.gamingMetadata}
+    >
       {page}
     </BaseLayout>
   );
@@ -38,6 +41,9 @@ export async function getStaticProps() {
       posts,
       layout: {
         gamingMetadata: globalAchievementMetadata
+      },
+      seo: {
+        pageTitle: "Today I Learned"
       }
     },
     revalidate: 60 * 60 // Once an hour

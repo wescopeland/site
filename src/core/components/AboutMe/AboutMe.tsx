@@ -11,9 +11,9 @@ export const AboutMe: VFC = () => {
         <h2 className="mb-4">
           I'm a Senior Software Engineer at{" "}
           <a
-            className="font-semibold text-primary-700 dark:text-primary-400 hover:underline"
             href="https://www.apartmentadvisor.com"
             target="_blank"
+            rel="noreferrer"
           >
             ApartmentAdvisor
           </a>
@@ -29,7 +29,7 @@ export const AboutMe: VFC = () => {
           <a
             href="https://arstechnica.com/gaming/2016/05/is-this-the-worlds-first-perfect-game-of-donkey-kong/"
             target="_blank"
-            className="font-semibold text-primary-700 dark:text-primary-400 hover:underline"
+            rel="noreferrer"
           >
             the highest score on Donkey Kong
           </a>
@@ -39,6 +39,7 @@ export const AboutMe: VFC = () => {
 
       <div style={{ minWidth: 140 }}>
         <img
+          alt="Wes Copeland"
           style={{ width: 140, height: 140 }}
           className="mb-6 border-2 border-gray-700 rounded-sm shadow dark:border-gray-300"
           src="https://pbs.twimg.com/profile_images/1308178916381790210/VhbqD70K_400x400.png"

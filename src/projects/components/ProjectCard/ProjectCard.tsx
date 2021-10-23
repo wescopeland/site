@@ -21,11 +21,11 @@ export const ProjectCard: VFC<ProjectCardProps> = ({
         "border border-gray-200",
         "text-black dark:text-white",
         "shadow hover:-translate-y-1 hover:shadow-lg",
-        "hover:bg-gray-50 dark:hover:bg-gray-700 dark:hover:border-gray-200 hover:border-gray-600"
+        "hover:bg-gray-50 dark:hover:bg-gray-700 dark:hover:border-gray-200 hover:border-gray-600 hover:no-underline"
       ])}
     >
       <p className="font-bold">{name}</p>
-      <p>{description}</p>
+      <p className="font-normal">{description}</p>
     </a>
   );
 };
