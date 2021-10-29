@@ -1,12 +1,12 @@
 import type {
   TitleTrophiesResponse,
-  TrophiesEarnedForTitleResponse,
-  Trophy
+  Trophy,
+  UserTrophiesEarnedForTitleResponse
 } from "psn-api";
 import {
-  getTrophiesEarnedForTitle,
-  getTrophiesForTitle,
-  getTrophyTitlesForUser
+  getTitleTrophies,
+  getUserTitles,
+  getUserTrophiesEarnedForTitle
 } from "psn-api";
 
 import type { PsnProfile } from "./models";
@@ -14,23 +14,24 @@ import type { PsnProfile } from "./models";
 export const buildProfile = async (
   accessToken: string
 ): Promise<PsnProfile> => {
-  const { trophyTitles } = await getTrophyTitlesForUser({ accessToken }, "me");
+  const { trophyTitles } = await getUserTitles({ accessToken }, "me");
   const profile = trophyTitles as Partial<PsnProfile>;
 
   const trophyMetaPromises: Array<Promise<TitleTrophiesResponse>> = [];
-  const earnedTrophyPromises: Array<Promise<TrophiesEarnedForTitleResponse>> =
-    [];
+  const earnedTrophyPromises: Array<
+    Promise<UserTrophiesEarnedForTitleResponse>
+  > = [];
 
   for (const title of trophyTitles) {
     trophyMetaPromises.push(
-      getTrophiesForTitle({ accessToken }, title.npCommunicationId, "all", {
+      getTitleTrophies({ accessToken }, title.npCommunicationId, "all", {
         npServiceName:
           title.trophyTitlePlatform !== "PS5" ? "trophy" : undefined
       })
     );
 
     earnedTrophyPromises.push(
-      getTrophiesEarnedForTitle(
+      getUserTrophiesEarnedForTitle(
         { accessToken },
         "me",
         title.npCommunicationId,
