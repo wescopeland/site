@@ -1,18 +1,18 @@
 import cc from "classcat";
 import { useTheme } from "next-themes";
 import type { VFC } from "react";
-import { HiOutlineSun, HiSun } from "react-icons/hi";
+import { HiOutlineMoon, HiOutlineSun } from "react-icons/hi";
 import { useMountedState } from "react-use";
 
 export const DarkModeToggle: VFC = () => {
   const isMounted = useMountedState();
   const { theme, setTheme } = useTheme();
 
-  if (!isMounted) {
-    return null;
+  if (!isMounted || theme === undefined) {
+    return <div style={{ minHeight: 47 }} />;
   }
 
-  const IconComponent = theme === "dark" ? HiSun : HiOutlineSun;
+  const IconComponent = theme === "dark" ? HiOutlineMoon : HiOutlineSun;
   const a11yLabel = `Switch to ${theme === "dark" ? "light" : "dark"} mode`;
 
   return (
