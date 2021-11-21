@@ -1,30 +1,20 @@
 import type { FC } from "react";
 
-import { Footer } from "@/core/components/Footer";
-import { NavBar } from "@/core/components/NavBar";
+import { AppBar } from "@/core/components/AppBar";
 import { SEO } from "@/core/components/SEO";
 
-import { BaseLayoutContext } from "./base-layout.context";
-import type { BaseLayoutProps } from "./base-layout-props.model";
+import { Gradient } from "./Gradient";
 
-export const BaseLayout: FC<BaseLayoutProps> = ({
-  children,
-  gamingMetadata,
-  seo
-}) => {
-  const contextValue = { gamingMetadata };
-
+export const BaseLayout: FC = ({ children }) => {
   return (
-    <BaseLayoutContext.Provider value={contextValue}>
-      <SEO {...seo} />
+    <>
+      <SEO />
 
-      <NavBar />
-
-      <div className="container max-w-2xl px-8 pb-12 mx-auto">
-        <main className="antialiased">{children}</main>
-
-        <Footer />
-      </div>
-    </BaseLayoutContext.Provider>
+      <AppBar />
+      <main className="container max-w-[800px] lg:max-w-[870px] px-4 pt-8 sm:pt-16 mx-auto">
+        {children}
+      </main>
+      <Gradient />
+    </>
   );
 };

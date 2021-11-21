@@ -9,6 +9,13 @@ module.exports = {
   },
   darkMode: "class",
   theme: {
+    screens: {
+      sm: "640px",
+      md: "720px",
+      lg: "960px",
+      xl: "1280px"
+    },
+
     container: {
       center: true,
       padding: {
@@ -22,7 +29,7 @@ module.exports = {
       },
 
       colors: {
-        primary: colors.lime,
+        primary: colors.indigo,
         dark: {
           DEFAULT: "hsl(210, 30%, 8%)"
         }

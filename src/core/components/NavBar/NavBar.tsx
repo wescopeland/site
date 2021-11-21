@@ -1,52 +1,61 @@
 import cc from "classcat";
+import Link from "next/link";
 import { useRouter } from "next/router";
-import type { VFC } from "react";
+import type { FC, VFC } from "react";
 
 import { AppRoutes } from "@/core/utils/AppRoutes";
 
-import { DarkModeToggle } from "./DarkModeToggle";
-import { NavLink } from "./NavLink";
-
 export const NavBar: VFC = () => {
-  const { route } = useRouter();
-
   return (
     <div
       className={cc([
-        "flex flex-col justify-center items-center",
-        "py-2 mb-12",
-        "bg-gray-100 dark:bg-gray-800",
-        "transition duration-300"
+        "fixed bottom-0 right-1/2 z-50 h-10 pointer-events-none",
+        "transform translate-x-1/2 -translate-y-1/2",
+        "lg:block lg:relative lg:transform-none lg:right-auto",
+        "xl:absolute xl:w-full xl:-ml-4 xl:top-4 xl:flex xl:justify-center"
       ])}
     >
-      <div className="container max-w-2xl px-8 mx-auto">
-        <nav className="relative flex items-center justify-between w-full py-8">
-          <div className="-ml-3">
-            <NavLink
-              href={AppRoutes.HomePage()}
-              isActive={route === AppRoutes.HomePage()}
-            >
-              Home
-            </NavLink>
-
-            <NavLink
-              href={AppRoutes.ProjectsPage()}
-              isActive={route === AppRoutes.ProjectsPage()}
-            >
-              Projects
-            </NavLink>
-
-            <NavLink
-              href={AppRoutes.TodayILearnedPage()}
-              isActive={route.includes(AppRoutes.TodayILearnedPage())}
-            >
-              TIL
-            </NavLink>
-          </div>
-
-          <DarkModeToggle />
-        </nav>
-      </div>
+      <nav
+        className={cc([
+          "pointer-events-auto",
+          "w-80 h-10 bg-white border border-gray-200 rounded-xl shadow-sm",
+          "dark:bg-dark dark:border-gray-700",
+          "flex justify-between items-center p-0.5 gap-x-1"
+        ])}
+      >
+        <NavBarLink href={AppRoutes.HomePage()}>Home</NavBarLink>
+        <NavBarLink href={AppRoutes.ProjectsPage()}>Projects</NavBarLink>
+        <NavBarLink href="#">Gaming</NavBarLink>
+        <NavBarLink href="#">Blog</NavBarLink>
+      </nav>
     </div>
+  );
+};
+
+interface NavBarLinkProps {
+  href: string;
+}
+
+const NavBarLink: FC<NavBarLinkProps> = ({ children, href }) => {
+  const { route } = useRouter();
+
+  const isActive = route === href;
+
+  return (
+    <Link href={href} passHref>
+      <a
+        className={cc([
+          "flex items-center justify-center",
+          "no-underline hover:no-underline w-full h-full rounded-xl",
+          "transition",
+          "hover:bg-gray-200 dark:hover:bg-gray-700 hover:bg-opacity-70 hover:text-black",
+          isActive
+            ? "bg-gray-200 dark:bg-gray-700 bg-opacity-70 font-semibold text-black dark:text-white"
+            : "font-normal text-gray-700 dark:text-gray-300 bg-transparent"
+        ])}
+      >
+        {children}
+      </a>
+    </Link>
   );
 };

@@ -1,0 +1,22 @@
+.root {
+  position: relative;
+  font-weight: 600;
+}
+
+.root::after {
+  bottom: -20%;
+  content: "";
+  position: absolute;
+  border-radius: 2px;
+  z-index: -1;
+  display: block;
+  right: -1.5px;
+  height: 0.75em;
+  width: calc(100% + 4px);
+
+  @apply transition bg-primary-200;
+}
+
+:global(.dark) .root::after {
+  @apply bg-primary-500;
+}

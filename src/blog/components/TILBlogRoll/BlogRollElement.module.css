@@ -1,8 +1,0 @@
-.root {
-  @apply flex items-center justify-between;
-  @apply py-2 sm:pr-4;
-  @apply border-b;
-  @apply transition-all cursor-pointer select-none;
-  @apply hover:border-gray-600 hover:bg-gray-100 hover:pl-1;
-  @apply last:border-b-transparent hover:last:border-b-gray-600;
-}

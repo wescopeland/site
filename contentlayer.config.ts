@@ -21,21 +21,9 @@ const Blog = defineDocumentType(() => ({
   fields: {}
 }));
 
-const TIL = defineDocumentType(() => ({
-  computedFields,
-
-  name: "TIL",
-  filePathPattern: "til/*.mdx",
-  bodyType: "mdx",
-  fields: {
-    title: { type: "string", required: true },
-    publishedAt: { type: "string", required: true }
-  }
-}));
-
 const contentLayerConfig = makeSource({
   contentDirPath: "src/data",
-  documentTypes: [Blog, TIL],
+  documentTypes: [Blog],
   mdx: {
     rehypePlugins: [rehypeSlug]
   }
