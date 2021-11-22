@@ -23,8 +23,8 @@ export const AboutMe: VFC = () => {
 
         <p>
           I'm passionate about front-end development, frameworks, DeFi/Web3, and
-          dev experience. After-hours, you'll find me completing video games on
-          my backlog, traveling, or enjoying a nice API. I'm known for once
+          DX. After-hours, you'll find me completing video games on my backlog,
+          working on open source, or enjoying a nice IPA. I'm known for once
           holding the world record for the highest score on Donkey Kong.
         </p>
       </Animate.FadeUp>
@@ -52,10 +52,10 @@ export const AboutMe: VFC = () => {
 
         <p>
           Here you'll find a collection of things I've been thinking about. I'm
-          passionate about front-end development, frameworks, and dev
-          experience. After-hours, you'll find me completing video games on my
-          backlog, traveling, or enjoying a nice IPA. I'm known for once holding
-          the world record for{" "}
+          passionate about front-end development, frameworks, and DX.
+          After-hours, you'll find me completing video games on my backlog,
+          traveling, or enjoying a nice IPA. I'm known for once holding the
+          world record for{" "}
           <a
             href="https://arstechnica.com/gaming/2016/05/is-this-the-worlds-first-perfect-game-of-donkey-kong/"
             target="_blank"

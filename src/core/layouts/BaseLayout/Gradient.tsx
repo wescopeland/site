@@ -11,7 +11,7 @@ export const Gradient: VFC = () => {
       style={{
         transform: "translate(-50vw, -100vh)",
         background:
-          "radial-gradient(50% 50% at 50% 50%,#7c3aed16 0,rgba(255,255,255,0) 100%)"
+          "radial-gradient(50% 50% at 50% 50%,#7c3aed26 0,rgba(255,255,255,0) 100%)"
       }}
     />
   );

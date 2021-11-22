@@ -2,7 +2,7 @@ import type { ReactElement } from "react";
 
 import { BaseLayout } from "@/core/layouts/BaseLayout";
 import type { AppPage } from "@/core/models";
-import { ProjectsRoot } from "@/projects/+root";
+import { ProjectsRoot } from "@/projects/components/+root";
 
 const ProjectsPage: AppPage = () => <ProjectsRoot />;
 
