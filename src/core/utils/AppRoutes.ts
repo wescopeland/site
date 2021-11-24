@@ -1,5 +1,6 @@
 const basePath = "/";
 const projectsPath = "/projects";
+const gamingPath = "/gaming";
 
 export const AppRoutes = {
   HomePage() {
@@ -8,5 +9,9 @@ export const AppRoutes = {
 
   ProjectsPage() {
     return projectsPath;
+  },
+
+  GamingPage() {
+    return gamingPath;
   }
 };

@@ -19,7 +19,7 @@ export const ProjectCard: VFC<ProjectCardProps> = ({
     <button
       onClick={() => onClick(name)}
       className={cc([
-        "h-20 md:h-24 py-2 px-4",
+        "md:h-24 py-4 px-4 w-full",
         "rounded border-2",
         "bg-white dark:bg-gray-900 border-gray-100 dark:border-gray-500",
         "hover:shadow-lg hover:bg-gray-50 dark:hover:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-200",

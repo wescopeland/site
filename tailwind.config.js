@@ -30,6 +30,8 @@ module.exports = {
 
       colors: {
         primary: colors.indigo,
+
+        lime: colors.lime,
         dark: {
           DEFAULT: "hsl(210, 30%, 8%)"
         }

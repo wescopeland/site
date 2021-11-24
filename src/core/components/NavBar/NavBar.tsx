@@ -18,14 +18,16 @@ export const NavBar: VFC = () => {
       <nav
         className={cc([
           "pointer-events-auto",
-          "w-80 h-10 bg-white border border-gray-200 rounded-xl shadow-sm",
-          "dark:bg-dark dark:border-gray-700",
+          "w-80 h-10 bg-white border border-gray-400 sm:border-gray-200 rounded-xl shadow-sm",
+          "bg-opacity-50 backdrop-filter backdrop-blur backdrop-grayscale",
+          "sm:bg-opacity-100 sm:backdrop-filter-none",
+          "dark:bg-dark dark:border-gray-300 sm:dark:border-gray-700",
           "flex justify-between items-center p-0.5 gap-x-1"
         ])}
       >
         <NavBarLink href={AppRoutes.HomePage()}>Home</NavBarLink>
         <NavBarLink href={AppRoutes.ProjectsPage()}>Projects</NavBarLink>
-        <NavBarLink href="#">Gaming</NavBarLink>
+        <NavBarLink href={AppRoutes.GamingPage()}>Gaming</NavBarLink>
         <NavBarLink href="#">Blog</NavBarLink>
       </nav>
     </div>
