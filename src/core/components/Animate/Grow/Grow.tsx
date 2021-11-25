@@ -22,11 +22,11 @@ export const Grow: FC<GrowProps> = ({
       shouldAnimateOnMount={shouldAnimateOnMount}
       delay={delay}
       enter="ease-out duration-300"
-      enterFrom="opacity-0 scale-95"
+      enterFrom="motion-safe:opacity-0 motion-safe:scale-95"
       enterTo="opacity-100 scale-100"
       leave="ease-in"
       leaveFrom="opacity-100 scale-100"
-      leaveTo="opacity-0 scale-95"
+      leaveTo="motion-safe:opacity-0 motion-safe:scale-95"
     >
       {children}
     </BaseAnimation>

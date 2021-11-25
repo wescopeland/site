@@ -11,6 +11,19 @@
     @apply bg-gray-50 dark:bg-dark transition-colors duration-300;
     @apply text-black dark:text-white;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-delay: -1s !important;
+      animation-duration: 1s !important;
+      animation-iteration-count: 1 !important;
+      background-attachment: initial !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0s !important;
+    }
+  }
 }
 
 .prose {

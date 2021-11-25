@@ -24,7 +24,7 @@ export const Stagger: FC<StaggerProps> = ({
             shouldAnimateOnMount={shouldAnimateOnMount}
             delay={delay}
             enter="transition transform duration-300"
-            enterFrom="opacity-0 translate-y-6"
+            enterFrom="motion-reduce:opacity-100 motion-safe:opacity-0 motion-safe:translate-y-6"
             enterTo="opacity-100 translate-y-0"
             style={{ transitionDelay: `${delay + index * 30}ms` }}
           >

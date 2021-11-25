@@ -21,7 +21,7 @@ export const FadeUp: FC<FadeUpProps> = ({
       canShow={canShow}
       shouldAnimateOnMount={shouldAnimateOnMount}
       delay={delay}
-      enterFrom="opacity-0 translate-y-6"
+      enterFrom="motion-safe:opacity-0 motion-safe:translate-y-6"
       enterTo="opacity-100 translate-y-0"
     >
       {children}

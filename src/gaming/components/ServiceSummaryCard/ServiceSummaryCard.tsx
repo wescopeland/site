@@ -19,7 +19,7 @@ export const ServiceSummaryCard: VFC<ServiceSummaryCardProps> = ({
   return (
     <div
       className={cc([
-        "relative flex flex-col items-center p-4 rounded-lg border-2",
+        "relative flex flex-row md:flex-col items-center gap-x-4 p-4 rounded-lg border-2",
         "bg-white dark:bg-gray-900 select-none cursor-pointer",
         "border-gray-100 dark:border-gray-500",
         "hover:shadow-lg hover:bg-gray-50 dark:hover:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-200",
@@ -37,17 +37,20 @@ export const ServiceSummaryCard: VFC<ServiceSummaryCardProps> = ({
 
       <div
         className={cc([
-          "flex items-center justify-center w-16 h-16 mb-2 rounded-full",
+          "flex items-center justify-center w-12 h-12 md:mb-2 rounded-full",
+          "md:w-16 md:h-16",
           bgColorClassName
         ])}
       >
         <IconComponent className="text-3xl text-gray-800 dark:text-white" />
       </div>
 
-      <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-200">
-        {labelCopy}
-      </h2>
-      <p className="text-black dark:text-white">{valueCopy}</p>
+      <div className="md:flex md:flex-col md:items-center">
+        <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-200">
+          {labelCopy}
+        </h2>
+        <p className="text-black dark:text-white">{valueCopy}</p>
+      </div>
     </div>
   );
 };

@@ -41,15 +41,15 @@ export const BaseAnimation: FC<BaseAnimationProps> = ({
       appear={shouldAnimateOnMount}
       show={isShowing}
       enter={cc([
-        enter ?? "transition transform duration-300",
-        delay === 50 && "delay-50",
-        delay === 100 && "delay-100",
-        delay === 150 && "delay-150",
-        delay === 200 && "delay-200",
-        delay === 300 && "delay-300",
-        delay === 500 && "delay-500",
-        delay === 700 && "delay-700",
-        delay === 1000 && "delay-1000"
+        enter ?? "motion-safe:transition transform duration-300",
+        delay === 50 && "motion-safe:delay-50",
+        delay === 100 && "motion-safe:delay-100",
+        delay === 150 && "motion-safe:delay-150",
+        delay === 200 && "motion-safe:delay-200",
+        delay === 300 && "motion-safe:delay-300",
+        delay === 500 && "motion-safe:delay-500",
+        delay === 700 && "motion-safe:delay-700",
+        delay === 1000 && "motion-safe:delay-1000"
       ])}
       enterFrom={enterFrom}
       enterTo={enterTo}

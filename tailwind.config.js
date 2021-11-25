@@ -39,6 +39,7 @@ module.exports = {
     }
   },
   variants: {
+    transitionProperty: ["motion-safe", "motion-reduce"],
     extend: {}
   },
   plugins: [require("@tailwindcss/typography")]
