@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-duplicate-string */
 import dayjs from "dayjs";
 import type { VFC } from "react";
 

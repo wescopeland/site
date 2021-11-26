@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-duplicate-string */
 import type { VFC } from "react";
 
 import { formatPercentage } from "@/core/utils/formatPercentage";
