@@ -17,7 +17,7 @@ const generateChartDatum = (
 };
 
 export const generateData = () => {
-  const nodeCount = 3;
+  const nodeCount = 5;
 
   let currentDate = new Date("07-15-2018");
   let currentTotalPoints = 20;

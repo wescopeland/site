@@ -14,19 +14,18 @@ const psnColor = gamingServiceColors.playstation.colors.light;
 const xboxColor = gamingServiceColors.xbox.colors.light;
 const raColor = gamingServiceColors.ra.colors.light;
 
-const data = generateData();
-
 export const TotalPointsChartCard: VFC = () => {
+  const data = generateData();
+  const finalDataNode = data.length > 0 ? data[data.length - 1] : null;
+
   return (
     <BaseChartCard
       heading="Total Points"
       subheading={
-        data.length > 0
-          ? data[data.length - 1].totalPoints.toLocaleString()
-          : "0"
+        finalDataNode ? finalDataNode.totalPoints.toLocaleString() : "0"
       }
     >
-      {data.length > 0 ? (
+      {finalDataNode ? (
         <ResponsiveContainer width="100%" height={240}>
           <AreaChart height={240} data={data}>
             <defs>
@@ -63,36 +62,46 @@ export const TotalPointsChartCard: VFC = () => {
 
             <Tooltip
               content={({ active, payload }) => (
-                <CustomTooltip active={active} payload={payload} />
+                <CustomTooltip
+                  active={active}
+                  finalDataNode={finalDataNode}
+                  payload={payload}
+                />
               )}
             />
 
-            <Area
-              dataKey="retroAchievementsPoints"
-              type="monotone"
-              stroke={raColor}
-              strokeWidth={2}
-              stackId="1"
-              fill="url(#stack-gradient-ra)"
-            />
+            {finalDataNode.retroAchievementsPoints && (
+              <Area
+                dataKey="retroAchievementsPoints"
+                type="monotone"
+                stroke={raColor}
+                strokeWidth={2}
+                stackId="1"
+                fill="url(#stack-gradient-ra)"
+              />
+            )}
 
-            <Area
-              dataKey="xboxPoints"
-              type="monotone"
-              stroke={xboxColor}
-              strokeWidth={2}
-              stackId="1"
-              fill="url(#stack-gradient-xbox)"
-            />
+            {finalDataNode.xboxPoints && (
+              <Area
+                dataKey="xboxPoints"
+                type="monotone"
+                stroke={xboxColor}
+                strokeWidth={2}
+                stackId="1"
+                fill="url(#stack-gradient-xbox)"
+              />
+            )}
 
-            <Area
-              dataKey="playstationPoints"
-              type="monotone"
-              stroke={psnColor}
-              strokeWidth={2}
-              stackId="1"
-              fill="url(#stack-gradient-psn)"
-            />
+            {finalDataNode.playstationPoints && (
+              <Area
+                dataKey="playstationPoints"
+                type="monotone"
+                stroke={psnColor}
+                strokeWidth={2}
+                stackId="1"
+                fill="url(#stack-gradient-psn)"
+              />
+            )}
           </AreaChart>
         </ResponsiveContainer>
       ) : (

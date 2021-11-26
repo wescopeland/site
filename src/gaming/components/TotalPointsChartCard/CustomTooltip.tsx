@@ -1,5 +1,6 @@
 import { Transition } from "@headlessui/react";
 import cc from "classcat";
+import dayjs from "dayjs";
 import type { VFC } from "react";
 
 import type { ChartDatum } from "@/gaming/models";
@@ -9,15 +10,22 @@ const gamingServiceColors = getGamingServiceColors();
 
 interface CustomTooltipProps {
   active: boolean;
+  finalDataNode: ChartDatum;
   payload: Array<any & { payload: ChartDatum }>;
 }
 
-export const CustomTooltip: VFC<CustomTooltipProps> = ({ active, payload }) => {
+export const CustomTooltip: VFC<CustomTooltipProps> = ({
+  active,
+  finalDataNode,
+  payload
+}) => {
   const [value] = payload;
 
   if (!value) {
     return null;
   }
+
+  const datum = value.payload as ChartDatum;
 
   return (
     <Transition
@@ -36,34 +44,37 @@ export const CustomTooltip: VFC<CustomTooltipProps> = ({ active, payload }) => {
         ])}
       >
         <div className="flex flex-col gap-y-2">
-          <p>Jan 1, 2018</p>
+          <p>{dayjs(datum.date).format("MMM DD, YYYY")}</p>
 
           <div>
-            <LineItem
-              label="PSN"
-              value={value.payload.playstationPoints.toLocaleString()}
-              swatchBgClassName={
-                gamingServiceColors.playstation.classNames.dark
-              }
-            />
+            {finalDataNode.playstationPoints ? (
+              <LineItem
+                label="PSN"
+                value={datum.playstationPoints.toLocaleString()}
+                swatchBgClassName={
+                  gamingServiceColors.playstation.classNames.dark
+                }
+              />
+            ) : null}
 
-            <LineItem
-              label="Xbox"
-              value={value.payload.xboxPoints.toLocaleString()}
-              swatchBgClassName={gamingServiceColors.xbox.classNames.dark}
-            />
+            {finalDataNode.xboxPoints ? (
+              <LineItem
+                label="Xbox"
+                value={datum.xboxPoints.toLocaleString()}
+                swatchBgClassName={gamingServiceColors.xbox.classNames.dark}
+              />
+            ) : null}
 
-            <LineItem
-              label="RA"
-              value={value.payload.retroAchievementsPoints.toLocaleString()}
-              swatchBgClassName={gamingServiceColors.ra.classNames.dark}
-            />
+            {finalDataNode.retroAchievementsPoints ? (
+              <LineItem
+                label="RA"
+                value={datum.retroAchievementsPoints.toLocaleString()}
+                swatchBgClassName={gamingServiceColors.ra.classNames.dark}
+              />
+            ) : null}
           </div>
 
-          <LineItem
-            label="Total"
-            value={value.payload.totalPoints.toLocaleString()}
-          />
+          <LineItem label="Total" value={datum.totalPoints.toLocaleString()} />
         </div>
       </div>
     </Transition>
