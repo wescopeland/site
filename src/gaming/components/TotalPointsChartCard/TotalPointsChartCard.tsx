@@ -15,7 +15,7 @@ const xboxColor = gamingServiceColors.xbox.colors.light;
 const raColor = gamingServiceColors.ra.colors.light;
 
 export const TotalPointsChartCard: VFC = () => {
-  const data = generateData();
+  const data = generateData("2019-03-03");
   const finalDataNode = data.length > 0 ? data[data.length - 1] : null;
 
   return (

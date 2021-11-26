@@ -16,22 +16,23 @@ const generateChartDatum = (
   };
 };
 
-export const generateData = () => {
-  const nodeCount = 5;
-
-  let currentDate = new Date("07-15-2018");
-  let currentTotalPoints = 20;
-  let currentXboxPoints = 20;
+export const generateData = (startDate: string) => {
+  let activeDate = dayjs(startDate).subtract(1, "day");
+  let currentTotalPoints = 0;
+  let currentXboxPoints = 0;
   let currentPlaystationPoints = 0;
-  let currentRetroAchievementsPoints = 0;
+  let currentRetroPoints = 0;
+
+  const today = dayjs();
+  const nodeCount = today.diff(activeDate, "days");
 
   const data: ChartDatum[] = [
     {
-      date: currentDate.toISOString(),
+      date: activeDate.toISOString(),
       totalPoints: currentTotalPoints,
       xboxPoints: currentXboxPoints,
       playstationPoints: currentPlaystationPoints,
-      retroAchievementsPoints: currentRetroAchievementsPoints
+      retroAchievementsPoints: currentRetroPoints
     }
   ];
 
@@ -44,7 +45,7 @@ export const generateData = () => {
       0, 0, 0, 5, 10, 15, 20, 25, 50
     ]);
 
-    currentDate = dayjs(currentDate).add(1, "day").toDate();
+    activeDate = dayjs(activeDate).add(1, "day");
     currentTotalPoints += earnedPoints;
 
     if (oneToThree === 1) {
@@ -52,15 +53,15 @@ export const generateData = () => {
     } else if (oneToThree === 2) {
       currentPlaystationPoints += earnedPoints;
     } else if (oneToThree === 3) {
-      currentRetroAchievementsPoints += earnedPoints;
+      currentRetroPoints += earnedPoints;
     }
 
     data.push({
-      date: currentDate.toISOString(),
+      date: activeDate.toISOString(),
       totalPoints: currentTotalPoints,
       xboxPoints: currentXboxPoints,
       playstationPoints: currentPlaystationPoints,
-      retroAchievementsPoints: currentRetroAchievementsPoints
+      retroAchievementsPoints: currentRetroPoints
     });
   }
 

@@ -74,7 +74,7 @@ export const GamingRoot: VFC = () => {
 
           <TotalPointsChartCard />
 
-          <div className="grid sm:grid-cols-2 gap-y-2 gap-x-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-2 gap-x-6">
             <RarestAchievementsCard />
             <RarestCompletionsCard />
           </div>
