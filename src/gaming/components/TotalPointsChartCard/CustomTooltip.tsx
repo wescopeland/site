@@ -19,8 +19,6 @@ export const CustomTooltip: VFC<CustomTooltipProps> = ({ active, payload }) => {
     return null;
   }
 
-  console.log(value);
-
   return (
     <Transition
       show={active}

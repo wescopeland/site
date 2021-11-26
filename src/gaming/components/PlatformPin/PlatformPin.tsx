@@ -1,12 +1,13 @@
 import cc from "classcat";
 import type { VFC } from "react";
 
+import type { PlatformId } from "@/gaming/models";
 import { getGamingServiceColors } from "@/gaming/utils/getGamingServiceColors";
 
 const gamingServiceColors = getGamingServiceColors();
 
 interface PlatformPinProps {
-  platform: "psn" | "xbox" | "ra";
+  platform: PlatformId;
 }
 
 export const PlatformPin: VFC<PlatformPinProps> = ({ platform }) => {

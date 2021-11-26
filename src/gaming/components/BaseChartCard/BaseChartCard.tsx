@@ -1,13 +1,13 @@
 import cc from "classcat";
 import type { FC } from "react";
 
-interface ChartCardBaseProps {
+interface BaseChartCardProps {
   heading: string;
 
   subheading?: string;
 }
 
-export const ChartCardBase: FC<ChartCardBaseProps> = ({
+export const BaseChartCard: FC<BaseChartCardProps> = ({
   children,
   heading,
   subheading

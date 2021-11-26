@@ -9,6 +9,8 @@ import { getGamingServiceColors } from "@/gaming/utils/getGamingServiceColors";
 import { MostRecentAchievementCard } from "../MostRecentAchievementCard";
 import { MostRecentCompletionCard } from "../MostRecentCompletionCard";
 import { MostRecentGameCard } from "../MostRecentGameCard";
+import { RarestAchievementsCard } from "../RarestAchievementsCard";
+import { RarestCompletionsCard } from "../RarestCompletionsCard";
 import { ServiceSummaryCard } from "../ServiceSummaryCard";
 import { TotalPointsChartCard } from "../TotalPointsChartCard";
 
@@ -58,19 +60,24 @@ export const GamingRoot: VFC = () => {
       </div>
 
       <Animate.FadeUp shouldAnimateOnMount delay={300}>
-        <div>
-          <p className="text-lg font-light tracking-tight mb-2">Overview</p>
+        <div className="space-y-4">
+          <div>
+            <p className="text-lg font-light tracking-tight mb-2">Overview</p>
 
-          <div className="grid sm:grid-cols-2 mb-4 gap-y-2 gap-x-6">
-            <MostRecentGameCard />
-            <MostRecentAchievementCard />
+            <div className="grid sm:grid-cols-2 gap-y-2 gap-x-6">
+              <MostRecentGameCard />
+              <MostRecentAchievementCard />
+            </div>
           </div>
 
-          <div className="mb-4">
-            <MostRecentCompletionCard />
-          </div>
+          <MostRecentCompletionCard />
 
           <TotalPointsChartCard />
+
+          <div className="grid sm:grid-cols-2 gap-y-2 gap-x-6">
+            <RarestAchievementsCard />
+            <RarestCompletionsCard />
+          </div>
         </div>
       </Animate.FadeUp>
     </>

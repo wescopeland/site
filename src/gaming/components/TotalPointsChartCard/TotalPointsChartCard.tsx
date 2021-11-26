@@ -4,7 +4,7 @@ import { Area, AreaChart, ResponsiveContainer, Tooltip } from "recharts";
 import { generateData } from "@/gaming/generateData";
 import { getGamingServiceColors } from "@/gaming/utils/getGamingServiceColors";
 
-import { ChartCardBase } from "../ChartCardBase";
+import { BaseChartCard } from "../BaseChartCard";
 import { CustomTooltip } from "./CustomTooltip";
 import { GradientStops } from "./GradientStops";
 
@@ -18,7 +18,7 @@ const data = generateData();
 
 export const TotalPointsChartCard: VFC = () => {
   return (
-    <ChartCardBase
+    <BaseChartCard
       heading="Total Points"
       subheading={
         data.length > 0
@@ -102,6 +102,6 @@ export const TotalPointsChartCard: VFC = () => {
           </p>
         </div>
       )}
-    </ChartCardBase>
+    </BaseChartCard>
   );
 };

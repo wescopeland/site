@@ -1,18 +1,11 @@
-import cc from "classcat";
 import type { VFC } from "react";
 
+import { BaseStatsCard } from "../BaseStatsCard";
 import { PlatformPin } from "../PlatformPin";
 
 export const MostRecentGameCard: VFC = () => {
   return (
-    <div
-      className={cc([
-        "w-full p-4 rounded-2xl",
-        "bg-white border border-gray-100",
-        "dark:border-gray-500 dark:bg-gradient-to-tl dark:from-gray-900 dark:to-black"
-      ])}
-    >
-      <p className="dark:text-gray-400 text-gray-500">Most Recent Game</p>
+    <BaseStatsCard headingLabel="Most Recent Game" isUsingAccentedBackground>
       <div className="flex gap-x-3">
         <p className="text-black dark:text-white flex">Mortal Kombat 11</p>
         <PlatformPin platform="psn" />
@@ -27,6 +20,6 @@ export const MostRecentGameCard: VFC = () => {
           (40 of 59)
         </p>
       </div>
-    </div>
+    </BaseStatsCard>
   );
 };
