@@ -28,7 +28,7 @@ export const NavBar: VFC = () => {
         <NavBarLink href={AppRoutes.HomePage()}>Home</NavBarLink>
         <NavBarLink href={AppRoutes.ProjectsPage()}>Projects</NavBarLink>
         <NavBarLink href={AppRoutes.GamingPage()}>Gaming</NavBarLink>
-        <NavBarLink href="#">Blog</NavBarLink>
+        <NavBarLink href={AppRoutes.BlogPage()}>Blog</NavBarLink>
       </nav>
     </div>
   );

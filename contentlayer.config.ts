@@ -12,18 +12,21 @@ const computedFields: ComputedFields = {
   }
 };
 
-const Blog = defineDocumentType(() => ({
+const BlogPost = defineDocumentType(() => ({
   computedFields,
 
-  name: "Blog",
-  filePathPattern: "blog/*.mdx",
+  name: "BlogPost",
+  filePathPattern: "content/*.mdx",
   bodyType: "mdx",
-  fields: {}
+  fields: {
+    title: { type: "string", required: true },
+    publishedOn: { type: "string", required: true }
+  }
 }));
 
 const contentLayerConfig = makeSource({
-  contentDirPath: "src/data",
-  documentTypes: [Blog],
+  contentDirPath: "src/blog",
+  documentTypes: [BlogPost],
   mdx: {
     rehypePlugins: [rehypeSlug]
   }

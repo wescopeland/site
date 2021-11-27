@@ -1704,7 +1704,7 @@ constants-browserify@1.0.0:
 
 contentlayer@^0.0.32:
   version "0.0.32"
-  resolved "https://registry.npmjs.org/contentlayer/-/contentlayer-0.0.32.tgz"
+  resolved "https://registry.yarnpkg.com/contentlayer/-/contentlayer-0.0.32.tgz#20b1209463b972b3959ccf168c77e53200455499"
   integrity sha512-i82VAXhIVTPA3m37TS2AN5AU/FZbko/SLjIc7KKVOA7cdm91c4z+bqGMe+61Ibsd9vOK5pl9WFgDgKkIXzM9MQ==
   dependencies:
     "@contentlayer/cli" "0.0.32"
@@ -4363,7 +4363,7 @@ natural-compare@^1.4.0:
 
 next-contentlayer@^0.0.32:
   version "0.0.32"
-  resolved "https://registry.npmjs.org/next-contentlayer/-/next-contentlayer-0.0.32.tgz"
+  resolved "https://registry.yarnpkg.com/next-contentlayer/-/next-contentlayer-0.0.32.tgz#ca913e42361cc6e86e88b6e20eb9e07826e149b5"
   integrity sha512-jjhEddXeVzmOfT/5Pz8RrElL2s34lz5/JBEkxDkFOBQdmqm0mdFmgAXV2Tb5QRd2eTWr/4S9OG25FBUePHM17w==
   dependencies:
     "@contentlayer/core" "0.0.32"
