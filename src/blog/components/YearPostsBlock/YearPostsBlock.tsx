@@ -12,15 +12,22 @@ export const YearPostsBlock: VFC<YearPostsBlockProps> = ({ year, posts }) => {
   return (
     <div className="flex flex-col sm:flex-row">
       <h2 className="text-2xl w-32 mb-2">{year}</h2>
-      <div className="divide-y dark:divide-gray-700 w-full">
-        {posts.map((post) => (
-          <PostLink
-            key={post.slug}
-            postTitle={post.title}
-            publishedOn={post.publishedOn}
-          />
-        ))}
-      </div>
+      <ul className="divide-y dark:divide-gray-700 w-full">
+        {posts
+          .sort(
+            (a, b) =>
+              new Date(b.publishedOn).getTime() -
+              new Date(a.publishedOn).getTime()
+          )
+          .map((post) => (
+            <PostLink
+              key={post.slug}
+              postTitle={post.title}
+              publishedOn={post.publishedOn}
+              postSlug={post.slug}
+            />
+          ))}
+      </ul>
     </div>
   );
 };

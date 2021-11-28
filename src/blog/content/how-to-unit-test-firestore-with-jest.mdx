@@ -1,0 +1,254 @@
+---
+title: How to Unit Test Firestore with Jest
+publishedOn: 2020-06-06
+---
+
+# How to Unit Test Firestore with Jest
+
+As a Firebase user since 2014, I've found the testing experience to be extremely frustrating with both RTDB and Firestore. [I](https://stackoverflow.com/questions/52043886/how-do-you-mock-firebase-firestore-methods-using-jest) [am](https://stackoverflow.com/questions/48139037/cannot-mock-admin-firestore-during-unit-tests) [not](https://www.npmjs.com/package/firestore-mock) [the](https://www.npmjs.com/package/firestore-jest-mock) [only](https://www.npmjs.com/package/mock-cloud-firestore) [one](https://medium.com/stories-from-upstatement/jest-mocks-roasting-on-an-open-firestore-36fa55b76953) [who](https://stackoverflow.com/questions/61358076/is-there-a-way-to-mock-firebase-modules-in-jest) [has](https://itnext.io/firebase-firestore-unit-testing-with-jest-and-kind-of-typescript-e26874196b1e) [had](https://www.codementor.io/@kylewelsby/unit-testing-firebase-firestore-cloud-functions-ziygmo8g1) [this](https://www.robinwieruch.de/firebase-test) [experience](https://github.com/soumak77/firebase-mock/issues/53). While things have certainly gotten better with local Firebase emulation, they become increasingly difficult the further one strays from the golden path. Now that I've started a new side project that uses Firestore for the back-end APIs, I was determined to figure this out once and for all.
+
+This article assumes you're using Express, TypeScript, Firebase Admin, and already have some working knowledge of Firestore. These examples can be adapted for the standard non-privileged Firebase library.
+
+## The Problem
+
+We have an API endpoint that retrieves data from our Firestore NoSQL database and does some work on it. Here is a very basic (and intentionally oversimplified) example:
+
+```typescript
+interface DBProduct {
+  name: string;
+  price: number;
+}
+
+export default async (req: Request, res: Response) => {
+  switch (req.method) {
+    case "GET":
+      const productsSnapshot = await db
+        .firestore()
+        .collection("products")
+        .orderBy("name", "desc")
+        .get();
+
+      let productCount = 0;
+
+      for (const productDocument of productsSnapshot.docs) {
+        productCount += 1;
+      }
+
+      return res.status(200).json({ count: productCount });
+  }
+};
+```
+
+We don't particularly care about testing the internals of Firestore, but there is value in testing our homebrewed logic that runs on the retrieved data. Granted, even though all we're doing above is extrapolating the product count, in a real-world scenario this API function might be doing quite a bit of heavy lifting.
+
+With Firestore's chained API, I had a lot of trouble using Jest to effectively mock it out in a reusable fashion.
+
+## The Solution: ts-mock-firebase && supertest
+
+We can use the [ts-mock-firebase](https://github.com/mindhivefi/ts-mock-firebase) library to make unit testing our logic less stressful. This library aims to simulate all of the Firestore functions with an in-memory database that you can define on every test, letting you set up mock data for your unit tests with ease.
+
+If you're not already familiar with [supertest](https://github.com/visionmedia/supertest), it's a library for ease-of-testing with Express endpoints. It is totally optional, but since the example above is an Express function rather than some util, it makes more sense to [simulate the endpoint in our test in a manner that it might actually be used](https://twitter.com/kentcdodds/status/977018512689455106?lang=en).
+
+Let's see what a unit test in Jest might look like for the example above.
+
+```typescript
+import express from "express";
+import * as admin from "firebase-admin";
+import request from "supertest";
+import { exposeMockFirebaseAdminApp } from "ts-mock-firebase";
+
+import productCount from "./productCount";
+
+const server = express();
+server.use("/productCount", productCount);
+
+const firebaseApp = admin.initializeApp({});
+const mocked = exposeMockFirebaseAdminApp(firebaseApp);
+
+describe("Api Endpoint: productCount", () => {
+  afterEach(() => {
+    mocked.firestore().mocker.reset();
+  });
+
+  // ...
+
+  describe("GET", () => {
+    it("returns the total number of products", async () => {
+      // ARRANGE
+      // 🚀🚀🚀 Mock the products collection!
+      mocked.firestore().mocker.loadCollection("products", {
+        productOne: {
+          name: "mockProductOne",
+          price: 9.99
+        },
+        productTwo: {
+          name: "mockProductTwo",
+          price: 19.99
+        }
+      });
+
+      // ACT
+      const response = await request(server).get("/productCount");
+
+      // ASSERT
+      expect(response.status).toEqual(200);
+      expect(response.body).toEqual({ count: 2 });
+    });
+  });
+});
+```
+
+Being able to mock an entire collection with `ts-mock-firebase`'s `loadCollection` function is extraordinarily powerful. **It makes TDD possible and easy for Express endpoints that rely on Firestore queries.**
+
+## A More Complex Example
+
+The products collection example above was obviously extremely simplified. It is likely we will need to do something with much more heavy lifting in whatever Express endpoint we build.
+
+Let's pretend we're building a high score tracking system for video games that relies on two collections: `scores` and `games`. The `games` collection has one sub-collection: `tracks`, which are the different rulesets that players might be competing on.
+
+Here is a sample document for the `games` collection:
+
+```typescript
+{
+  hkzSjFA7IY4s3Qb1DJyA: {
+    name: 'Donkey Kong',
+    tracks: { // This is a subcollection!
+      JFCYTi9sJLsazbzxVomW: {
+        name: 'Factory settings'
+      }
+    }
+  }
+}
+```
+
+And here is a sample document for the `scores` collection:
+
+```typescript
+{
+  nkT6Gv3uD7NmTnDpVGKK: {
+    finalScore: 1064500
+    playerName: 'Steve Wiebe',
+
+    // This is a ref to Donkey Kong.
+    _gameRef: '/games/hkzSjFA7IY4s3Qb1DJyA',
+
+    // This is a ref to the "Factory settings" track.
+    _trackRef: '/games/hkzSjFA7IY4s3Qb1DJyA/tracks/JFCYTi9sJLsazbzxVomW'
+  }
+}
+```
+
+Now, let's say we have an endpoint that queries the `scores` collection and responds with an array of objects that looks like this:
+
+```typescript
+[
+  {
+    playerName: "Steve Wiebe",
+    score: 1064500,
+    gameName: "Donkey Kong",
+    trackName: "Factory settings"
+  }
+];
+```
+
+The Express code for such an endpoint might look like:
+
+```typescript
+async function getDocumentByReference(reference: DocumentReference<any>) {
+  const snapshot = await reference.get();
+  return snapshot.data();
+}
+
+export default async (req: Request, res: Response) => {
+  switch (req.method) {
+    case "GET":
+      const scoresSnapshot = await db.firestore().collection("scores").get();
+
+      const formattedScores = [];
+
+      for (const scoreDocument of scoresSnapshot.docs) {
+        const { finalScore, playerName, _gameRef, _trackRef } =
+          scoreDocument.data();
+
+        const [game, track] = await Promise.all([
+          getDocumentByReference(_gameRef),
+          getDocumentByReference(_trackRef)
+        ]);
+
+        formattedScores.push({
+          playerName,
+          score: finalScore,
+          gameName: game.name,
+          trackName: track.name
+        });
+      }
+
+      return res.status(200).send(formattedScores);
+  }
+};
+```
+
+Testing this without `ts-mock-firebase` is a nightmare. Let's see how easy it can make things for us!
+
+```ts
+import express from "express";
+import * as admin from "firebase-admin";
+import request from "supertest";
+import { exposeMockFirebaseAdminApp } from "ts-mock-firebase";
+
+import scores from "./scores";
+
+const server = express();
+server.use("/scores", scores);
+
+const firebaseApp = admin.initializeApp({});
+const mocked = exposeMockFirebaseAdminApp(firebaseApp);
+
+describe("Api Endpoint: scores", () => {
+  afterEach(() => {
+    mocked.firestore().mocker.reset();
+  });
+
+  // ...
+
+  describe("GET", () => {
+    it("returns a processed list of scores", async () => {
+      // ARRANGE
+      mocked.firestore().mocker.loadCollection("games", {
+        gameOne: {
+          name: "Donkey Kong"
+        }
+      });
+
+      // Look at how easy it is to mock a subcollection!
+      mocked.firestore().mocker.loadCollection("games/gameOne/tracks", {
+        trackOne: {
+          name: "Factory settings"
+        }
+      });
+
+      mocked.firestore().mocker.loadCollection("scores", {
+        scoreOne: {
+          finalScore: 1064500,
+          playerName: "Steve Wiebe",
+
+          // We can point directly to our mocked documents.
+          _gameRef: mocked.firestore().docs("games/gameOne"),
+          _trackRef: mocked.firestore().docs("games/gameOne/tracks/trackOne")
+        }
+      });
+
+      // ACT
+      const response = await request(server).get("/scores");
+
+      // ASSERT
+      expect(response.status).toEqual(200);
+      expect(response.body).toHaveLength(1);
+      expect(response.body.gameName).toEqual("Donkey Kong");
+      expect(response.body.trackName).toEqual("Factory settings");
+    });
+  });
+});
+```
+
+Voila! I've successfully used `ts-mock-firebase` with endpoints that do a lot of heavy lifting, and it has been a great testing experience.

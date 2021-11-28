@@ -49,7 +49,7 @@ const rarestCompletions = [
 export const RarestCompletionsCard: VFC = () => {
   return (
     <BaseStatsCard headingLabel="Rarest Completions">
-      <div className="mt-2 divide-y divide-gray-200 dark:divide-gray-700">
+      <ol className="mt-2 divide-y divide-gray-200 dark:divide-gray-700">
         {rarestCompletions.map((completion) => (
           <RarityListItem
             key={`${completion.gameName}-${completion.platform}`}
@@ -65,7 +65,7 @@ export const RarestCompletionsCard: VFC = () => {
             imageSrc={completion.imageSrc}
           />
         ))}
-      </div>
+      </ol>
     </BaseStatsCard>
   );
 };

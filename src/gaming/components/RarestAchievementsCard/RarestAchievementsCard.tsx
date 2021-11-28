@@ -48,7 +48,7 @@ const rarestAchievements = [
 export const RarestAchievementsCard: VFC = () => {
   return (
     <BaseStatsCard headingLabel="Rarest Achievements">
-      <div className="mt-2 divide-y divide-gray-200 dark:divide-gray-700">
+      <ol className="mt-2 divide-y divide-gray-200 dark:divide-gray-700">
         {rarestAchievements.map((achievement) => (
           <RarityListItem
             key={`${achievement.achievementName}-${achievement.gameName}`}
@@ -64,7 +64,7 @@ export const RarestAchievementsCard: VFC = () => {
             imageSrc={achievement.imageSrc}
           />
         ))}
-      </div>
+      </ol>
     </BaseStatsCard>
   );
 };

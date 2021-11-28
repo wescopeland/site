@@ -18,7 +18,7 @@ export const RarityListItem: VFC<RarityListItemProps> = ({
   platform
 }) => {
   return (
-    <div className="flex py-2 text-sm">
+    <li className="flex py-2 text-sm">
       <div className="relative overflow-hidden w-12 h-12 min-w-[3rem] border dark:border-gray-600 border-gray-300 rounded">
         <img className="object-cover" src={imageSrc} />
         <PlatformRibbon platform={platform} />
@@ -31,6 +31,6 @@ export const RarityListItem: VFC<RarityListItemProps> = ({
           {lineTwoContent}
         </p>
       </div>
-    </div>
+    </li>
   );
 };

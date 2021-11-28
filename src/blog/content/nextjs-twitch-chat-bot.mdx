@@ -1,0 +1,234 @@
+---
+title: How to Build & Test Twitch Chat Bot Commands with Next.js
+publishedOn: 2020-08-02
+---
+
+# How to Build & Test Twitch Chat Bot Commands with Next.js
+
+## Intro
+
+I recently worked on a side project that involved building custom chat commands for a bot on Twitch.tv. The commands themselves required a lot of heavy lifting with the Google Sheets API - something that was the perfect candidate for a Node.js server.
+
+This wasn't the first time I've done custom bot work on Twitch or Discord. For previous projects, I've always spun up a custom server to manage the bot that was then deployed (at cost) to Heroku. However, after a few hours of initial work on this new project, I discovered it would be much easier to tackle the bot commands using modern serverless technologies. After all, each bot command is just a function.
+
+In theory, this could be done using anything that lets you easily host an API endpoint without a server. I chose Next.js because a lot of similar non-bot-related feature work lived in the same Next.js project.
+
+---
+
+## How it works
+
+![A Nightbot UrlFetch command calls a Next.js API route which then returns a chat response for the bot](https://i.imgur.com/nBTcWoj.png)
+
+- Your Twitch channel is running [Nightbot](https://nightbot.tv/), which supports [custom API-based "UrlFetch" commands](https://docs.nightbot.tv/commands/variables/urlfetch). Nightbot is free to use and takes less than 20 seconds to set up on your channel.
+- You use [Next.js's API routes support](https://nextjs.org/docs/api-routes/introduction) to build serverless backend microservice functions.
+- You deploy your project to [Vercel](https://vercel.com) or [Netlify](https://netlify.com) for free.
+- You [create a custom command with Nightbot](https://docs.nightbot.tv/commands/commands) leveraging UrlFetch and your newly-deployed API route.
+
+---
+
+## Building the bot
+
+### Set up a fresh Next.js project
+
+Let's create a new Next.js project. I'll be using TypeScript for this project, but this can easily be adapted to work with JavaScript instead.
+
+In your terminal in the directory you'd like to create the project, run:
+
+```
+npx create-next-app --example with-typescript
+
+OR
+
+yarn create next-app --example with-typescript
+```
+
+After a few minutes, your project should be ready to go, and a dev server can be started with `npm run dev` or `yarn dev`.
+
+### Add a new API route
+
+Creating serverless functions in Next.js is so easy it feels like cheating. You should have a _pages_ folder in your project. Create an _api_ folder inside _pages_ and within it create a new file: _ping.ts_. Your file structure should look something like this (I have not modified the TypeScript example project):
+
+![pages > api > ping.ts](https://i.imgur.com/9oaFkdI.png)
+
+With your dev server running at `yarn dev`, http://localhost:3000/api/ping now automagically maps to your _ping.ts_ file! But it isn't doing anything yet.
+
+### Make the API route useful for Nightbot
+
+Our custom chat command will be very simple. There will be no heavy lifting involved. For this article, we want the command to say hello, print the initiator's username, and print the current channel. Like so:
+
+![The chat command in action](https://i.imgur.com/xY4L1Ex.png)
+
+Let's get coding. Open up _ping.ts_ and paste this content in:
+
+```typescript
+// ping.ts
+
+import { NextApiRequest, NextApiResponse } from "next";
+
+export default async function (req: NextApiRequest, res: NextApiResponse) {
+  res.status(200).send("Hello!");
+}
+```
+
+With your local dev server running (`npm run dev` or `yarn dev`), if you visit localhost:3000/api/ping, you should see "Hello!" printed to the screen. Cool!
+
+Some things to note if this is your first Next.js rodeo:
+
+- `req` and `res` may look like conventional Express.js request and response arguments, but _they are not_. `NextApiRequest` and `NextApiResponse` are Express-like. Docs [here](https://nextjs.org/docs/api-routes/response-helpers) on response helpers might be useful.
+- If _all_ of this looks like moon language, the [Next.js API routes documentation](https://nextjs.org/docs/api-routes/introduction) is a pretty good first start.
+- By default, **Nightbot expects a plain-text response.** [JSON is supported](https://docs.nightbot.tv/commands/variables/urlfetch), but beyond the scope of this article.
+
+Alright, we're printing "Hello" to the screen, but what about the username and the current channel? When Nightbot sends an API request, it sends along headers with all that metadata too! Info on these headers can be found [on the UrlFetch docs page](https://docs.nightbot.tv/commands/variables/urlfetch):
+
+![UrlFetch headers documentation](https://i.imgur.com/S921Sum.png)
+
+We're specifically interested in `Nightbot-User` and `Nightbot-Channel`. Nightbot sends data in these headers along as query strings, like this:
+
+```typescript
+req.headers["nightbot-channel"] =
+  "name=kongleague&displayName=KongLeague&provider=twitch&providerId=454709668";
+
+req.headers["nightbot-user"] =
+  "name=wescopeland&displayName=WesCopeland&provider=twitch&providerId=52223868&userLevel=moderator";
+```
+
+We can use JavaScript's built-in `URLSearchParams` constructor to parse these pretty easily. Add these functions to your _ping.ts_ file:
+
+```typescript
+// somewhere in ping.ts
+
+const parseNightbotChannel = (channelParams: string) => {
+  const params = new URLSearchParams(channelParams);
+
+  return {
+    name: params.get("name"),
+    displayName: params.get("displayName"),
+    provider: params.get("provider"),
+    providerId: params.get("providerId")
+  };
+};
+
+const parseNightbotUser = (userParams: string) => {
+  const params = new URLSearchParams(userParams);
+
+  return {
+    name: params.get("name"),
+    displayName: params.get("displayName"),
+    provider: params.get("provider"),
+    providerId: params.get("providerId"),
+    userLevel: params.get("userLevel")
+  };
+};
+```
+
+Updating the _ping.ts_ API function to display the username and channel is now relatively straightforward!
+
+```typescript
+// ping.ts
+
+export default async function (req: NextApiRequest, res: NextApiResponse) {
+  const channel = parseNightbotChannel(
+    req.headers["nightbot-channel"] as string
+  );
+
+  const user = parseNightbotUser(req.headers["nightbot-user"] as string);
+
+  res
+    .status(200)
+    .send(
+      `Hello! Your username is ${user.displayName} and the current channel is ${channel.displayName}.`
+    );
+}
+```
+
+---
+
+## Testing
+
+Our endpoint is built, but how would we go about building a unit test for it? You'll see below this is not too difficult. Note that Jest does not ship with new Next.js projects by default, [but it is simple to set up](https://github.com/arcatdmz/nextjs-with-jest-typescript).
+
+### Add a testing dev dependency
+
+To make life less painful, I recommend installing the `node-mocks-http` library:
+
+```
+npm i node-mocks-http --save-dev
+
+OR
+
+yarn add -D node-mocks-http
+```
+
+If you're a regular Express.js user, you may be familiar with testing API endpoints using `supertest`. Unfortunately, `supertest` cannot help us with Next.js serverless API routes.
+
+### Create the test file
+
+Your natural inclination might be to put a _ping.test.ts_ file in the same directory as _ping.ts_. This is a good pattern to follow, but due to how Next.js's folder-based routing works it isn't a great idea because Vercel will then try to deploy your tests 😱
+
+I recommend creating a `__tests__` folder at the root of your project where tests for anything inside of _pages_ can live. Inside of `__tests__`, create an _api_ folder that contains _ping.test.ts_.
+
+![ping.test.ts inside of __tests__/api](https://i.imgur.com/X68whjP.png)
+
+### Write the tests
+
+Building the test code from here is pretty straightforward:
+
+```typescript
+import { createMocks } from "node-mocks-http";
+
+import ping from "../../pages/api/ping";
+
+describe("Api Endpoint: ping", () => {
+  it("exists", () => {
+    // Assert
+    expect(ping).toBeDefined();
+  });
+
+  it("responds with details about the user and channel", async () => {
+    // Arrange
+    const { req, res } = createMocks({
+      method: "GET",
+      headers: {
+        "nightbot-channel":
+          "name=kongleague&displayName=KongLeague&provider=twitch&providerId=454709668",
+        "nightbot-user":
+          "name=wescopeland&displayName=WesCopeland&provider=twitch&providerId=52223868&userLevel=moderator"
+      }
+    });
+
+    // Act
+    await ping(req, res);
+    const resData = res._getData();
+
+    // Assert
+    expect(resData).toContain("Your username is WesCopeland");
+    expect(resData).toContain("the current channel is KongLeague");
+  });
+});
+```
+
+---
+
+## Set up Nightbot
+
+Go to [the Nightbot website](https://nightbot.tv/), sign up, and click the "Join Channel" button in your Nightbot dashboard. Nightbot will now be on your Twitch (or YouTube!) channel.
+
+**I am assuming you've deployed your Next.js project somewhere.** You should be able to hit your newly created `ping` route inside your browser. If you're new to this, deploying to Vercel is probably easiest for Next.js projects. It should just be a matter of signing up, pointing to your GitHub repo, and clicking Deploy.
+
+Now that Nightbot is in your Twitch channel, go to your chat on Twitch. Create a new Nightbot command by entering in the chat:
+
+```
+!commands add !ping $(urlfetch https://YOUR_URL/api/ping)
+```
+
+After this is done, Nightbot should respond saying the command has been added. You should now be able to type "!ping" in the chat and see your API response! You're all set!
+
+---
+
+## Don't forget security
+
+Anyone can access Nightbot's list of commands for your Twitch channel just by using "!commands". Nightbot hides API route addresses, treating them like secrets or environment variables, **but anyone who knows the address to one of your endpoints can mock headers and pretend to be someone they're not in Postman or Insomnia.**
+
+In other words, you need another layer of security if you want to treat the initiator of the chat command as being "authenticated".
+
+If this is important to you (typical in advanced use cases involving things like channel points or user roles), I recommend adding code to your endpoint that ensures the API call actually came from Twitch or Nightbot itself. It's possible to check for this in the request headers of the API call.

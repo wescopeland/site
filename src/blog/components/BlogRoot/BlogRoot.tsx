@@ -19,13 +19,17 @@ export const BlogRoot: VFC<BlogRootProps> = ({ posts }) => {
       </Animate.FadeUp>
 
       <div className="grid gap-y-4">
-        {Object.entries(posts).map(([yearLabel, yearPosts]) => (
-          <YearPostsBlock
-            key={yearLabel}
-            year={Number(yearLabel)}
-            posts={yearPosts}
-          />
-        ))}
+        <Animate.Stagger shouldAnimateOnMount delay={150}>
+          {Object.entries(posts)
+            .sort(([aYear], [bYear]) => Number(bYear) - Number(aYear))
+            .map(([yearLabel, yearPosts]) => (
+              <YearPostsBlock
+                key={yearLabel}
+                year={Number(yearLabel)}
+                posts={yearPosts}
+              />
+            ))}
+        </Animate.Stagger>
       </div>
     </>
   );

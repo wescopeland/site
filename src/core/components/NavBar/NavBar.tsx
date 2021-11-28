@@ -12,7 +12,8 @@ export const NavBar: VFC = () => {
         "fixed bottom-0 right-1/2 z-50 h-10 pointer-events-none",
         "transform translate-x-1/2 -translate-y-1/2",
         "lg:block lg:relative lg:transform-none lg:right-auto",
-        "xl:absolute xl:w-full xl:-ml-4 xl:top-4 xl:flex xl:justify-center"
+        "xl:absolute xl:w-full xl:-ml-4 xl:top-4 xl:flex xl:justify-center",
+        "select-none"
       ])}
     >
       <nav
@@ -36,12 +37,14 @@ export const NavBar: VFC = () => {
 
 interface NavBarLinkProps {
   href: string;
+
+  activeWhen?: boolean;
 }
 
 const NavBarLink: FC<NavBarLinkProps> = ({ children, href }) => {
   const { route } = useRouter();
 
-  const isActive = route === href;
+  const isActive = href === "/" ? route === href : route.includes(href);
 
   return (
     <Link href={href} passHref>

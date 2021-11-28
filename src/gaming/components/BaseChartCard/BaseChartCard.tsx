@@ -15,7 +15,7 @@ export const BaseChartCard: FC<BaseChartCardProps> = ({
   return (
     <div
       className={cc([
-        "flex flex-col w-full pt-4 px-4 sm:px-8 pb-8 min-h-[320px] rounded-lg",
+        "flex flex-col w-full pt-4 px-4 sm:px-8 pb-8 min-h-[360px] rounded-lg",
         "bg-white border border-gray-100",
         "dark:border-gray-500 dark:bg-gray-900"
       ])}

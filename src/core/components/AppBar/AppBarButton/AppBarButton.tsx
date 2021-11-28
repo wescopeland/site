@@ -30,6 +30,7 @@ export const AppBarButton = <C extends ElementType = "button">({
         "bg-white dark:bg-dark text-black dark:text-white",
         "hover:shadow hover:bg-gray-50 hover:border-gray-600",
         "dark:hover:bg-gray-600 dark:hover:border-gray-200",
+        "select-none",
         className
       ])}
       style={{
