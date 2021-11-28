@@ -22,9 +22,11 @@ export const BaseStatsCard: FC<BaseStatsCardProps> = ({
           : "dark:bg-gray-900 dark:bg-opacity-20"
       ])}
     >
-      {headingLabel ? (
-        <p className="dark:text-gray-400 text-gray-500">{headingLabel}</p>
-      ) : null}
+      <div className="flex items-center justify-between">
+        {headingLabel ? (
+          <p className="dark:text-gray-400 text-gray-500">{headingLabel}</p>
+        ) : null}
+      </div>
 
       {children}
     </div>

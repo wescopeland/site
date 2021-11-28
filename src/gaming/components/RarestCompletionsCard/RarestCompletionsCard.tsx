@@ -2,10 +2,10 @@
 import dayjs from "dayjs";
 import type { VFC } from "react";
 
+import { BaseStatsCard } from "@/core/components/BaseStatsCard";
+import type { GamingPlatformId } from "@/core/models";
 import { formatPercentage } from "@/core/utils/formatPercentage";
-import type { PlatformId } from "@/gaming/models";
 
-import { BaseStatsCard } from "../BaseStatsCard";
 import { RarityListItem } from "../RarityListItem";
 
 const rarestCompletions = [
@@ -53,7 +53,7 @@ export const RarestCompletionsCard: VFC = () => {
         {rarestCompletions.map((completion) => (
           <RarityListItem
             key={`${completion.gameName}-${completion.platform}`}
-            platform={completion.platform as PlatformId}
+            platform={completion.platform as GamingPlatformId}
             lineOneContent={<>{completion.gameName}</>}
             lineTwoContent={
               <>

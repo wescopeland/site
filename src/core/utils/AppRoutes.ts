@@ -1,8 +1,11 @@
 import { subst } from "urlcat";
 
+import type { GamingPlatformId } from "@/core/models";
+
 const basePath = "/";
 const projectsPath = "/projects";
 const gamingPath = "/gaming";
+const gamingPlatformPath = "/gaming/:platformId";
 const blogPath = "/blog";
 const blogPostPath = "/blog/:slug";
 
@@ -17,6 +20,11 @@ export const AppRoutes = {
 
   GamingPage() {
     return gamingPath;
+  },
+
+  GamingPlatformPage(options: { platformId: GamingPlatformId }) {
+    const { platformId } = options;
+    return subst(gamingPlatformPath, { platformId });
   },
 
   BlogPage() {

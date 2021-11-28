@@ -1,6 +1,7 @@
 import type { VFC } from "react";
 
-import { BaseStatsCard } from "../BaseStatsCard";
+import { BaseStatsCard } from "@/core/components/BaseStatsCard";
+
 import { EarningsArrow } from "../EarningsArrow";
 
 export const MostRecentAchievementCard: VFC = () => {

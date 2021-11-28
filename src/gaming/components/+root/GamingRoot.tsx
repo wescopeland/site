@@ -4,6 +4,7 @@ import { FaPlaystation, FaXbox } from "react-icons/fa";
 import { MdGamepad } from "react-icons/md";
 
 import { Animate } from "@/core/components/Animate";
+import { H1 } from "@/core/components/H1";
 import { getGamingServiceColors } from "@/gaming/utils/getGamingServiceColors";
 
 import { MostRecentAchievementCard } from "../MostRecentAchievementCard";
@@ -20,9 +21,7 @@ export const GamingRoot: VFC = () => {
   return (
     <>
       <Animate.FadeUp shouldAnimateOnMount>
-        <div className="mb-10">
-          <h1 className="mb-2 text-4xl font-bold tracking-tight">Gaming</h1>
-        </div>
+        <H1>Gaming</H1>
       </Animate.FadeUp>
 
       <div className="grid gap-2 mb-8 md:grid-cols-3">
@@ -35,6 +34,7 @@ export const GamingRoot: VFC = () => {
             ])}
             labelCopy="PSN Platinums"
             valueCopy="18 / 100"
+            platform="psn"
           />
 
           <ServiceSummaryCard
@@ -45,6 +45,7 @@ export const GamingRoot: VFC = () => {
             ])}
             labelCopy="Xbox Gamerscore"
             valueCopy="6,950 / 100,000"
+            platform="xbox"
           />
 
           <ServiceSummaryCard
@@ -55,6 +56,7 @@ export const GamingRoot: VFC = () => {
             ])}
             labelCopy="RA Masteries"
             valueCopy="7 / 100"
+            platform="ra"
           />
         </Animate.Stagger>
       </div>

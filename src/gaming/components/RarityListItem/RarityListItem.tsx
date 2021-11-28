@@ -1,6 +1,6 @@
 import type { ReactNode, VFC } from "react";
 
-import type { PlatformId } from "@/gaming/models";
+import type { GamingPlatformId } from "@/core/models";
 
 import { PlatformRibbon } from "../PlatformRibbon";
 
@@ -8,7 +8,7 @@ interface RarityListItemProps {
   imageSrc: string;
   lineOneContent: ReactNode;
   lineTwoContent: ReactNode;
-  platform: PlatformId;
+  platform: GamingPlatformId;
 }
 
 export const RarityListItem: VFC<RarityListItemProps> = ({

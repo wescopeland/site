@@ -1,13 +1,13 @@
 import cc from "classcat";
 import type { VFC } from "react";
 
-import type { PlatformId } from "@/gaming/models";
+import type { GamingPlatformId } from "@/core/models";
 import { getGamingServiceColors } from "@/gaming/utils/getGamingServiceColors";
 
 const gamingServiceColors = getGamingServiceColors();
 
 interface PlatformRibbonProps {
-  platform: PlatformId;
+  platform: GamingPlatformId;
 }
 
 export const PlatformRibbon: VFC<PlatformRibbonProps> = ({ platform }) => {

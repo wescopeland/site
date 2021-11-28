@@ -1,10 +1,10 @@
 /* eslint-disable sonarjs/no-duplicate-string */
 import type { VFC } from "react";
 
+import { BaseStatsCard } from "@/core/components/BaseStatsCard";
+import type { GamingPlatformId } from "@/core/models";
 import { formatPercentage } from "@/core/utils/formatPercentage";
-import type { PlatformId } from "@/gaming/models";
 
-import { BaseStatsCard } from "../BaseStatsCard";
 import { RarityListItem } from "../RarityListItem";
 
 const rarestAchievements = [
@@ -52,7 +52,7 @@ export const RarestAchievementsCard: VFC = () => {
         {rarestAchievements.map((achievement) => (
           <RarityListItem
             key={`${achievement.achievementName}-${achievement.gameName}`}
-            platform={achievement.platform as PlatformId}
+            platform={achievement.platform as GamingPlatformId}
             lineOneContent={<>{achievement.achievementName}</>}
             lineTwoContent={
               <>
