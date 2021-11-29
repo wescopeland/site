@@ -2,13 +2,13 @@ import { useTheme } from "next-themes";
 import { darken } from "polished";
 import type { VFC } from "react";
 
-interface GradientStopsProps {
+interface AreaChartGradientStopsProps {
   baseColor: string;
 
   shouldFadeToTransparent?: boolean;
 }
 
-export const GradientStops: VFC<GradientStopsProps> = ({
+export const AreaChartGradientStops: VFC<AreaChartGradientStopsProps> = ({
   baseColor,
   shouldFadeToTransparent = false
 }) => {

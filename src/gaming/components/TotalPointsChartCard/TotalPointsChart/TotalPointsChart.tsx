@@ -1,11 +1,11 @@
 import type { VFC } from "react";
 import { Area, AreaChart, ResponsiveContainer, Tooltip } from "recharts";
 
+import { AreaChartGradientStops } from "@/core/components/AreaChartGradientStops";
 import type { ChartDatum } from "@/gaming/models";
 import { getGamingServiceColors } from "@/gaming/utils/getGamingServiceColors";
 
 import { CustomTooltip } from "./CustomTooltip";
-import { GradientStops } from "./GradientStops";
 
 const gamingServiceColors = getGamingServiceColors();
 
@@ -30,15 +30,18 @@ export const TotalPointsChart: VFC<TotalPointsChartProps> = ({ chartData }) => {
       <AreaChart height={240} data={chartData}>
         <defs>
           <linearGradient id="stack-gradient-psn" x1="0" y1="0" x2="0" y2="1">
-            <GradientStops baseColor={psnColor} />
+            <AreaChartGradientStops baseColor={psnColor} />
           </linearGradient>
 
           <linearGradient id="stack-gradient-xbox" x1="0" y1="0" x2="0" y2="1">
-            <GradientStops baseColor={xboxColor} />
+            <AreaChartGradientStops baseColor={xboxColor} />
           </linearGradient>
 
           <linearGradient id="stack-gradient-ra" x1="0" y1="0" x2="0" y2="1">
-            <GradientStops shouldFadeToTransparent baseColor={raColor} />
+            <AreaChartGradientStops
+              shouldFadeToTransparent
+              baseColor={raColor}
+            />
           </linearGradient>
         </defs>
 

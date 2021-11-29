@@ -1,9 +1,9 @@
 import type { VFC } from "react";
 
+import { BaseChartCard } from "@/core/components/BaseChartCard";
 import { LoadOnVisible } from "@/core/components/LoadOnVisible";
 import { generateData } from "@/gaming/generateData";
 
-import { BaseChartCard } from "../BaseChartCard";
 import { DynamicTotalPointsChart } from "./TotalPointsChart";
 
 export const TotalPointsChartCard: VFC = () => {
@@ -22,7 +22,7 @@ export const TotalPointsChartCard: VFC = () => {
           <DynamicTotalPointsChart chartData={data} />
         </LoadOnVisible>
       ) : (
-        <div className="flex w-full h-full items-center justify-center">
+        <div className="flex my-auto w-full h-full items-center justify-center">
           <p className="text-sm text-gray-400 dark:text-gray-500">
             There is no data available.
           </p>

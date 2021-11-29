@@ -3,6 +3,7 @@ import cc from "classcat";
 import dayjs from "dayjs";
 import type { VFC } from "react";
 
+import { ChartTooltipLineItem } from "@/core/components/ChartTooltipLineItem";
 import type { ChartDatum } from "@/gaming/models";
 import { getGamingServiceColors } from "@/gaming/utils/getGamingServiceColors";
 
@@ -48,7 +49,7 @@ export const CustomTooltip: VFC<CustomTooltipProps> = ({
 
           <div>
             {finalDataNode.playstationPoints ? (
-              <LineItem
+              <ChartTooltipLineItem
                 label="PSN"
                 value={datum.playstationPoints.toLocaleString()}
                 swatchBgClassName={
@@ -58,7 +59,7 @@ export const CustomTooltip: VFC<CustomTooltipProps> = ({
             ) : null}
 
             {finalDataNode.xboxPoints ? (
-              <LineItem
+              <ChartTooltipLineItem
                 label="Xbox"
                 value={datum.xboxPoints.toLocaleString()}
                 swatchBgClassName={gamingServiceColors.xbox.classNames.dark}
@@ -66,7 +67,7 @@ export const CustomTooltip: VFC<CustomTooltipProps> = ({
             ) : null}
 
             {finalDataNode.retroAchievementsPoints ? (
-              <LineItem
+              <ChartTooltipLineItem
                 label="RA"
                 value={datum.retroAchievementsPoints.toLocaleString()}
                 swatchBgClassName={gamingServiceColors.ra.classNames.dark}
@@ -74,36 +75,12 @@ export const CustomTooltip: VFC<CustomTooltipProps> = ({
             ) : null}
           </div>
 
-          <LineItem label="Total" value={datum.totalPoints.toLocaleString()} />
+          <ChartTooltipLineItem
+            label="Total"
+            value={datum.totalPoints.toLocaleString()}
+          />
         </div>
       </div>
     </Transition>
-  );
-};
-
-interface LineItemProps {
-  label: string;
-  value: string;
-
-  swatchBgClassName?: string;
-}
-
-export const LineItem: VFC<LineItemProps> = ({
-  label,
-  value,
-  swatchBgClassName
-}) => {
-  return (
-    <div className="flex items-center gap-x-2">
-      {swatchBgClassName ? (
-        <div
-          className={cc(["inline-block w-4 h-4 rounded-sm", swatchBgClassName])}
-        />
-      ) : null}
-      <div className="flex justify-between w-full">
-        <span>{label}</span>
-        <span>{value}</span>
-      </div>
-    </div>
   );
 };
