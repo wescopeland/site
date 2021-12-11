@@ -4688,6 +4688,11 @@ next-contentlayer@^0.0.33:
     "@contentlayer/utils" "0.0.33"
     rxjs "^7.1.0"
 
+next-plausible@^3.1.4:
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/next-plausible/-/next-plausible-3.1.4.tgz#a386ff4e2327995cb4a1307e53e1b4af70817b52"
+  integrity sha512-NMLKJ0AKlKuvYU//RytyqSES5NtLRoH/ym3fCC02w2Ed1SrTgNRUrgpxyJrcguY/DYGPncQ3a0/nQ358vUTAwQ==
+
 next-themes@^0.0.15:
   version "0.0.15"
   resolved "https://registry.npmjs.org/next-themes/-/next-themes-0.0.15.tgz"
@@ -5491,10 +5496,10 @@ protobufjs@^6.10.0:
     "@types/node" ">=13.7.0"
     long "^4.0.0"
 
-psn-api@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.npmjs.org/psn-api/-/psn-api-2.5.0.tgz"
-  integrity sha512-NUyL/azL6InzDVZ1pzDOuOn9revBIo4Twb7Xb1SsukNrAg7+xzn8B2dJAQDDTgYKiYTLxFaFmLKi2gPMgRnPXQ==
+psn-api@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/psn-api/-/psn-api-2.5.1.tgz#b6816803951fe941feab610f648e346390f5085c"
+  integrity sha512-jLx5CIqL2xO8Ln/xBU5PL+Y6BZrYPrlPrBuAiuCnoGU6PtYC4pZwqDy09r8c3rYdJDD2OxBST1jhJtBSe43zYQ==
   dependencies:
     isomorphic-unfetch "^3.1.0"
 
