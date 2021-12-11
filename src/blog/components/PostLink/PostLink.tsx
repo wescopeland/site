@@ -21,7 +21,7 @@ export const PostLink: VFC<PostLinkProps> = ({
       <Link href={AppRoutes.BlogPostPage({ slug: postSlug })} passHref>
         <a
           className={cc([
-            "flex w-full group items-center justify-between",
+            "flex gap-x-4 w-full group items-center justify-between",
             "select-none cursor-pointer",
             "py-2 hover:bg-gray-100 dark:hover:bg-gray-900",
             "transition hover:no-underline font-normal"
@@ -31,7 +31,7 @@ export const PostLink: VFC<PostLinkProps> = ({
             {postTitle}
           </p>
 
-          <p className="transition text-black dark:text-white">
+          <p className="transition text-black dark:text-white whitespace-nowrap">
             {dayjs(publishedOn).format("MMM DD")}
           </p>
         </a>

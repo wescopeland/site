@@ -20,12 +20,12 @@ const gamingServiceColors = getGamingServiceColors();
 export const GamingRoot: VFC = () => {
   return (
     <>
-      <Animate.FadeUp shouldAnimateOnMount>
+      <Animate.FadeUpOnMount>
         <H1>Gaming</H1>
-      </Animate.FadeUp>
+      </Animate.FadeUpOnMount>
 
       <div className="grid gap-2 mb-8 md:grid-cols-3">
-        <Animate.Stagger shouldAnimateOnMount delay={100}>
+        <Animate.StaggerOnMount delay={100}>
           <ServiceSummaryCard
             IconComponent={FaPlaystation}
             bgColorClassName={cc([
@@ -58,10 +58,10 @@ export const GamingRoot: VFC = () => {
             valueCopy="7 / 100"
             platform="ra"
           />
-        </Animate.Stagger>
+        </Animate.StaggerOnMount>
       </div>
 
-      <Animate.FadeUp shouldAnimateOnMount delay={300}>
+      <Animate.FadeUpOnMount delay={300}>
         <div className="space-y-4">
           <div>
             <p className="text-lg font-light tracking-tight mb-2">Overview</p>
@@ -81,7 +81,7 @@ export const GamingRoot: VFC = () => {
             <RarestCompletionsCard />
           </div>
         </div>
-      </Animate.FadeUp>
+      </Animate.FadeUpOnMount>
     </>
   );
 };

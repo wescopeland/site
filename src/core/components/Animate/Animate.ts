@@ -1,5 +1,5 @@
-import { FadeUp } from "./FadeUp";
+import { FadeUpOnMount } from "./FadeUpOnMount";
 import { Grow } from "./Grow";
-import { Stagger } from "./Stagger";
+import { StaggerOnMount } from "./StaggerOnMount";
 
-export const Animate = { FadeUp, Grow, Stagger };
+export const Animate = { FadeUpOnMount, Grow, StaggerOnMount };

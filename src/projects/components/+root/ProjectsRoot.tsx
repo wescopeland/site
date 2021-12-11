@@ -25,17 +25,17 @@ export const ProjectsRoot: VFC = () => {
 
   return (
     <>
-      <Animate.FadeUp shouldAnimateOnMount>
+      <Animate.FadeUpOnMount>
         <div className="mb-10">
           <h1 className="mb-2 text-4xl font-bold tracking-tight">
             Side-projects
           </h1>
           <p>Ordered by most recent.</p>
         </div>
-      </Animate.FadeUp>
+      </Animate.FadeUpOnMount>
 
       <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-        <Animate.Stagger shouldAnimateOnMount delay={100}>
+        <Animate.StaggerOnMount delay={100}>
           {projectsList.map((project) => (
             <ProjectCard
               key={project.name}
@@ -45,7 +45,7 @@ export const ProjectsRoot: VFC = () => {
               onClick={handleProjectCardClick}
             />
           ))}
-        </Animate.Stagger>
+        </Animate.StaggerOnMount>
       </div>
 
       <ProjectDialog

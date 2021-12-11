@@ -12,18 +12,18 @@ import { TrophiesChartCard } from "../TrophiesChartCard";
 export const GamingServiceRoot: VFC = () => {
   return (
     <>
-      <Animate.FadeUp shouldAnimateOnMount>
+      <Animate.FadeUpOnMount>
         <H1>PlayStation Network</H1>
-      </Animate.FadeUp>
+      </Animate.FadeUpOnMount>
 
       <div className="grid sm:grid-cols-2 gap-x-6 gap-y-2 mb-2 sm:mb-4">
-        <Animate.Stagger shouldAnimateOnMount delay={100}>
+        <Animate.StaggerOnMount delay={100}>
           <EarningsSummaryCard />
           <CompletionsSummaryCard />
-        </Animate.Stagger>
+        </Animate.StaggerOnMount>
       </div>
 
-      <Animate.FadeUp shouldAnimateOnMount delay={300}>
+      <Animate.FadeUpOnMount delay={300}>
         <div className="space-y-4">
           <MostRecentAchievementBanner />
 
@@ -32,7 +32,7 @@ export const GamingServiceRoot: VFC = () => {
           <p className="text-lg font-light tracking-tight !mt-8">Game List</p>
           <GameListTable />
         </div>
-      </Animate.FadeUp>
+      </Animate.FadeUpOnMount>
     </>
   );
 };

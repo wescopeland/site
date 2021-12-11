@@ -3,10 +3,7 @@ const colors = require("tailwindcss/colors");
 
 module.exports = {
   mode: "jit",
-  purge: {
-    enabled: true,
-    content: ["./src/**/*.{js,ts,jsx,tsx}"]
-  },
+  content: ["./src/**/*.{js,ts,jsx,tsx}"],
   darkMode: "class",
   theme: {
     screens: {
@@ -30,10 +27,18 @@ module.exports = {
 
       colors: {
         primary: colors.indigo,
-
-        lime: colors.lime,
         dark: {
           DEFAULT: "hsl(210, 30%, 8%)"
+        }
+      },
+
+      animation: {
+        "fade-up": "fade-up 300ms ease"
+      },
+      keyframes: {
+        "fade-up": {
+          "0%": { opacity: 0, transform: "translateY(1.5rem)" },
+          "100%": { opacity: 1, transform: "translateY(0)" }
         }
       }
     }

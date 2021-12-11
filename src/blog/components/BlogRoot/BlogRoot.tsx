@@ -13,12 +13,12 @@ export interface BlogRootProps {
 export const BlogRoot: VFC<BlogRootProps> = ({ posts }) => {
   return (
     <>
-      <Animate.FadeUp shouldAnimateOnMount>
+      <Animate.FadeUpOnMount>
         <H1>Blog</H1>
-      </Animate.FadeUp>
+      </Animate.FadeUpOnMount>
 
       <div className="grid gap-y-4">
-        <Animate.Stagger shouldAnimateOnMount delay={150}>
+        <Animate.StaggerOnMount delay={150}>
           {Object.entries(posts)
             .sort(([aYear], [bYear]) => Number(bYear) - Number(aYear))
             .map(([yearLabel, yearPosts]) => (
@@ -28,7 +28,7 @@ export const BlogRoot: VFC<BlogRootProps> = ({ posts }) => {
                 posts={yearPosts}
               />
             ))}
-        </Animate.Stagger>
+        </Animate.StaggerOnMount>
       </div>
     </>
   );
