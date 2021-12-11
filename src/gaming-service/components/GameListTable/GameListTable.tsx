@@ -1,30 +1,121 @@
 import cc from "classcat";
-import type { VFC } from "react";
+import type { FC, VFC } from "react";
+import { HiCheckCircle } from "react-icons/hi";
 
 export const GameListTable: VFC = () => {
   return (
     <div
       className={cc([
-        "w-full p-2 rounded-lg",
-        "bg-white border border-gray-100",
-        "dark:border-gray-500 dark:bg-gray-900 dark:bg-opacity-25"
+        "w-full p-4 rounded-lg !mt-2",
+        "bg-white",
+        "dark:bg-black dark:bg-opacity-30"
       ])}
     >
-      <table className="w-full divide-y">
-        <thead>
-          <tr>
-            <th className="text-left font-light text-gray-300">Name</th>
-            <th className="text-left font-light text-gray-300">Completion %</th>
-            <th className="text-left font-light text-gray-300">Last Earned</th>
-          </tr>
-        </thead>
+      <div
+        className="grid gap-x-2 gap-y-4 divide-y divide-gray-900"
+        role="table"
+      >
+        <div
+          role="row"
+          className="grid items-center text-gray-300"
+          // eslint-disable-next-line sonarjs/no-duplicate-string
+          style={{ gridTemplateColumns: "3fr repeat(3, 1fr)" }}
+        >
+          <div role="columnheader" aria-sort="none">
+            Name
+          </div>
+          <div
+            role="columnheader"
+            aria-sort="none"
+            className="flex justify-end"
+          >
+            Last Played
+          </div>
+          <div
+            role="columnheader"
+            aria-sort="none"
+            className="flex justify-end"
+          >
+            Earned #
+          </div>
+          <div
+            role="columnheader"
+            aria-sort="none"
+            className="flex justify-end"
+          >
+            Completed %
+          </div>
+        </div>
 
-        <tbody>
-          <tr>
-            <td>asdfasdf</td>
-          </tr>
-        </tbody>
-      </table>
+        <div
+          role="row"
+          className="grid items-center pt-4"
+          style={{ gridTemplateColumns: "3fr repeat(3, 1fr)" }}
+        >
+          <TableCell>Mortal Kombat 11</TableCell>
+          <TableCell end>Nov 24, 2021</TableCell>
+          <TableCell end>
+            42 of 59 <span className="text-sm text-lime-500">[A]</span>
+          </TableCell>
+          <TableCell end>
+            <div className="w-20 flex flex-col items-end">
+              65.29%
+              <div className="relative h-[3px] w-full bg-gray-700 rounded">
+                <span className="absolute left-0 bg-gray-400 h-full w-[65.29%]" />
+              </div>
+            </div>
+          </TableCell>
+        </div>
+
+        <div
+          role="row"
+          className="grid items-center pt-4"
+          style={{ gridTemplateColumns: "3fr repeat(3, 1fr)" }}
+        >
+          <TableCell>
+            <HiCheckCircle className="text-blue-500" /> GTA IV
+          </TableCell>
+          <TableCell end>Oct 13, 2021</TableCell>
+          <TableCell end>
+            70 of 70 <span className="text-sm text-blue-200">[S]</span>
+          </TableCell>
+          <TableCell end>
+            <div className="w-20 flex flex-col items-end">
+              100.00%
+              <div className="relative h-[3px] w-full bg-gray-700 rounded-3xl">
+                <span className="absolute left-0 bg-gray-400 h-full w-full" />
+              </div>
+            </div>
+          </TableCell>
+        </div>
+      </div>
     </div>
+  );
+};
+
+interface TableCellProps {
+  start?: boolean;
+  center?: boolean;
+  end?: boolean;
+}
+
+export const TableCell: FC<TableCellProps> = ({
+  children,
+  start,
+  center,
+  end
+}) => {
+  return (
+    <span
+      role="cell"
+      className={cc([
+        "flex items-center gap-x-1",
+        start && "justify-start",
+        center && "justify-center",
+        end && "justify-end"
+      ])}
+    >
+      {children}
+    </span>
   );
 };

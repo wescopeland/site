@@ -29,8 +29,7 @@ export const GamingServiceRoot: VFC = () => {
 
           <TrophiesChartCard />
 
-          <p className="text-lg font-light tracking-tight mb-2">Game List</p>
-
+          <p className="text-lg font-light tracking-tight !mt-8">Game List</p>
           <GameListTable />
         </div>
       </Animate.FadeUp>
