@@ -15,7 +15,8 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "plugin:sonarjs/recommended",
     "plugin:unicorn/recommended",
-    "prettier"
+    "prettier",
+    "plugin:@next/next/recommended"
   ],
   rules: {
     "@typescript-eslint/explicit-module-boundary-types": "off",
