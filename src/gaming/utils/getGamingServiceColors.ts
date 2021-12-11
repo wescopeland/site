@@ -12,18 +12,18 @@ export const getGamingServiceColors = () => {
     xbox: {
       colors: { light: "#22c55e", dark: "#22c55e" },
       classNames: {
-        light: "bg-green-100",
-        dark: "bg-green-600",
-        mediaDark: "dark:bg-green-600"
+        light: "bg-emerald-100",
+        dark: "bg-emerald-600",
+        mediaDark: "dark:bg-emerald-600"
       }
     },
 
     ra: {
       colors: { light: "#d97706", dark: "#d97706" },
       classNames: {
-        light: "bg-yellow-100",
-        dark: "bg-yellow-600",
-        mediaDark: "dark:bg-yellow-600"
+        light: "bg-amber-100",
+        dark: "bg-amber-600",
+        mediaDark: "dark:bg-amber-600"
       }
     }
   };

@@ -19,9 +19,9 @@ export const TrophyPin: VFC<TrophyPinProps> = ({
         className={cc([
           "w-2 h-2 rounded-full",
           grade === "platinum" && "bg-blue-300",
-          grade === "gold" && "bg-yellow-400",
+          grade === "gold" && "bg-amber-400",
           grade === "silver" && "bg-gray-300",
-          grade === "bronze" && "bg-yellow-900",
+          grade === "bronze" && "bg-amber-900",
           grade === "total" && "bg-gray-700",
           size === "3xl" && "mr-1"
         ])}

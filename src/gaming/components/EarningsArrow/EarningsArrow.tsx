@@ -27,7 +27,7 @@ export const EarningsArrow: FC<EarningsArrowProps> = ({
     <span
       className={cc([
         "flex items-center mr-1",
-        arrowDirection === "up" && "dark:text-green-400 text-green-700",
+        arrowDirection === "up" && "dark:text-emerald-400 text-emerald-700",
         arrowDirection === "down" && "dark:text-red-400 text-red-700",
         className
       ])}

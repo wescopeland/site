@@ -6,7 +6,7 @@ export const getPsnTrophyColors = () => {
     },
     gold: {
       color: "#facc15",
-      className: "bg-yellow-400"
+      className: "bg-amber-400"
     },
     silver: {
       color: "#a1a1aa",
@@ -14,7 +14,7 @@ export const getPsnTrophyColors = () => {
     },
     bronze: {
       color: "#92400e",
-      className: "bg-yellow-900"
+      className: "bg-amber-900"
     }
   };
 };
