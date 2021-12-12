@@ -9,17 +9,18 @@ interface CloseButtonProps {
 export const CloseButton: VFC<CloseButtonProps> = ({ onClose }) => {
   return (
     <button
+      aria-label="Close"
       className={cc([
-        "z-20 fixed bottom-4 right-1/2 transform translate-x-1/2 -translate-y-1/2",
+        "z-20 fixed top-4 right-4 transform sm:translate-x-1/2 sm:-translate-y-1/2",
         "sm:absolute sm:top-0 sm:right-4 sm:w-16",
-        "w-32 h-12 rounded-xl",
+        "w-10 h-10 sm:w-32 sm:h-12 rounded-xl",
         "bg-gray-100 dark:bg-gray-700 border-2 border-gray-600 dark:border-gray-300",
         "flex gap-x-2 items-center justify-center",
         "transition transform shadow-lg active:shadow-none active:scale-95 cursor-pointer select-none"
       ])}
       onClick={onClose}
     >
-      <CgClose /> <span className="sm:hidden">Close</span>
+      <CgClose />
     </button>
   );
 };

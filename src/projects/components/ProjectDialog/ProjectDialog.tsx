@@ -57,7 +57,7 @@ export const ProjectDialog: VFC<ProjectDialogProps> = ({
                 "sm:w-3/4 md:min-w-[748px] md:max-w-[900px] sm:mx-auto sm:min-h-[auto] sm:rounded-lg"
               ])}
             >
-              <Dialog.Title className="text-3xl tracking-tight">
+              <Dialog.Title className="text-3xl tracking-tight mt-12 sm:mt-0">
                 {project.name}
               </Dialog.Title>
               <Dialog.Description className="text-gray-700 dark:text-gray-200">
