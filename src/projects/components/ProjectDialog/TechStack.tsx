@@ -25,7 +25,9 @@ export const TechStack: VFC<TechStackProps> = ({ techStackElements }) => {
               ])}
             >
               <IconComponent className="justify-center flex w-full text-2xl text-gray-500 dark:text-gray-400" />
-              <span className="mt-1 text-sm">{label}</span>
+              <span className="flex items-center flex-col mt-1 text-sm">
+                {label}
+              </span>
             </li>
           ))}
         </Animate.StaggerOnMount>
