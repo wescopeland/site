@@ -32,7 +32,7 @@ export const projectsList: ProjectListElement[] = [
     name: "This Website",
     description: "You're here now!",
     iconComponent: FaReact,
-    githubRepo: "wescopeland/blog",
+    githubRepo: "wescopeland/site",
     techStackItems: [
       { label: "Next.js", IconComponent: SiNextdotjs },
       { label: "React", IconComponent: FaReact },
