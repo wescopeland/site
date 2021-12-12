@@ -3,7 +3,8 @@ import {
   getTitleTrophies,
   getUserTitles,
   getUserTrophiesEarnedForTitle,
-  TrophyRarity
+  TrophyRarity,
+  TrophyTitle
 } from "psn-api";
 
 import { NormalizedAchievement, NormalizedGame } from "@/integrations/models";
@@ -17,7 +18,12 @@ export const getAllUserTrophies = async (
   const titleTrophiesPromises = [];
   const earnedTrophiesPromises = [];
 
-  for (const title of trophyTitles) {
+  // If a profile has marked a game as hidden, ignore it.
+  const onlyVisibleTitles = trophyTitles.filter(
+    (title) => title.hiddenFlag !== true
+  );
+
+  for (const title of onlyVisibleTitles) {
     titleTrophiesPromises.push(
       getTitleTrophies(authorization, title.npCommunicationId, "all", {
         npServiceName:
@@ -51,16 +57,20 @@ export const getAllUserTrophies = async (
     // Merge the two trophy lists.
     const mergedTrophies = mergeTrophyLists(
       titleTrophiesResponse.trophies,
-      earnedTrophiesResponses[currentIndex].trophies
+      earnedTrophiesResponses[currentIndex].trophies,
+      onlyVisibleTitles[currentIndex]
     );
 
     games.push({
-      name: sanitizeGameName(trophyTitles[currentIndex].trophyTitleName),
-      platform: trophyTitles[currentIndex].trophyTitlePlatform,
+      name: sanitizeGameName(onlyVisibleTitles[currentIndex].trophyTitleName),
+      platform: onlyVisibleTitles[currentIndex].trophyTitlePlatform,
       achievements: mergedTrophies,
-      trophyTypeCounts: trophyTitles[currentIndex].definedTrophies,
-      earnedCounts: trophyTitles[currentIndex].earnedTrophies,
-      lastEarnedOn: getGameLastEarnedOn(mergedTrophies)
+      trophyTypeCounts: onlyVisibleTitles[currentIndex].definedTrophies,
+      earnedCounts: onlyVisibleTitles[currentIndex].earnedTrophies,
+      lastEarnedOn: getGameLastEarnedOn(mergedTrophies),
+      service: "psn",
+      completionRate: getTitlePlatinumEarnedRate(mergedTrophies),
+      completedOn: getCompletedOnDateTime(mergedTrophies)
     });
   }
 
@@ -69,7 +79,8 @@ export const getAllUserTrophies = async (
 
 const mergeTrophyLists = (
   titleTrophies: Trophy[],
-  earnedTrophies: Trophy[]
+  earnedTrophies: Trophy[],
+  forTitle: TrophyTitle
 ) => {
   const mergedTrophies: NormalizedAchievement[] = [];
 
@@ -79,14 +90,17 @@ const mergeTrophyLists = (
     );
 
     mergedTrophies.push(
-      normalizeTrophy({ ...earnedTrophy, ...foundTitleTrophy })
+      normalizeTrophy({ ...earnedTrophy, ...foundTitleTrophy }, forTitle)
     );
   }
 
   return mergedTrophies;
 };
 
-const normalizeTrophy = (trophy: Trophy): NormalizedAchievement => {
+const normalizeTrophy = (
+  trophy: Trophy,
+  currentTitle: TrophyTitle
+): NormalizedAchievement => {
   return {
     points: convertTrophyTypeToPoints(trophy.trophyType),
     isEarned: trophy.earned ?? false,
@@ -99,7 +113,9 @@ const normalizeTrophy = (trophy: Trophy): NormalizedAchievement => {
     name: trophy.trophyName,
     description: trophy.trophyDetail ?? null,
     iconUrl: trophy.trophyIconUrl,
-    groupId: trophy.trophyGroupId
+    groupId: trophy.trophyGroupId,
+    service: "psn",
+    gameName: sanitizeGameName(currentTitle.trophyTitleName)
   };
 };
 
@@ -155,4 +171,36 @@ const getGameLastEarnedOn = (allGameAchievements: NormalizedAchievement[]) => {
   );
 
   return sortedByEarnedDateTime[0].earnedDateTime?.toISOString();
+};
+
+// This takes into account the platinum earned rate, not
+// the platinum + DLC earned rate.
+const getTitlePlatinumEarnedRate = (
+  allGameAchievements: NormalizedAchievement[]
+): number | null => {
+  const foundPlatinums = allGameAchievements.filter(
+    (achievement) => achievement.type === "platinum"
+  );
+
+  if (foundPlatinums.length === 0) {
+    return null;
+  }
+
+  return foundPlatinums[0].earnedRate;
+};
+
+// This takes into account the platinum earned datetime, not
+// the platinum + DLC earned datetime.
+const getCompletedOnDateTime = (
+  allGameAchievements: NormalizedAchievement[]
+): string | null => {
+  const foundEarnedPlatinums = allGameAchievements.filter(
+    (achievement) => achievement.type === "platinum" && achievement.isEarned
+  );
+
+  if (foundEarnedPlatinums.length === 0) {
+    return null;
+  }
+
+  return foundEarnedPlatinums[0].earnedDateTime;
 };

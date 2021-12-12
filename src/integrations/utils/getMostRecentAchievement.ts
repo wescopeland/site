@@ -6,26 +6,26 @@ export const getMostRecentAchievement = (allAccountGames: NormalizedGame[]) => {
 
   // We're ultimately looking for the achievement with the
   // most recent `earnedDateTime` value.
-  for (const game of allAccountGames) {
-    for (const achievement of game.achievements) {
-      if (achievement.earnedDateTime) {
-        // We'll fall into this if block on the very first
-        // earned achievement we find from the list.
-        if (!mostRecentAchievement && !mostRecentEarnedDateTime) {
+  const allAchievements = allAccountGames.flatMap((game) => game.achievements);
+
+  for (const achievement of allAchievements) {
+    if (achievement.earnedDateTime) {
+      // We'll fall into this if block on the very first
+      // earned achievement we find from the list.
+      if (!mostRecentAchievement && !mostRecentEarnedDateTime) {
+        mostRecentAchievement = achievement;
+        mostRecentEarnedDateTime = achievement.earnedDateTime;
+      } else {
+        const mostRecentEarnedDate = new Date(mostRecentEarnedDateTime);
+        const currentAchievementEarnedDate = new Date(
+          achievement.earnedDateTime
+        );
+
+        // Did the date we're looking at happen more recently than
+        // the currently-tracked most recent earned date?
+        if (currentAchievementEarnedDate > mostRecentEarnedDate) {
           mostRecentAchievement = achievement;
           mostRecentEarnedDateTime = achievement.earnedDateTime;
-        } else {
-          const mostRecentEarnedDate = new Date(mostRecentEarnedDateTime);
-          const currentAchievementEarnedDate = new Date(
-            achievement.earnedDateTime
-          );
-
-          // Did the date we're looking at happen more recently than
-          // the currently-tracked most recent earned date?
-          if (currentAchievementEarnedDate > mostRecentEarnedDate) {
-            mostRecentAchievement = achievement;
-            mostRecentEarnedDateTime = achievement.earnedDateTime;
-          }
         }
       }
     }
