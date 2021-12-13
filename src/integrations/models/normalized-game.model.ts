@@ -4,6 +4,7 @@ import type { NormalizedAchievement } from "./normalized-achievement.model";
 
 export interface NormalizedGame {
   achievements: NormalizedAchievement[];
+  iconUrl: string | null;
   completedOn: string | null;
   lastEarnedOn: string | null;
   name: string;

@@ -70,7 +70,8 @@ export const getAllUserTrophies = async (
       lastEarnedOn: getGameLastEarnedOn(mergedTrophies),
       service: "psn",
       completionRate: getTitlePlatinumEarnedRate(mergedTrophies),
-      completedOn: getCompletedOnDateTime(mergedTrophies)
+      completedOn: getCompletedOnDateTime(mergedTrophies),
+      iconUrl: onlyVisibleTitles[currentIndex].trophyTitleIconUrl
     });
   }
 
@@ -106,7 +107,8 @@ const normalizeTrophy = (
     isEarned: trophy.earned ?? false,
     earnedDateTime: trophy.earned ? trophy.earnedDateTime : null,
     type: trophy.trophyType,
-    rarity: trophy.trophyRare ? rarityMap[trophy.trophyRare] : null,
+    rarity:
+      trophy.trophyRare !== undefined ? rarityMap[trophy.trophyRare] : null,
     earnedRate: trophy.trophyEarnedRate
       ? Number(trophy.trophyEarnedRate)
       : null,

@@ -1,33 +1,54 @@
 import type { VFC } from "react";
+import { memo } from "react";
 
 import { BaseChartCard } from "@/core/components/BaseChartCard";
 import { LoadOnVisible } from "@/core/components/LoadOnVisible";
-import { generateData } from "@/gaming/generateData";
+import { useAllGames } from "@/gaming/hooks/useAllGames";
+import type { ChartDatum } from "@/gaming/models";
+import { buildTotalPointsChartData } from "@/integrations/utils/buildTotalPointsChartData";
 
 import { DynamicTotalPointsChart } from "./TotalPointsChart";
 
-export const TotalPointsChartCard: VFC = () => {
-  const data = generateData("2019-03-03");
-  const finalDataNode = data.length > 0 ? data[data.length - 1] : null;
+export const TotalPointsChartCard: VFC = memo(() => {
+  const { allGames, isLoading } = useAllGames();
+
+  let chartData: ChartDatum[] | null = null;
+  let finalDataNode: ChartDatum | null = null;
+  if (allGames) {
+    chartData = buildTotalPointsChartData(allGames);
+    finalDataNode =
+      chartData.length > 0 ? chartData[chartData.length - 1] : null;
+  }
 
   return (
     <BaseChartCard
       heading="Total Points"
+      isLoading={isLoading}
       subheading={
         finalDataNode ? finalDataNode.totalPoints.toLocaleString() : "0"
       }
     >
-      {finalDataNode ? (
-        <LoadOnVisible>
-          <DynamicTotalPointsChart chartData={data} />
-        </LoadOnVisible>
+      {isLoading === true ? (
+        <>
+          <div className="mt-2 bg-gray-200 dark:bg-gray-600 animate-pulse h-[232px] w-full rounded">
+            &nbsp;
+          </div>
+        </>
       ) : (
-        <div className="flex my-auto w-full h-full items-center justify-center">
-          <p className="text-sm text-gray-400 dark:text-gray-500">
-            There is no data available.
-          </p>
-        </div>
+        <>
+          {finalDataNode ? (
+            <LoadOnVisible>
+              <DynamicTotalPointsChart chartData={chartData} />
+            </LoadOnVisible>
+          ) : (
+            <div className="flex my-auto w-full h-full items-center justify-center">
+              <p className="text-sm text-gray-400 dark:text-gray-500">
+                There is no data available.
+              </p>
+            </div>
+          )}
+        </>
       )}
     </BaseChartCard>
   );
-};
+});

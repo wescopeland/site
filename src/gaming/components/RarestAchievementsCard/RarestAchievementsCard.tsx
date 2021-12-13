@@ -2,68 +2,51 @@
 import type { VFC } from "react";
 
 import { BaseStatsCard } from "@/core/components/BaseStatsCard";
-import type { GamingPlatformId } from "@/core/models";
 import { formatPercentage } from "@/core/utils/formatPercentage";
+import { useAllGames } from "@/gaming/hooks/useAllGames";
+import type { NormalizedAchievement } from "@/integrations/models";
+import { findRarestAchievements } from "@/integrations/utils/findRarestAchievements";
 
 import { RarityListItem } from "../RarityListItem";
 
-const rarestAchievements = [
-  {
-    achievementName: "Taking a Liberty",
-    rarityPercentage: 0.93,
-    gameName: "Grand Theft Auto IV",
-    platform: "psn",
-    imageSrc: "/static/images/achievement2.png"
-  },
-  {
-    achievementName: "Taking a Liberty",
-    rarityPercentage: 0.93,
-    gameName: "Grand Theft Auto IV",
-    platform: "xbox",
-    imageSrc: "/static/images/achievement2.png"
-  },
-  {
-    achievementName: "Some Achievement Name",
-    rarityPercentage: 2.5,
-    gameName: "Super Mario Bros.",
-    platform: "ra",
-    imageSrc: "/static/images/achievement2.png"
-  },
-  {
-    achievementName: "Legend of the West",
-    rarityPercentage: 2.62,
-    gameName: "Red Dead Redemption",
-    platform: "psn",
-    imageSrc: "/static/images/achievement2.png"
-  },
-  {
-    achievementName: "Another Achievement",
-    rarityPercentage: 2.7,
-    gameName: "Another Random Game",
-    platform: "psn",
-    imageSrc: "/static/images/achievement2.png"
-  }
-];
-
 export const RarestAchievementsCard: VFC = () => {
+  const { allGames, isLoading } = useAllGames();
+
+  let rarestAchievements: NormalizedAchievement[] | null = null;
+  if (allGames) {
+    rarestAchievements = findRarestAchievements(allGames, 5);
+  }
+
   return (
     <BaseStatsCard headingLabel="Rarest Achievements">
       <ol className="mt-2 divide-y divide-gray-200 dark:divide-gray-700">
-        {rarestAchievements.map((achievement) => (
-          <RarityListItem
-            key={`${achievement.achievementName}-${achievement.gameName}`}
-            platform={achievement.platform as GamingPlatformId}
-            lineOneContent={<>{achievement.achievementName}</>}
-            lineTwoContent={
-              <>
-                {formatPercentage(achievement.rarityPercentage)}
-                {", "}
-                {achievement.gameName}
-              </>
-            }
-            imageSrc={achievement.imageSrc}
-          />
-        ))}
+        {isLoading ? (
+          <>
+            <RarityListItem isLoading />
+            <RarityListItem isLoading />
+            <RarityListItem isLoading />
+            <RarityListItem isLoading />
+            <RarityListItem isLoading />
+          </>
+        ) : (
+          <>
+            {rarestAchievements.map((achievement) => (
+              <RarityListItem
+                key={`${achievement.name}-${achievement.gameName}`}
+                platform={achievement.service}
+                lineOneContent={<>{achievement.name}</>}
+                lineTwoContent={
+                  <>
+                    {formatPercentage(achievement.earnedRate)}
+                    {", "}
+                    {achievement.gameName}
+                  </>
+                }
+                imageSrc={achievement.iconUrl}
+              />
+            ))}
+          </>
+        )}
       </ol>
     </BaseStatsCard>
   );
