@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import { authenticate } from "@/integrations/psn/queries/authenticate";
-import { getAllUserTrophies } from "@/integrations/psn/queries/getAllUserTrophies";
+import { fetchAllPsnGames } from "@/integrations/psn/queries/fetchAllPsnGames";
 
 export default async function handler(
   req: NextApiRequest,
@@ -16,9 +15,3 @@ export default async function handler(
     res.status(405).end("Method Not Allowed");
   }
 }
-
-const fetchAllPsnGames = async (targetAccountId: string) => {
-  const authorization = await authenticate();
-
-  return await getAllUserTrophies(authorization, targetAccountId);
-};

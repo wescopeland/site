@@ -15,10 +15,11 @@ type AppPropsWithLayout = AppProps & {
 
 const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
   const getLayout = Component.getLayout || ((page) => page);
+  const swrFallback = pageProps?.fallback;
 
   return (
     <PlausibleProvider domain="wescopeland.dev">
-      <SWRConfig value={{ fetcher }}>
+      <SWRConfig value={{ fetcher, fallback: swrFallback }}>
         <ThemeProvider attribute="class">
           {getLayout(<Component {...pageProps} />)}
         </ThemeProvider>
