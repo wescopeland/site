@@ -2,6 +2,7 @@ import type { VFC } from "react";
 
 import { Animate } from "@/core/components/Animate";
 import { H1 } from "@/core/components/H1";
+import { ChartDatum } from "@/gaming/models";
 
 import { MostRecentAchievementCard } from "../MostRecentAchievementCard";
 import { MostRecentCompletionCard } from "../MostRecentCompletionCard";
@@ -11,7 +12,11 @@ import { RarestCompletionsCard } from "../RarestCompletionsCard";
 import { ServiceSummaryCardList } from "../ServiceSummaryCardList";
 import { TotalPointsChartCard } from "../TotalPointsChartCard";
 
-export const GamingRoot: VFC = () => {
+interface GamingRootProps {
+  totalPointsChartData: ChartDatum[];
+}
+
+export const GamingRoot: VFC<GamingRootProps> = ({ totalPointsChartData }) => {
   return (
     <>
       <Animate.FadeUpOnMount>
@@ -35,7 +40,7 @@ export const GamingRoot: VFC = () => {
 
           <MostRecentCompletionCard />
 
-          <TotalPointsChartCard />
+          <TotalPointsChartCard data={totalPointsChartData} />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-y-2 gap-x-6">
             <RarestAchievementsCard />

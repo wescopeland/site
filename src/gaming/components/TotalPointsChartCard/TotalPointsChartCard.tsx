@@ -3,42 +3,29 @@ import { memo } from "react";
 
 import { BaseChartCard } from "@/core/components/BaseChartCard";
 import { LoadOnVisible } from "@/core/components/LoadOnVisible";
-import { useAllGames } from "@/gaming/hooks/useAllGames";
 import type { ChartDatum } from "@/gaming/models";
-import { buildTotalPointsChartData } from "@/integrations/utils/buildTotalPointsChartData";
 
 import { DynamicTotalPointsChart } from "./TotalPointsChart";
 
-export const TotalPointsChartCard: VFC = memo(() => {
-  const { allGames, isLoading } = useAllGames();
+interface TotalPointsChartCardProps {
+  data: ChartDatum[];
+}
 
-  let chartData: ChartDatum[] | null = null;
-  let finalDataNode: ChartDatum | null = null;
-  if (allGames) {
-    chartData = buildTotalPointsChartData(allGames);
-    finalDataNode =
-      chartData.length > 0 ? chartData[chartData.length - 1] : null;
-  }
+export const TotalPointsChartCard: VFC<TotalPointsChartCardProps> = memo(
+  ({ data }) => {
+    const finalDataNode = data.length > 0 ? data[data.length - 1] : null;
 
-  return (
-    <BaseChartCard
-      heading="Total Points"
-      isLoading={isLoading}
-      subheading={
-        finalDataNode ? finalDataNode.totalPoints.toLocaleString() : "0"
-      }
-    >
-      {isLoading === true ? (
-        <>
-          <div className="mt-2 bg-gray-200 dark:bg-gray-600 animate-pulse h-[232px] w-full rounded">
-            &nbsp;
-          </div>
-        </>
-      ) : (
+    return (
+      <BaseChartCard
+        heading="Total Points"
+        subheading={
+          finalDataNode ? finalDataNode.totalPoints.toLocaleString() : "0"
+        }
+      >
         <>
           {finalDataNode ? (
             <LoadOnVisible>
-              <DynamicTotalPointsChart chartData={chartData} />
+              <DynamicTotalPointsChart chartData={data} />
             </LoadOnVisible>
           ) : (
             <div className="flex my-auto w-full h-full items-center justify-center">
@@ -48,7 +35,7 @@ export const TotalPointsChartCard: VFC = memo(() => {
             </div>
           )}
         </>
-      )}
-    </BaseChartCard>
-  );
-});
+      </BaseChartCard>
+    );
+  }
+);
