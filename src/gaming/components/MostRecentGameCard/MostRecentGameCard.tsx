@@ -67,7 +67,7 @@ const calculateCompletionPercentage = (game: NormalizedGame) => {
     totalGamePoints += achievement.points;
 
     if (achievement.isEarned) {
-      earnedGamePoints += achievement.points;
+      earnedGamePoints += achievement.earnedPoints;
     }
   }
 

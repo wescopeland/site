@@ -7,12 +7,16 @@ import {
   TrophyTitle
 } from "psn-api";
 
-import { NormalizedAchievement, NormalizedGame } from "@/integrations/models";
+import type {
+  NormalizedAchievement,
+  NormalizedGame
+} from "@/integrations/models";
+import { getGameLastEarnedOn } from "@/integrations/utils/getGameLastEarnedOn";
 
 export const getAllUserTrophies = async (
   authorization: AuthTokensResponse,
   targetAccountId: string
-) => {
+): Promise<NormalizedGame[]> => {
   const { trophyTitles } = await getUserTitles(authorization, targetAccountId);
 
   const titleTrophiesPromises = [];
@@ -106,6 +110,9 @@ const normalizeTrophy = (
     points: convertTrophyTypeToPoints(trophy.trophyType),
     isEarned: trophy.earned ?? false,
     earnedDateTime: trophy.earned ? trophy.earnedDateTime : null,
+    earnedPoints: trophy.earned
+      ? convertTrophyTypeToPoints(trophy.trophyType)
+      : null,
     type: trophy.trophyType,
     rarity:
       trophy.trophyRare !== undefined ? rarityMap[trophy.trophyRare] : null,
@@ -158,21 +165,6 @@ const convertTrophyTypeToPoints = (
   }
 
   return points;
-};
-
-const getGameLastEarnedOn = (allGameAchievements: NormalizedAchievement[]) => {
-  const withRealDates = allGameAchievements.map((achievement) => ({
-    ...achievement,
-    earnedDateTime: achievement.earnedDateTime
-      ? new Date(achievement.earnedDateTime)
-      : null
-  }));
-
-  const sortedByEarnedDateTime = withRealDates.sort((a, b) =>
-    a.earnedDateTime < b.earnedDateTime ? 1 : -1
-  );
-
-  return sortedByEarnedDateTime[0].earnedDateTime?.toISOString();
 };
 
 // This takes into account the platinum earned rate, not

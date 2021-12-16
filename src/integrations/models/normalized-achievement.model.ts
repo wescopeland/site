@@ -4,6 +4,7 @@ export interface NormalizedAchievement {
   description: string | null;
   earnedDateTime: string | null;
   earnedRate: number | null;
+  earnedPoints: number | null;
   gameName: string;
   groupId: string | null;
   iconUrl: string | null;

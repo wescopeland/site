@@ -17,6 +17,7 @@ export const buildTotalPointsChartData = (
   let activeDate = dayjs(startDate);
   let currentTotalPoints = 0;
   let currentPlaystationPoints = 0;
+  let currentRetroAchievementsPoints = 0;
 
   const today = dayjs();
   const nodeCount = today.diff(activeDate, "days");
@@ -26,7 +27,8 @@ export const buildTotalPointsChartData = (
     {
       date: activeDate.toISOString(),
       totalPoints: currentTotalPoints,
-      playstationPoints: currentPlaystationPoints
+      playstationPoints: currentPlaystationPoints,
+      retroAchievementsPoints: currentRetroAchievementsPoints
     }
   ];
 
@@ -40,16 +42,19 @@ export const buildTotalPointsChartData = (
     );
 
     for (const achievement of achievementsEarnedOnDate) {
-      currentTotalPoints += achievement.points;
+      currentTotalPoints += achievement.earnedPoints;
       if (achievement.service === "psn") {
-        currentPlaystationPoints += achievement.points;
+        currentPlaystationPoints += achievement.earnedPoints;
+      } else if (achievement.service === "ra") {
+        currentRetroAchievementsPoints += achievement.earnedPoints;
       }
     }
 
     data.push({
       date: activeDate.toISOString(),
       totalPoints: currentTotalPoints,
-      playstationPoints: currentPlaystationPoints
+      playstationPoints: currentPlaystationPoints,
+      retroAchievementsPoints: currentRetroAchievementsPoints
     });
   }
 

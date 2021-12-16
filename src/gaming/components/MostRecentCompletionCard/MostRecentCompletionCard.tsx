@@ -46,17 +46,23 @@ export const MostRecentCompletionCard: VFC = () => {
           </p>
         ) : (
           <>
-            <p className="text-gray-500 dark:text-gray-400 tracking-tight">
-              Rarity:
-            </p>
-            <div className="flex gap-x-3">
-              <p className="text-black dark:text-white">
-                {formatPercentage(mostRecentCompletion.completionRate)}
-                <span className="dark:text-gray-200 ml-1 text-sm tracking-tight">
-                  {mapPercentageToRarity(mostRecentCompletion.completionRate)}
-                </span>
-              </p>
-            </div>
+            {mostRecentCompletion.completionRate && (
+              <>
+                <p className="text-gray-500 dark:text-gray-400 tracking-tight">
+                  Rarity:
+                </p>
+                <div className="flex gap-x-3">
+                  <p className="text-black dark:text-white">
+                    {formatPercentage(mostRecentCompletion.completionRate)}
+                    <span className="dark:text-gray-200 ml-1 text-sm tracking-tight">
+                      {mapPercentageToRarity(
+                        mostRecentCompletion.completionRate
+                      )}
+                    </span>
+                  </p>
+                </div>
+              </>
+            )}
           </>
         )}
       </div>
@@ -68,15 +74,19 @@ export const MostRecentCompletionCard: VFC = () => {
           </p>
         ) : (
           <>
-            <p className="text-black dark:text-white">
-              {formatPercentage(mostRecentCompletion.completionRate)} Rarity
-            </p>
+            {mostRecentCompletion.completionRate && (
+              <>
+                <p className="text-black dark:text-white">
+                  {formatPercentage(mostRecentCompletion.completionRate)} Rarity
+                </p>
 
-            <div className="flex items-center md:absolute md:right-4">
-              <p className="mt-0.5 text-sm text-gray-700 dark:text-gray-300">
-                {mapPercentageToRarity(mostRecentCompletion.completionRate)}
-              </p>
-            </div>
+                <div className="flex items-center md:absolute md:right-4">
+                  <p className="mt-0.5 text-sm text-gray-700 dark:text-gray-300">
+                    {mapPercentageToRarity(mostRecentCompletion.completionRate)}
+                  </p>
+                </div>
+              </>
+            )}
           </>
         )}
       </div>

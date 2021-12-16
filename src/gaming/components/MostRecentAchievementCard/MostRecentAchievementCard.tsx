@@ -31,7 +31,7 @@ export const MostRecentAchievementCard: VFC = () => {
             <p className="text-black dark:text-white flex">
               {mostRecentAchievement.name}
             </p>
-            <EarningsArrow>{mostRecentAchievement.points}</EarningsArrow>
+            <EarningsArrow>{mostRecentAchievement.earnedPoints}</EarningsArrow>
           </>
         )}
       </div>

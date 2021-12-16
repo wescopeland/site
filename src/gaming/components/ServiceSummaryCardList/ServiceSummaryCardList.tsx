@@ -7,6 +7,7 @@ import { Animate } from "@/core/components/Animate";
 import { useAllGames } from "@/gaming/hooks/useAllGames";
 import { getGamingServiceColors } from "@/gaming/utils/getGamingServiceColors";
 import { getUserPlatinumCount } from "@/integrations/psn/utils/getUserPlatinumCount";
+import { getUserMasteryCount } from "@/integrations/ra/utils/getUserMasteryCount";
 
 import { ServiceSummaryCard } from "./ServiceSummaryCard";
 
@@ -38,18 +39,19 @@ export const ServiceSummaryCardList: VFC = () => {
         labelCopy="Xbox Gamerscore"
         valueCopy="6,950 / 100,000"
         platform="xbox"
-      />
+      />*/}
 
       <ServiceSummaryCard
+        isLoading={isLoading}
         IconComponent={MdGamepad}
         bgColorClassName={cc([
           gamingServiceColors.ra.classNames.light,
           gamingServiceColors.ra.classNames.mediaDark
         ])}
         labelCopy="RA Masteries"
-        valueCopy="7 / 100"
+        valueCopy={isLoading ? "" : `${getUserMasteryCount(allGames)} / 100`}
         platform="ra"
-      /> */}
+      />
     </Animate.StaggerOnMount>
   );
 };
