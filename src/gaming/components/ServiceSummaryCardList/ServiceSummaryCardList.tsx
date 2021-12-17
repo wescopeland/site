@@ -8,6 +8,7 @@ import { useAllGames } from "@/gaming/hooks/useAllGames";
 import { getGamingServiceColors } from "@/gaming/utils/getGamingServiceColors";
 import { getUserPlatinumCount } from "@/integrations/psn/utils/getUserPlatinumCount";
 import { getUserMasteryCount } from "@/integrations/ra/utils/getUserMasteryCount";
+import { getUserGamerscoreCount } from "@/integrations/xbox/utils/getUserGamerscoreCount";
 
 import { ServiceSummaryCard } from "./ServiceSummaryCard";
 
@@ -30,16 +31,21 @@ export const ServiceSummaryCardList: VFC = () => {
         platform="psn"
       />
 
-      {/* <ServiceSummaryCard
+      <ServiceSummaryCard
+        isLoading={isLoading}
         IconComponent={FaXbox}
         bgColorClassName={cc([
           gamingServiceColors.xbox.classNames.light,
           gamingServiceColors.xbox.classNames.mediaDark
         ])}
         labelCopy="Xbox Gamerscore"
-        valueCopy="6,950 / 100,000"
+        valueCopy={
+          isLoading
+            ? ""
+            : `${getUserGamerscoreCount(allGames).toLocaleString()} / 100,000`
+        }
         platform="xbox"
-      />*/}
+      />
 
       <ServiceSummaryCard
         isLoading={isLoading}

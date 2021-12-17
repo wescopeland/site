@@ -1,8 +1,4 @@
-import {
-  exchangeCodeForAccessToken,
-  exchangeNpssoForCode,
-  getUserTitles
-} from "psn-api";
+import { exchangeCodeForAccessToken, exchangeNpssoForCode } from "psn-api";
 
 const npsso = process.env.PSN_NPSSO ?? "";
 

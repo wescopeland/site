@@ -11,7 +11,7 @@ export interface NormalizedAchievement {
   isEarned: boolean;
   name: string;
   points: number;
-  rarity: "Very Rare" | "Ultra Rare" | "Rare" | "Common" | null;
+  rarity: string | null;
   service: "psn" | "xbox" | "ra";
   type: TrophyType | null;
 }

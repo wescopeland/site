@@ -58,24 +58,26 @@ export const getAllUserTrophies = async (
     currentIndex,
     titleTrophiesResponse
   ] of titleTrophiesResponses.entries()) {
+    const currentTitle = onlyVisibleTitles[currentIndex];
+
     // Merge the two trophy lists.
     const mergedTrophies = mergeTrophyLists(
       titleTrophiesResponse.trophies,
       earnedTrophiesResponses[currentIndex].trophies,
-      onlyVisibleTitles[currentIndex]
+      currentTitle
     );
 
     games.push({
-      name: sanitizeGameName(onlyVisibleTitles[currentIndex].trophyTitleName),
-      platform: onlyVisibleTitles[currentIndex].trophyTitlePlatform,
+      name: sanitizeGameName(currentTitle.trophyTitleName),
+      platform: currentTitle.trophyTitlePlatform,
       achievements: mergedTrophies,
-      trophyTypeCounts: onlyVisibleTitles[currentIndex].definedTrophies,
-      earnedCounts: onlyVisibleTitles[currentIndex].earnedTrophies,
+      trophyTypeCounts: currentTitle.definedTrophies,
+      earnedCounts: currentTitle.earnedTrophies,
       lastEarnedOn: getGameLastEarnedOn(mergedTrophies),
       service: "psn",
       completionRate: getTitlePlatinumEarnedRate(mergedTrophies),
       completedOn: getCompletedOnDateTime(mergedTrophies),
-      iconUrl: onlyVisibleTitles[currentIndex].trophyTitleIconUrl
+      iconUrl: currentTitle.trophyTitleIconUrl
     });
   }
 

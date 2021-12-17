@@ -19,6 +19,8 @@
   "dependencies": {
     "@headlessui/react": "^1.4.2",
     "@tailwindcss/typography": "^0.5.0",
+    "@xboxreplay/xboxlive-api": "^3.4.3",
+    "@xboxreplay/xboxlive-auth": "^4.0.0",
     "classcat": "^5.0.3",
     "dayjs": "^1.10.7",
     "esbuild": "^0.14.2",

@@ -7,7 +7,11 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 module.exports = withBundleAnalyzer(
   withContentlayer()({
     images: {
-      domains: ["image.api.playstation.com", "s3-eu-west-1.amazonaws.com"]
+      domains: [
+        "image.api.playstation.com",
+        "s3-eu-west-1.amazonaws.com",
+        "images-eds.xboxlive.com"
+      ]
     }
   })
 );

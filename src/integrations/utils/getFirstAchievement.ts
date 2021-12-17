@@ -9,7 +9,7 @@ export const getFirstAchievement = (allAccountGames: NormalizedGame[]) => {
   const allAchievements = allAccountGames.flatMap((game) => game.achievements);
 
   for (const achievement of allAchievements) {
-    if (achievement.earnedDateTime) {
+    if (achievement.isEarned && achievement.earnedDateTime) {
       // We'll fall into this if block on the very first
       // earned achievement we find from the list.
       if (!oldestAchievement && !oldestAchievementDateTime) {

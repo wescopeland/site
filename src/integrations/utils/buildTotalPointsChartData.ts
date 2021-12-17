@@ -17,6 +17,7 @@ export const buildTotalPointsChartData = (
   let activeDate = dayjs(startDate);
   let currentTotalPoints = 0;
   let currentPlaystationPoints = 0;
+  let currentXboxPoints = 0;
   let currentRetroAchievementsPoints = 0;
 
   const today = dayjs();
@@ -28,7 +29,8 @@ export const buildTotalPointsChartData = (
       date: activeDate.toISOString(),
       totalPoints: currentTotalPoints,
       playstationPoints: currentPlaystationPoints,
-      retroAchievementsPoints: currentRetroAchievementsPoints
+      retroAchievementsPoints: currentRetroAchievementsPoints,
+      xboxPoints: currentXboxPoints
     }
   ];
 
@@ -47,6 +49,8 @@ export const buildTotalPointsChartData = (
         currentPlaystationPoints += achievement.earnedPoints;
       } else if (achievement.service === "ra") {
         currentRetroAchievementsPoints += achievement.earnedPoints;
+      } else if (achievement.service === "xbox") {
+        currentXboxPoints += achievement.earnedPoints;
       }
     }
 
@@ -54,7 +58,8 @@ export const buildTotalPointsChartData = (
       date: activeDate.toISOString(),
       totalPoints: currentTotalPoints,
       playstationPoints: currentPlaystationPoints,
-      retroAchievementsPoints: currentRetroAchievementsPoints
+      retroAchievementsPoints: currentRetroAchievementsPoints,
+      xboxPoints: currentXboxPoints
     });
   }
 

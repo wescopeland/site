@@ -5,8 +5,9 @@ import type { AppPage } from "@/core/models";
 import { GamingRoot } from "@/gaming/components/+root";
 import { ChartDatum } from "@/gaming/models";
 import { fetchAllPsnGames } from "@/integrations/psn/queries/fetchAllPsnGames";
-import { fetchAllUserAchievements } from "@/integrations/ra/queries/fetchAllUserAchievements";
+import { fetchAllRaGames } from "@/integrations/ra/queries/fetchAllRaGames";
 import { buildTotalPointsChartData } from "@/integrations/utils/buildTotalPointsChartData";
+import { fetchAllXboxGames } from "@/integrations/xbox/queries/fetchAllXboxGames";
 
 interface GamingPageProps {
   totalPointsChartData: ChartDatum[];
@@ -21,22 +22,24 @@ GamingPage.getLayout = (page: ReactElement) => {
 };
 
 export async function getStaticProps() {
-  const [allPsnGames, allUserAchievements] = await Promise.all([
+  const [allPsnGames, allRaGames, allXboxGames] = await Promise.all([
     fetchAllPsnGames("me"),
-    fetchAllUserAchievements("WCopeland")
+    fetchAllRaGames("WCopeland"),
+    fetchAllXboxGames()
   ]);
 
   // Calculate this on the server to improve performance.
   const totalPointsChartData = buildTotalPointsChartData([
     ...allPsnGames,
-    ...allUserAchievements
+    ...allRaGames,
+    ...allXboxGames
   ]);
 
   return {
     props: {
       totalPointsChartData,
       fallback: {
-        "/api/gaming/games": [...allPsnGames, ...allUserAchievements]
+        "/api/gaming/games": [...allPsnGames, ...allRaGames, ...allXboxGames]
       }
     },
     revalidate: 60 * 60 * 24 // one day

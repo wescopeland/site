@@ -14,7 +14,7 @@ import { getGameLastEarnedOn } from "@/integrations/utils/getGameLastEarnedOn";
 
 import retroAchievementsClient from "../client";
 
-export const fetchAllUserAchievements = async (
+export const fetchAllRaGames = async (
   targetUserName: string
 ): Promise<NormalizedGame[]> => {
   const userGameCompletionStats =
@@ -127,7 +127,7 @@ const normalizeAchievement = (
     rarity: getAchievementRarityLabel(
       totalPlayers,
       achievement.numAwardedHardcore
-    ) as any,
+    ),
     earnedRate: getAchievementEarnedRate(
       totalPlayers,
       achievement.numAwardedHardcore
