@@ -1,8 +1,8 @@
 import type { NormalizedAchievement, NormalizedGame } from "../models";
 
 export const getMostRecentAchievement = (allAccountGames: NormalizedGame[]) => {
-  let mostRecentAchievement: NormalizedAchievement | null;
-  let mostRecentEarnedDateTime: string | null;
+  let mostRecentAchievement: NormalizedAchievement | null = null;
+  let mostRecentEarnedDateTime: string | null = null;
 
   // We're ultimately looking for the achievement with the
   // most recent `earnedDateTime` value.
@@ -15,7 +15,7 @@ export const getMostRecentAchievement = (allAccountGames: NormalizedGame[]) => {
       if (!mostRecentAchievement && !mostRecentEarnedDateTime) {
         mostRecentAchievement = achievement;
         mostRecentEarnedDateTime = achievement.earnedDateTime;
-      } else {
+      } else if (mostRecentEarnedDateTime) {
         const mostRecentEarnedDate = new Date(mostRecentEarnedDateTime);
         const currentAchievementEarnedDate = new Date(
           achievement.earnedDateTime

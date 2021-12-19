@@ -48,9 +48,9 @@ export const TotalPointsChart: VFC<TotalPointsChartProps> = ({ chartData }) => {
         <Tooltip
           content={({ active, payload }) => (
             <CustomTooltip
-              active={active}
+              active={active ?? false}
               finalDataNode={finalDataNode}
-              payload={payload}
+              payload={payload ?? []}
             />
           )}
         />

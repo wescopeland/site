@@ -1,8 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import { fetchAllPsnGames } from "@/integrations/psn/queries/fetchAllPsnGames";
-import { fetchAllRaGames } from "@/integrations/ra/queries/fetchAllRaGames";
-import { buildTotalPointsChartData } from "@/integrations/utils/buildTotalPointsChartData";
 import { getFirstAchievement } from "@/integrations/utils/getFirstAchievement";
 import { fetchAllXboxGames } from "@/integrations/xbox/queries/fetchAllXboxGames";
 

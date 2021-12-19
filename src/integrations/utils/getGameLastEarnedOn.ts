@@ -10,9 +10,13 @@ export const getGameLastEarnedOn = (
       : null
   }));
 
-  const sortedByEarnedDateTime = withRealDates.sort((a, b) =>
-    a.earnedDateTime < b.earnedDateTime ? 1 : -1
-  );
+  const sortedByEarnedDateTime = withRealDates.sort((a, b) => {
+    if (!a.earnedDateTime || !b.earnedDateTime) {
+      return 0;
+    }
+
+    return a.earnedDateTime < b.earnedDateTime ? 1 : -1;
+  });
 
   return sortedByEarnedDateTime[0].earnedDateTime?.toISOString();
 };

@@ -22,13 +22,18 @@ export const RarestCompletionsCard: VFC = () => {
             lineOneContent={<>{completion.name}</>}
             lineTwoContent={
               <>
-                {formatPercentage(completion.completionRate)}
-                {", "}
+                {completion.completionRate ? (
+                  <>
+                    {formatPercentage(completion.completionRate)}
+                    {", "}
+                  </>
+                ) : null}
+
                 {dayjs(completion.completedOn).format("MMM DD YYYY")}
               </>
             }
             isUsingWideImage={true}
-            imageSrc={completion.iconUrl}
+            imageSrc={completion.iconUrl ?? "#"}
           />
         ))}
       </ol>

@@ -51,7 +51,11 @@ export const CustomTooltip: VFC<CustomTooltipProps> = ({
             {finalDataNode.playstationPoints ? (
               <ChartTooltipLineItem
                 label="PSN"
-                value={datum.playstationPoints.toLocaleString()}
+                value={
+                  datum.playstationPoints
+                    ? datum.playstationPoints.toLocaleString()
+                    : "0"
+                }
                 swatchBgClassName={
                   gamingServiceColors.playstation.classNames.dark
                 }
@@ -61,7 +65,9 @@ export const CustomTooltip: VFC<CustomTooltipProps> = ({
             {finalDataNode.xboxPoints ? (
               <ChartTooltipLineItem
                 label="Xbox"
-                value={datum.xboxPoints.toLocaleString()}
+                value={
+                  datum.xboxPoints ? datum.xboxPoints.toLocaleString() : "0"
+                }
                 swatchBgClassName={gamingServiceColors.xbox.classNames.dark}
               />
             ) : null}
@@ -69,7 +75,11 @@ export const CustomTooltip: VFC<CustomTooltipProps> = ({
             {finalDataNode.retroAchievementsPoints ? (
               <ChartTooltipLineItem
                 label="RA"
-                value={datum.retroAchievementsPoints.toLocaleString()}
+                value={
+                  datum.retroAchievementsPoints
+                    ? datum.retroAchievementsPoints.toLocaleString()
+                    : "0"
+                }
                 swatchBgClassName={gamingServiceColors.ra.classNames.dark}
               />
             ) : null}

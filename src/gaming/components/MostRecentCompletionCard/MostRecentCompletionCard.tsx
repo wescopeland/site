@@ -12,6 +12,10 @@ export const MostRecentCompletionCard: VFC = () => {
     (state) => state.mostRecentCompletion
   );
 
+  if (!mostRecentCompletion) {
+    return null;
+  }
+
   return (
     <BaseStatsBanner>
       <div className="inline-flex flex-col md:flex-row flex-grow gap-x-2">

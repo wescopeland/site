@@ -21,12 +21,17 @@ export const RarestAchievementsCard: VFC = () => {
             lineOneContent={<>{achievement.name}</>}
             lineTwoContent={
               <>
-                {formatPercentage(achievement.earnedRate)}
-                {", "}
+                {achievement.earnedRate ? (
+                  <>
+                    {formatPercentage(achievement.earnedRate)}
+                    {", "}
+                  </>
+                ) : null}
+
                 {achievement.gameName}
               </>
             }
-            imageSrc={achievement.iconUrl}
+            imageSrc={achievement.iconUrl ?? "#"}
           />
         ))}
       </ol>

@@ -132,7 +132,7 @@ export async function fetchXuidAchievementsByTitle(options: {
           titleId: title.titleId
         });
 
-      achievements = legacyAchievements.map(sanitizeXboxAchievement);
+      achievements = legacyAchievements.map(sanitizeXboxAchievement as any);
     } catch (error) {
       console.error(
         `XBL Integration: There was a problem retrieving legacy achievements for ${title.name} ${title.titleId}.`,
@@ -150,7 +150,7 @@ export async function fetchXuidAchievementsByTitle(options: {
           titleId: title.titleId
         });
 
-      achievements = modernAchievements.map(sanitizeXboxAchievement);
+      achievements = modernAchievements.map(sanitizeXboxAchievement as any);
     } catch (error) {
       console.error(
         `Xbox Integration: There was a problem retrieving modern achievements for ${title.name} ${title.titleId}.`,

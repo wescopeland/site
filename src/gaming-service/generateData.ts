@@ -5,7 +5,12 @@ import type { ChartTrophy, TrophiesChartDatum } from "@/gaming-service/models";
 
 const generateChartTrophy = (chartTrophyProps: Partial<ChartTrophy>) => {
   return {
-    grade: faker.random.arrayElement(["bronze", "silver", "gold", "platinum"]),
+    grade: faker.random.arrayElement([
+      "bronze",
+      "silver",
+      "gold",
+      "platinum"
+    ]) as any,
     gameName: faker.random.words(faker.datatype.number({ min: 1, max: 4 })),
     trophyName: faker.random.words(faker.datatype.number({ min: 1, max: 4 })),
     ...chartTrophyProps

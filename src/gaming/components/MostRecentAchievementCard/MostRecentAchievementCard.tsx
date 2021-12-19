@@ -11,6 +11,10 @@ export const MostRecentAchievementCard: VFC = () => {
     (state) => state.mostRecentAchievement
   );
 
+  if (mostRecentAchievement === null) {
+    return null;
+  }
+
   return (
     <BaseStatsCard
       headingLabel="Most Recent Achievement"
@@ -28,11 +32,17 @@ export const MostRecentAchievementCard: VFC = () => {
       <div className="flex items-center gap-x-2">
         <>
           <p className="text-black dark:text-white">
-            {formatPercentage(mostRecentAchievement.earnedRate)} earn rate
+            {mostRecentAchievement.earnedRate
+              ? formatPercentage(mostRecentAchievement.earnedRate)
+              : "Unknown"}{" "}
+            earn rate
           </p>
-          <p className="text-sm mt-0.5 text-gray-700 dark:text-gray-300 tracking-tight">
-            {capitalizeOnlyFirstLetter(mostRecentAchievement.rarity)}
-          </p>
+
+          {mostRecentAchievement.rarity && (
+            <p className="text-sm mt-0.5 text-gray-700 dark:text-gray-300 tracking-tight">
+              {capitalizeOnlyFirstLetter(mostRecentAchievement.rarity)}
+            </p>
+          )}
         </>
       </div>
     </BaseStatsCard>

@@ -12,9 +12,9 @@ export interface GamingState {
     masteryCount: number;
   };
 
-  mostRecentGame: NormalizedGame;
-  mostRecentAchievement: NormalizedAchievement;
-  mostRecentCompletion: NormalizedGame;
+  mostRecentGame: NormalizedGame | null;
+  mostRecentAchievement: NormalizedAchievement | null;
+  mostRecentCompletion: NormalizedGame | null;
 
   totalPointsChartData: ChartDatum[];
 

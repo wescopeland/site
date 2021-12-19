@@ -1,5 +1,9 @@
 import type { FC } from "react";
-import { createContext, useContextSelector } from "use-context-selector";
+import {
+  Context,
+  createContext,
+  useContextSelector
+} from "use-context-selector";
 
 import type { GamingState } from "../models";
 
@@ -21,5 +25,5 @@ export const GamingStateProvider: FC<GamingStateProviderProps> = ({
 export function useGamingContextSelector<Selected>(
   selector: (state: GamingState) => Selected
 ) {
-  return useContextSelector(GamingContext, selector);
+  return useContextSelector(GamingContext as Context<GamingState>, selector);
 }

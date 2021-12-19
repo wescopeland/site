@@ -60,12 +60,13 @@ export const fetchAllXboxGames = async (): Promise<NormalizedGame[]> => {
       achievements: normalizedAchievements,
       service: "xbox",
       iconUrl: currentTitle.displayImage,
-      lastEarnedOn: getGameLastEarnedOn(normalizedAchievements),
-      completedOn: getCompletedOnDateTime(
-        normalizedAchievements,
-        currentTitle.achievement.currentGamerscore,
-        currentTitle.achievement.totalGamerscore
-      )
+      lastEarnedOn: getGameLastEarnedOn(normalizedAchievements) ?? null,
+      completedOn:
+        getCompletedOnDateTime(
+          normalizedAchievements,
+          currentTitle.achievement.currentGamerscore,
+          currentTitle.achievement.totalGamerscore
+        ) ?? null
     });
   }
 
@@ -95,10 +96,10 @@ const normalizeXboxAchievement = (
     rarity: rawAchievement.earnedRate
       ? mapPercentageToRarity(rawAchievement.earnedRate)
       : null,
-    earnedRate: rawAchievement.earnedRate,
+    earnedRate: rawAchievement.earnedRate ?? null,
     name: rawAchievement.name,
     description: rawAchievement.lockedDescription,
-    iconUrl: rawAchievement.iconUrl,
+    iconUrl: rawAchievement.iconUrl ?? null,
     service: "xbox",
     gameName: currentTitle.name,
     groupId: null,

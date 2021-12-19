@@ -24,7 +24,10 @@ export const TechStack: VFC<TechStackProps> = ({ techStackElements }) => {
                 "pt-3 pb-2 px-4"
               ])}
             >
-              <IconComponent className="justify-center flex w-full text-2xl text-gray-500 dark:text-gray-400" />
+              {IconComponent ? (
+                <IconComponent className="justify-center flex w-full text-2xl text-gray-500 dark:text-gray-400" />
+              ) : null}
+
               <span className="flex items-center flex-col mt-1 text-sm">
                 {label}
               </span>

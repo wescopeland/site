@@ -19,6 +19,10 @@ export const ProjectDialog: VFC<ProjectDialogProps> = ({
   isOpen,
   onClose
 }) => {
+  if (project === null) {
+    return null;
+  }
+
   return (
     <Transition show={isOpen} as={Fragment}>
       <Dialog as="div" className="fixed inset-0 z-50" onClose={onClose}>

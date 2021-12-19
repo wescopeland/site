@@ -72,11 +72,11 @@ export const TrophiesChart: VFC<TrophiesChartProps> = ({ chartData }) => {
 
         <Tooltip
           content={({ active, payload }) => (
-            <CustomTooltip active={active} payload={payload} />
+            <CustomTooltip active={active ?? false} payload={payload ?? []} />
           )}
         />
 
-        {finalDataNode.bronzeCount && (
+        {finalDataNode?.bronzeCount && (
           <Area
             dataKey="bronzeCount"
             type="monotone"
@@ -87,7 +87,7 @@ export const TrophiesChart: VFC<TrophiesChartProps> = ({ chartData }) => {
           />
         )}
 
-        {finalDataNode.silverCount && (
+        {finalDataNode?.silverCount && (
           <Area
             dataKey="silverCount"
             type="monotone"
@@ -98,7 +98,7 @@ export const TrophiesChart: VFC<TrophiesChartProps> = ({ chartData }) => {
           />
         )}
 
-        {finalDataNode.goldCount && (
+        {finalDataNode?.goldCount && (
           <Area
             dataKey="goldCount"
             type="monotone"
@@ -109,7 +109,7 @@ export const TrophiesChart: VFC<TrophiesChartProps> = ({ chartData }) => {
           />
         )}
 
-        {finalDataNode.platinumCount && (
+        {finalDataNode?.platinumCount && (
           <Area
             dataKey="platinumCount"
             type="monotone"

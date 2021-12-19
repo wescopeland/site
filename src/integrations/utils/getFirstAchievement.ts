@@ -1,8 +1,10 @@
 import type { NormalizedAchievement, NormalizedGame } from "../models";
 
-export const getFirstAchievement = (allAccountGames: NormalizedGame[]) => {
-  let oldestAchievement: NormalizedAchievement | null;
-  let oldestAchievementDateTime: string | null;
+export const getFirstAchievement = (
+  allAccountGames: NormalizedGame[]
+): NormalizedAchievement | null => {
+  let oldestAchievement: NormalizedAchievement | null = null;
+  let oldestAchievementDateTime: string | null = null;
 
   // We're ultimately looking for the achievement with the
   // most oldest `earnedDateTime` value.
@@ -15,7 +17,7 @@ export const getFirstAchievement = (allAccountGames: NormalizedGame[]) => {
       if (!oldestAchievement && !oldestAchievementDateTime) {
         oldestAchievement = achievement;
         oldestAchievementDateTime = achievement.earnedDateTime;
-      } else {
+      } else if (oldestAchievementDateTime) {
         const oldestEarnedDate = new Date(oldestAchievementDateTime);
         const currentAchievementEarnedDate = new Date(
           achievement.earnedDateTime

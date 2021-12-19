@@ -44,13 +44,13 @@ export const buildTotalPointsChartData = (
     );
 
     for (const achievement of achievementsEarnedOnDate) {
-      currentTotalPoints += achievement.earnedPoints;
+      currentTotalPoints += achievement.earnedPoints ?? 0;
       if (achievement.service === "psn") {
-        currentPlaystationPoints += achievement.earnedPoints;
+        currentPlaystationPoints += achievement.earnedPoints ?? 0;
       } else if (achievement.service === "ra") {
-        currentRetroAchievementsPoints += achievement.earnedPoints;
+        currentRetroAchievementsPoints += achievement.earnedPoints ?? 0;
       } else if (achievement.service === "xbox") {
-        currentXboxPoints += achievement.earnedPoints;
+        currentXboxPoints += achievement.earnedPoints ?? 0;
       }
     }
 
@@ -70,6 +70,10 @@ const getStartDate = (allAccountGames: NormalizedGame[]) => {
   // The start date is the date of the first achievement earned, minus one day.
   // This ensures all points counts start at 0.
   const firstAchievement = getFirstAchievement(allAccountGames);
+
+  if (!firstAchievement) {
+    return dayjs().subtract(1, "day");
+  }
 
   return dayjs(firstAchievement.earnedDateTime).subtract(1, "day");
 };

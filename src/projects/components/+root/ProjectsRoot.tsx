@@ -15,8 +15,12 @@ export const ProjectsRoot: VFC = () => {
   );
 
   const handleProjectCardClick = (projectName: string) => {
-    setOpenedProject(projectsList.find((p) => p.name === projectName));
-    setIsDialogOpen(true);
+    const foundProject = projectsList.find((p) => p.name === projectName);
+
+    if (foundProject) {
+      setOpenedProject(foundProject);
+      setIsDialogOpen(true);
+    }
   };
 
   const handleProjectDialogClose = () => {

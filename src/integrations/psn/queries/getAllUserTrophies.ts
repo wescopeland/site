@@ -73,9 +73,9 @@ export const getAllUserTrophies = async (
       achievements: mergedTrophies,
       trophyTypeCounts: currentTitle.definedTrophies,
       earnedCounts: currentTitle.earnedTrophies,
-      lastEarnedOn: getGameLastEarnedOn(mergedTrophies),
+      lastEarnedOn: getGameLastEarnedOn(mergedTrophies) ?? null,
       service: "psn",
-      completionRate: getTitlePlatinumEarnedRate(mergedTrophies),
+      completionRate: getTitlePlatinumEarnedRate(mergedTrophies) ?? undefined,
       completedOn: getCompletedOnDateTime(mergedTrophies),
       iconUrl: currentTitle.trophyTitleIconUrl
     });
@@ -111,7 +111,8 @@ const normalizeTrophy = (
   return {
     points: convertTrophyTypeToPoints(trophy.trophyType),
     isEarned: trophy.earned ?? false,
-    earnedDateTime: trophy.earned ? trophy.earnedDateTime : null,
+    earnedDateTime:
+      trophy.earned && trophy.earnedDateTime ? trophy.earnedDateTime : null,
     earnedPoints: trophy.earned
       ? convertTrophyTypeToPoints(trophy.trophyType)
       : null,
@@ -121,10 +122,10 @@ const normalizeTrophy = (
     earnedRate: trophy.trophyEarnedRate
       ? Number(trophy.trophyEarnedRate)
       : null,
-    name: trophy.trophyName,
+    name: trophy.trophyName ?? "",
     description: trophy.trophyDetail ?? null,
-    iconUrl: trophy.trophyIconUrl,
-    groupId: trophy.trophyGroupId,
+    iconUrl: trophy.trophyIconUrl ?? null,
+    groupId: trophy.trophyGroupId ?? null,
     service: "psn",
     gameName: sanitizeGameName(currentTitle.trophyTitleName)
   };

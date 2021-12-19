@@ -9,7 +9,7 @@ export const getUserGamerscoreCount = (games: NormalizedGame[]) => {
 
   for (const achievement of allAchievements) {
     if (achievement.isEarned) {
-      gamerscoreCount += achievement.earnedPoints;
+      gamerscoreCount += achievement.earnedPoints ?? 0;
     }
   }
 

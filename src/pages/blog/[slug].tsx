@@ -1,3 +1,4 @@
+import type { GetStaticPropsContext } from "next";
 import type { ReactElement } from "react";
 
 import type { BlogPostRootProps } from "@/blog/components/BlogPostRoot";
@@ -22,8 +23,8 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
-  const post = allBlogPosts.find((post) => post.slug === params.slug);
+export async function getStaticProps({ params }: GetStaticPropsContext) {
+  const post = allBlogPosts.find((post) => post.slug === params!.slug);
 
   return {
     props: {

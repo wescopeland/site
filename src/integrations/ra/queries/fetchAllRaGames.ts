@@ -60,7 +60,7 @@ export const fetchAllRaGames = async (
       name: rawGame.title,
       platform: rawGame.consoleName,
       achievements: normalizedAchievements,
-      lastEarnedOn: getGameLastEarnedOn(normalizedAchievements),
+      lastEarnedOn: getGameLastEarnedOn(normalizedAchievements) ?? null,
       service: "ra",
       completedOn: getCompletedOnDateTime(
         normalizedAchievements,
@@ -169,5 +169,5 @@ const getCompletedOnDateTime = (
     return null;
   }
 
-  return getGameLastEarnedOn(allGameAchievements);
+  return getGameLastEarnedOn(allGameAchievements) ?? null;
 };

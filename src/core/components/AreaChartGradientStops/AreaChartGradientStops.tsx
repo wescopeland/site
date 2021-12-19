@@ -14,6 +14,10 @@ export const AreaChartGradientStops: VFC<AreaChartGradientStopsProps> = ({
 }) => {
   const { theme } = useTheme();
 
+  if (!theme) {
+    return null;
+  }
+
   let endStopOpacity = theme === "dark" ? 0.1 : 0.4;
   if (shouldFadeToTransparent) {
     endStopOpacity = 0;

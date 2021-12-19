@@ -12,6 +12,10 @@ export const MostRecentGameCard: VFC = () => {
     (state) => state.mostRecentGame
   );
 
+  if (!mostRecentGame) {
+    return null;
+  }
+
   const {
     completionPercentage,
     totalAchievementCount,
@@ -59,7 +63,7 @@ const calculateGameEarningsStatus = (game: NormalizedGame) => {
 
     if (achievement.isEarned) {
       earnedAchievementCount += 1;
-      earnedGamePoints += achievement.earnedPoints;
+      earnedGamePoints += achievement.earnedPoints ?? 0;
     }
   }
 

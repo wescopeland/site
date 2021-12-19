@@ -6,6 +6,7 @@ import { GamingRoot } from "@/gaming/components/+root";
 import type { GamingState } from "@/gaming/models";
 import { buildGamingState } from "@/gaming/state/buildGamingState";
 import { GamingStateProvider } from "@/gaming/state/gaming.context";
+import { NormalizedGame } from "@/integrations/models";
 import { fetchAllPsnGames } from "@/integrations/psn/queries/fetchAllPsnGames";
 import { fetchAllRaGames } from "@/integrations/ra/queries/fetchAllRaGames";
 import { fetchAllXboxGames } from "@/integrations/xbox/queries/fetchAllXboxGames";
@@ -25,17 +26,21 @@ GamingPage.getLayout = (page: ReactElement) => {
 };
 
 export async function getStaticProps() {
-  const [allPsnGames, allRaGames, allXboxGames] = await Promise.all([
-    fetchAllPsnGames("me"),
-    fetchAllRaGames("WCopeland"),
-    fetchAllXboxGames()
-  ]);
+  const allGames: NormalizedGame[] = [];
 
-  const initialState = buildGamingState([
-    ...allPsnGames,
-    ...allRaGames,
-    ...allXboxGames
-  ]);
+  try {
+    const [allPsnGames, allRaGames, allXboxGames] = await Promise.all([
+      fetchAllPsnGames("me"),
+      fetchAllRaGames("WCopeland"),
+      fetchAllXboxGames()
+    ]);
+
+    allGames.push(...allPsnGames, ...allRaGames, ...allXboxGames);
+  } catch (error: unknown) {
+    console.warn("There was a problem retrieving game data.", error);
+  }
+
+  const initialState = buildGamingState(allGames);
 
   return {
     props: {
