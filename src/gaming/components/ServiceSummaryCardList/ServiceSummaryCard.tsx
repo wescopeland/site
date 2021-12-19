@@ -1,6 +1,6 @@
 import cc from "classcat";
 import Link from "next/link";
-import type { VFC } from "react";
+import type { FC, VFC } from "react";
 import type { IconType } from "react-icons";
 import { ImArrowUpRight2 } from "react-icons/im";
 
@@ -14,7 +14,7 @@ interface ServiceSummaryCardProps {
   platform: GamingPlatformId;
   valueCopy: string;
 
-  isLoading?: boolean;
+  isDisabled?: boolean;
 }
 
 export const ServiceSummaryCard: VFC<ServiceSummaryCardProps> = ({
@@ -23,21 +23,19 @@ export const ServiceSummaryCard: VFC<ServiceSummaryCardProps> = ({
   labelCopy,
   valueCopy,
   platform,
-  isLoading
+  isDisabled
 }) => {
-  const isDisabled = isLoading === true;
+  const ContainerComponent = isDisabled ? "div" : "a";
 
   return (
-    <Link
-      href={AppRoutes.GamingPlatformPage({ platformId: platform })}
-      passHref
-    >
-      <a
+    <LinkWrapper isDisabled={isDisabled ?? false} platformId={platform}>
+      <ContainerComponent
         className={cc([
           "relative flex flex-row md:flex-col items-center gap-x-4 p-4 rounded-lg border-2",
           "bg-white dark:bg-gray-900 select-none cursor-pointer",
           "border-gray-100 dark:border-gray-500",
-          "hover:shadow-lg hover:bg-gray-50 dark:hover:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-200",
+          isDisabled !== true &&
+            "hover:shadow-lg hover:bg-gray-50 dark:hover:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-200",
           "group transition sm:active:scale-95 hover:no-underline"
         ])}
       >
@@ -56,40 +54,42 @@ export const ServiceSummaryCard: VFC<ServiceSummaryCardProps> = ({
           className={cc([
             "flex items-center justify-center w-12 h-12 md:mb-2 rounded-full",
             "md:w-16 md:h-16",
-            isLoading === true
-              ? "animate-pulse bg-gray-200 dark:bg-gray-600"
-              : bgColorClassName
+            bgColorClassName
           ])}
         >
-          {isLoading !== true ? (
-            <IconComponent className="text-3xl text-gray-800 dark:text-white" />
-          ) : null}
+          <IconComponent className="text-3xl text-gray-800 dark:text-white" />
         </div>
 
         <div className="md:flex md:flex-col md:items-center">
-          {isLoading === true ? (
-            <div className="animate-pulse flex flex-col md:items-center">
-              <h2 className="text-sm w-32 mb-1">
-                <span className="bg-gray-200 dark:bg-gray-600 rounded flex">
-                  &nbsp;
-                </span>
-              </h2>
-              <p className="w-16 text-sm">
-                <span className="bg-gray-200 dark:bg-gray-600 rounded flex">
-                  &nbsp;
-                </span>
-              </p>
-            </div>
-          ) : (
-            <>
-              <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-200">
-                {labelCopy}
-              </h2>
-              <p className="text-black dark:text-white">{valueCopy}</p>
-            </>
-          )}
+          <>
+            <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-200">
+              {labelCopy}
+            </h2>
+            <p className="text-black dark:text-white">{valueCopy}</p>
+          </>
         </div>
-      </a>
+      </ContainerComponent>
+    </LinkWrapper>
+  );
+};
+
+interface LinkWrapperProps {
+  isDisabled: boolean;
+  platformId: GamingPlatformId;
+}
+
+const LinkWrapper: FC<LinkWrapperProps> = ({
+  isDisabled,
+  platformId,
+  children
+}) => {
+  if (isDisabled) {
+    return <>{children}</>;
+  }
+
+  return (
+    <Link href={AppRoutes.GamingPlatformPage({ platformId })} passHref>
+      {children}
     </Link>
   );
 };

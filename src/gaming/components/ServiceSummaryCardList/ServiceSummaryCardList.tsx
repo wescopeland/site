@@ -4,58 +4,56 @@ import { FaPlaystation, FaXbox } from "react-icons/fa";
 import { MdGamepad } from "react-icons/md";
 
 import { Animate } from "@/core/components/Animate";
-import { useAllGames } from "@/gaming/hooks/useAllGames";
+import { useGamingContextSelector } from "@/gaming/state/gaming.context";
 import { getGamingServiceColors } from "@/gaming/utils/getGamingServiceColors";
-import { getUserPlatinumCount } from "@/integrations/psn/utils/getUserPlatinumCount";
-import { getUserMasteryCount } from "@/integrations/ra/utils/getUserMasteryCount";
-import { getUserGamerscoreCount } from "@/integrations/xbox/utils/getUserGamerscoreCount";
 
 import { ServiceSummaryCard } from "./ServiceSummaryCard";
 
 const gamingServiceColors = getGamingServiceColors();
 
 export const ServiceSummaryCardList: VFC = () => {
-  const { allGames, isLoading } = useAllGames();
+  const [platinumCount, gamerscoreCount, masteryCount] =
+    useGamingContextSelector((state) => [
+      state.serviceSummaries.platinumCount,
+      state.serviceSummaries.gamerscoreCount,
+      state.serviceSummaries.masteryCount
+    ]);
 
   return (
     <Animate.StaggerOnMount delay={100}>
       <ServiceSummaryCard
-        isLoading={isLoading}
+        isDisabled
         IconComponent={FaPlaystation}
         bgColorClassName={cc([
           gamingServiceColors.playstation.classNames.light,
           gamingServiceColors.playstation.classNames.mediaDark
         ])}
         labelCopy="PSN Platinums"
-        valueCopy={isLoading ? "" : `${getUserPlatinumCount(allGames)} / 100`}
+        valueCopy={`${platinumCount} / 100`}
         platform="psn"
       />
 
       <ServiceSummaryCard
-        isLoading={isLoading}
+        isDisabled
         IconComponent={FaXbox}
         bgColorClassName={cc([
           gamingServiceColors.xbox.classNames.light,
           gamingServiceColors.xbox.classNames.mediaDark
         ])}
         labelCopy="Xbox Gamerscore"
-        valueCopy={
-          isLoading
-            ? ""
-            : `${getUserGamerscoreCount(allGames).toLocaleString()} / 100,000`
-        }
+        valueCopy={`${gamerscoreCount.toLocaleString()} / 100,000`}
         platform="xbox"
       />
 
       <ServiceSummaryCard
-        isLoading={isLoading}
+        isDisabled
         IconComponent={MdGamepad}
         bgColorClassName={cc([
           gamingServiceColors.ra.classNames.light,
           gamingServiceColors.ra.classNames.mediaDark
         ])}
         labelCopy="RA Masteries"
-        valueCopy={isLoading ? "" : `${getUserMasteryCount(allGames)} / 100`}
+        valueCopy={`${masteryCount} / 100`}
         platform="ra"
       />
     </Animate.StaggerOnMount>

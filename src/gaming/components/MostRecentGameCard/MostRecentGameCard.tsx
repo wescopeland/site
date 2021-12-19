@@ -2,74 +2,70 @@ import type { VFC } from "react";
 
 import { BaseStatsCard } from "@/core/components/BaseStatsCard";
 import { formatPercentage } from "@/core/utils/formatPercentage";
-import { useAllGames } from "@/gaming/hooks/useAllGames";
+import { useGamingContextSelector } from "@/gaming/state/gaming.context";
 import { NormalizedGame } from "@/integrations/models";
-import { getMostRecentGame } from "@/integrations/utils/getMostRecentGame";
 
 import { PlatformPin } from "../PlatformPin";
 
 export const MostRecentGameCard: VFC = () => {
-  const { allGames, isLoading } = useAllGames();
+  const mostRecentGame = useGamingContextSelector(
+    (state) => state.mostRecentGame
+  );
 
-  let mostRecentGame: NormalizedGame | null = null;
-  if (allGames) {
-    mostRecentGame = getMostRecentGame(allGames);
-  }
+  const {
+    completionPercentage,
+    totalAchievementCount,
+    earnedAchievementCount
+  } = calculateGameEarningsStatus(mostRecentGame);
 
   return (
     <BaseStatsCard headingLabel="Most Recent Game" isUsingAccentedBackground>
       <div className="flex gap-x-3">
-        {isLoading === true ? (
-          <p className="flex w-32 mt-1 h-4 bg-gray-200 dark:bg-gray-600 animate-pulse rounded-lg">
-            &nbsp;
+        <>
+          <p className="text-black dark:text-white flex">
+            {mostRecentGame.name}
           </p>
-        ) : (
-          <>
-            <p className="text-black dark:text-white flex">
-              {mostRecentGame.name}
-            </p>
-            <PlatformPin platform={mostRecentGame.service} />
-          </>
-        )}
+          <PlatformPin platform={mostRecentGame.service} />
+        </>
       </div>
 
       <div className="flex items-center gap-x-2">
-        {isLoading === true ? (
-          <p className="flex w-48 mt-2 mb-1 h-4 bg-gray-200 dark:bg-gray-600 animate-pulse rounded-lg">
-            &nbsp;
+        <>
+          <p className="text-black dark:text-white">
+            {formatPercentage(completionPercentage * 100)} Completion
           </p>
-        ) : (
-          <>
-            <p className="text-black dark:text-white">
-              {formatPercentage(
-                calculateCompletionPercentage(mostRecentGame) * 100
-              )}{" "}
-              Completion
-            </p>
 
-            {/* This should change based on the platform.
+          {/* This should change based on the platform.
             For PSN, achievement count. For others, points count. */}
-            <p className="text-sm mt-0.5 text-gray-700 dark:text-gray-300">
-              (40 of 59)
-            </p>
-          </>
-        )}
+          <p className="text-sm mt-0.5 text-gray-700 dark:text-gray-300">
+            ({earnedAchievementCount} of {totalAchievementCount})
+          </p>
+        </>
       </div>
     </BaseStatsCard>
   );
 };
 
-const calculateCompletionPercentage = (game: NormalizedGame) => {
+const calculateGameEarningsStatus = (game: NormalizedGame) => {
+  let totalAchievementCount = 0;
   let totalGamePoints = 0;
+
+  let earnedAchievementCount = 0;
   let earnedGamePoints = 0;
 
   for (const achievement of game.achievements) {
+    totalAchievementCount += 1;
     totalGamePoints += achievement.points;
 
     if (achievement.isEarned) {
+      earnedAchievementCount += 1;
       earnedGamePoints += achievement.earnedPoints;
     }
   }
 
-  return earnedGamePoints / totalGamePoints;
+  return {
+    totalAchievementCount,
+    earnedAchievementCount,
+    completionPercentage: earnedGamePoints / totalGamePoints
+  };
 };
