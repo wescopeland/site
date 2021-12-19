@@ -25,7 +25,7 @@ export const TotalPointsChartCard: VFC = memo(() => {
       }
     >
       <>
-        {finalDataNode ? (
+        {finalDataNode && finalDataNode.totalPoints > 0 ? (
           <LoadOnVisible>
             <DynamicTotalPointsChart chartData={totalPointsChartData} />
           </LoadOnVisible>
