@@ -6,6 +6,7 @@ import { GamingRoot } from "@/gaming/components/+root";
 import type { GamingState } from "@/gaming/models";
 import { buildGamingState } from "@/gaming/state/buildGamingState";
 import { GamingStateProvider } from "@/gaming/state/gaming.context";
+import { mockAllGames } from "@/gaming/state/mockAllGames";
 import { NormalizedGame } from "@/integrations/models";
 import { fetchAllPsnGames } from "@/integrations/psn/queries/fetchAllPsnGames";
 import { fetchAllRaGames } from "@/integrations/ra/queries/fetchAllRaGames";
@@ -26,18 +27,23 @@ GamingPage.getLayout = (page: ReactElement) => {
 };
 
 export async function getStaticProps() {
-  const allGames: NormalizedGame[] = [];
+  let allGames: NormalizedGame[] = [];
 
-  try {
-    const [allPsnGames, allRaGames, allXboxGames] = await Promise.all([
-      fetchAllPsnGames("me"),
-      fetchAllRaGames("WCopeland"),
-      fetchAllXboxGames()
-    ]);
+  if (process.env.NODE_ENV !== "production") {
+    console.info("Using mockAllGames for the gaming page.");
+    allGames = mockAllGames;
+  } else {
+    try {
+      const [allPsnGames, allRaGames, allXboxGames] = await Promise.all([
+        fetchAllPsnGames("me"),
+        fetchAllRaGames("WCopeland"),
+        fetchAllXboxGames()
+      ]);
 
-    allGames.push(...allPsnGames, ...allRaGames, ...allXboxGames);
-  } catch (error: unknown) {
-    console.warn("There was a problem retrieving game data.", error);
+      allGames.push(...allPsnGames, ...allRaGames, ...allXboxGames);
+    } catch (error: unknown) {
+      console.warn("There was a problem retrieving game data.", error);
+    }
   }
 
   const initialState = buildGamingState(allGames);

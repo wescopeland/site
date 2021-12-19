@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import { getFirstAchievement } from "@/integrations/utils/getFirstAchievement";
+import { fetchAllPsnGames } from "@/integrations/psn/queries/fetchAllPsnGames";
+import { fetchAllRaGames } from "@/integrations/ra/queries/fetchAllRaGames";
 import { fetchAllXboxGames } from "@/integrations/xbox/queries/fetchAllXboxGames";
 
 export default async function handler(
@@ -8,26 +9,13 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "GET") {
-    // const [allPsnGames, allRaGames] = await Promise.all([
-    //   fetchAllPsnGames("me"),
-    //   fetchAllRaGames("WCopeland")
-    // ]);
+    const [allPsnGames, allRaGames, allXboxGames] = await Promise.all([
+      fetchAllPsnGames("me"),
+      fetchAllRaGames("WCopeland"),
+      fetchAllXboxGames()
+    ]);
 
-    const allXboxGames = await fetchAllXboxGames();
-
-    const firstAchievement = getFirstAchievement(allXboxGames);
-
-    console.log(firstAchievement);
-
-    // buildTotalPointsChartData([...allXboxGames]);
-
-    return res.json({ success: true });
-
-    // return res.json({
-    //   props: {
-    //     totalPointsChartData
-    //   }
-    // });
+    return res.json([...allPsnGames, ...allRaGames, ...allXboxGames]);
   } else {
     res.setHeader("Allow", "GET");
     res.status(405).end("Method Not Allowed");
