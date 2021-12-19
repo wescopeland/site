@@ -29,7 +29,7 @@ GamingPage.getLayout = (page: ReactElement) => {
 export async function getStaticProps() {
   let allGames: NormalizedGame[] = [];
 
-  if (process.env.NODE_ENV !== "production") {
+  if (process.env.USE_MOCK_DATA === "true") {
     console.info("Using mockAllGames for the gaming page.");
     allGames = mockAllGames;
   } else {
