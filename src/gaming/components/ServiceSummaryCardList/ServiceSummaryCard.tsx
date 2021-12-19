@@ -27,6 +27,12 @@ export const ServiceSummaryCard: VFC<ServiceSummaryCardProps> = ({
 }) => {
   const ContainerComponent = isDisabled ? "div" : "a";
 
+  const activeClassNames = [
+    "select-none cursor-pointer",
+    "hover:shadow-lg hover:bg-gray-50 dark:hover:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-200",
+    "sm:active:scale-95"
+  ].join(" ");
+
   return (
     <LinkWrapper isDisabled={isDisabled ?? false} platformId={platform}>
       <ContainerComponent
@@ -34,9 +40,8 @@ export const ServiceSummaryCard: VFC<ServiceSummaryCardProps> = ({
           "relative flex flex-row md:flex-col items-center gap-x-4 p-4 rounded-lg border-2",
           "bg-white dark:bg-gray-900",
           "border-gray-100 dark:border-gray-500",
-          isDisabled !== true &&
-            "select-none cursor-pointer hover:shadow-lg hover:bg-gray-50 dark:hover:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-200",
-          "group transition sm:active:scale-95 hover:no-underline"
+          isDisabled !== true && activeClassNames,
+          "group transition hover:no-underline"
         ])}
       >
         {isDisabled !== true ? (
