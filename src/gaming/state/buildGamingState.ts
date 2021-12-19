@@ -22,7 +22,10 @@ export const buildGamingState = (allGames: NormalizedGame[]): GamingState => {
 
   const totalPointsChartData = buildTotalPointsChartData(allGames);
 
-  const rarestAchievements = findRarestAchievements(allGames, 5);
+  const rarestAchievements = findRarestAchievements(allGames, {
+    limit: 5,
+    useOneAchievementPerGame: true
+  });
   const rarestCompletions = findRarestCompletions(allGames, 5);
 
   return {

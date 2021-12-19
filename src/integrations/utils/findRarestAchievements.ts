@@ -1,8 +1,11 @@
-import type { NormalizedGame } from "../models";
+import type { NormalizedAchievement, NormalizedGame } from "../models";
 
 export const findRarestAchievements = (
   allGames: NormalizedGame[],
-  limit?: number
+  options?: Partial<{
+    limit: number;
+    useOneAchievementPerGame: boolean;
+  }>
 ) => {
   const allAchievements = allGames.flatMap((game) => game.achievements);
 
@@ -18,5 +21,23 @@ export const findRarestAchievements = (
     return a.earnedRate - b.earnedRate;
   });
 
-  return limit ? sortedByEarnedRate.slice(0, limit) : sortedByEarnedRate;
+  let finalAchievementsList = sortedByEarnedRate;
+
+  if (options?.useOneAchievementPerGame) {
+    const withOnlyOneAchievementPerGame: NormalizedAchievement[] = [];
+
+    const seenGames: string[] = [];
+    for (const achievement of sortedByEarnedRate) {
+      if (!seenGames.includes(achievement.gameName)) {
+        seenGames.push(achievement.gameName);
+        withOnlyOneAchievementPerGame.push(achievement);
+      }
+    }
+
+    finalAchievementsList = withOnlyOneAchievementPerGame;
+  }
+
+  return options?.limit
+    ? finalAchievementsList.slice(0, options.limit)
+    : finalAchievementsList;
 };
