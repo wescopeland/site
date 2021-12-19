@@ -7,20 +7,22 @@ import { AppBarButton } from "../AppBarButton";
 
 export const DarkModeToggle: VFC = () => {
   const isMounted = useMountedState();
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
 
-  if (!isMounted || theme === undefined) {
+  if (!isMounted || resolvedTheme === undefined) {
     return <div style={{ minHeight: 40 }} />;
   }
 
-  const IconComponent = theme === "dark" ? HiOutlineMoon : HiOutlineSun;
-  const labelText = `Switch to ${theme === "dark" ? "light" : "dark"} mode`;
+  const IconComponent = resolvedTheme === "dark" ? HiOutlineMoon : HiOutlineSun;
+  const labelText = `Switch to ${
+    resolvedTheme === "dark" ? "light" : "dark"
+  } mode`;
 
   return (
     <AppBarButton
       aria-label={labelText}
       onClick={() => {
-        setTheme(theme === "light" ? "dark" : "light");
+        setTheme(resolvedTheme === "light" ? "dark" : "light");
       }}
     >
       <IconComponent />
