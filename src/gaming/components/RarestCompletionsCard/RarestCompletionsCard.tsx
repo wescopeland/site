@@ -1,68 +1,34 @@
-/* eslint-disable sonarjs/no-duplicate-string */
 import dayjs from "dayjs";
 import type { VFC } from "react";
 
 import { BaseStatsCard } from "@/core/components/BaseStatsCard";
-import type { GamingPlatformId } from "@/core/models";
 import { formatPercentage } from "@/core/utils/formatPercentage";
+import { useGamingContextSelector } from "@/gaming/state/gaming.context";
 
 import { RarityListItem } from "../RarityListItem";
 
-const rarestCompletions = [
-  {
-    gameName: "Retro Game Challenge | GameCenter CX: Arino no Chousenjou",
-    rarityPercentage: 0.2,
-    completedOn: "10-18-2020",
-    platform: "ra",
-    imageSrc: "/static/images/achievement.png"
-  },
-  {
-    gameName: "GTA IV",
-    rarityPercentage: 0.5,
-    completedOn: "10-08-2021",
-    platform: "psn",
-    imageSrc: "/static/images/achievement.png"
-  },
-  {
-    gameName: "Super Meat Boy",
-    rarityPercentage: 0.62,
-    platform: "xbox",
-    completedOn: "03-12-2020",
-    imageSrc: "/static/images/achievement.png"
-  },
-  {
-    gameName: "Final Fantasy VII Remake",
-    rarityPercentage: 0.65,
-    platform: "psn",
-    completedOn: "06-10-2020",
-    imageSrc: "/static/images/achievement.png"
-  },
-  {
-    gameName: "Chrono Trigger",
-    rarityPercentage: 1.22,
-    platform: "ra",
-    completedOn: "02-21-2018",
-    imageSrc: "/static/images/achievement.png"
-  }
-];
-
 export const RarestCompletionsCard: VFC = () => {
+  const rarestCompletions = useGamingContextSelector(
+    (state) => state.rarestCompletions
+  );
+
   return (
     <BaseStatsCard headingLabel="Rarest Completions">
       <ol className="mt-2 divide-y divide-gray-200 dark:divide-gray-700">
         {rarestCompletions.map((completion) => (
           <RarityListItem
-            key={`${completion.gameName}-${completion.platform}`}
-            platform={completion.platform as GamingPlatformId}
-            lineOneContent={<>{completion.gameName}</>}
+            key={`${completion.name}-${completion.platform}`}
+            platform={completion.service}
+            lineOneContent={<>{completion.name}</>}
             lineTwoContent={
               <>
-                {formatPercentage(completion.rarityPercentage)}
+                {formatPercentage(completion.completionRate)}
                 {", "}
                 {dayjs(completion.completedOn).format("MMM DD YYYY")}
               </>
             }
-            imageSrc={completion.imageSrc}
+            isUsingWideImage={true}
+            imageSrc={completion.iconUrl}
           />
         ))}
       </ol>

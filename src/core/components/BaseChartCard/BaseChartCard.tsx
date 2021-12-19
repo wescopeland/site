@@ -4,12 +4,14 @@ import type { FC } from "react";
 interface BaseChartCardProps {
   heading: string;
 
+  isLoading?: boolean;
   subheading?: string;
 }
 
 export const BaseChartCard: FC<BaseChartCardProps> = ({
   children,
   heading,
+  isLoading,
   subheading
 }) => {
   return (
@@ -25,7 +27,13 @@ export const BaseChartCard: FC<BaseChartCardProps> = ({
 
         {subheading ? (
           <p className="text-2xl tracking-wider text-black dark:text-white">
-            {subheading}
+            {isLoading ? (
+              <span className="my-2 animate-pulse rounded bg-gray-100 dark:bg-gray-600 flex w-24 h-4">
+                &nbsp;
+              </span>
+            ) : (
+              <>{subheading}</>
+            )}
           </p>
         ) : null}
       </div>

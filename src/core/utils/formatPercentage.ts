@@ -3,6 +3,7 @@ export const formatPercentage = (input: number) => {
 
   return sanitized.toLocaleString(undefined, {
     style: "percent",
-    minimumFractionDigits: 2
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1
   });
 };
