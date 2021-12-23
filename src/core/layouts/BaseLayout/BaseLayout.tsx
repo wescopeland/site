@@ -16,7 +16,7 @@ export const BaseLayout: FC = ({ children }) => {
 
         <div className="container max-w-[800px] lg:max-w-[870px]">
           <main className="px-4 pt-8 sm:pt-16 mx-auto mb-32">{children}</main>
-          <AppFooter />
+          {/* <AppFooter /> */}
         </div>
 
         <Gradient />
