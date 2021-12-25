@@ -12,6 +12,7 @@
     "format:check": "prettier --check . '**/*.{json,md,js,ts,tsx}'",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "lint:fix": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx . --fix",
+    "test": "jest",
     "analyze": "cross-env ANALYZE=true next build",
     "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
     "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
@@ -19,11 +20,14 @@
   "dependencies": {
     "@headlessui/react": "^1.4.2",
     "@tailwindcss/typography": "^0.5.0",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
     "@xboxreplay/xboxlive-api": "^3.4.3",
     "@xboxreplay/xboxlive-auth": "^4.0.0",
     "classcat": "^5.0.3",
     "dayjs": "^1.10.7",
     "esbuild": "^0.14.2",
+    "jest": "^27.4.5",
     "mdx-bundler": "^8.0.0",
     "next": "^12.0.7",
     "next-themes": "^0.0.15",
