@@ -56,12 +56,18 @@ export const fetchAllRaGames = async (
       );
     }
 
+    const completionRate = await getTitleCompletionRate(
+      rawGame.id,
+      rawGame.numDistinctPlayersCasual
+    );
+
     normalizedGames.push({
       name: rawGame.title,
       platform: rawGame.consoleName,
       achievements: normalizedAchievements,
       lastEarnedOn: getGameLastEarnedOn(normalizedAchievements) ?? null,
       service: "ra",
+      completionRate: completionRate ?? undefined,
       completedOn: getCompletedOnDateTime(
         normalizedAchievements,
         rawGame.numAchievements,
@@ -170,4 +176,25 @@ const getCompletedOnDateTime = (
   }
 
   return getGameLastEarnedOn(allGameAchievements) ?? null;
+};
+
+const getTitleCompletionRate = async (gameId: number, playerCount: number) => {
+  // We'll compare the total number of casual players to the total
+  // number of 100%'ers on hardcore mode to get our final percentage.
+  const distributionResponse =
+    await retroAchievementsClient.getAchievementDistributionForGameId(
+      gameId,
+      true
+    );
+
+  const earningDistributions = Object.entries(distributionResponse);
+
+  if (earningDistributions.length === 0) {
+    return null;
+  }
+
+  const [, numberOfCompletionists] =
+    earningDistributions[earningDistributions.length - 1];
+
+  return numberOfCompletionists / playerCount;
 };

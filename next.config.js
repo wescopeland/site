@@ -10,7 +10,8 @@ module.exports = withBundleAnalyzer(
       domains: [
         "image.api.playstation.com",
         "s3-eu-west-1.amazonaws.com",
-        "images-eds.xboxlive.com"
+        "images-eds.xboxlive.com",
+        "retroachievements.org"
       ]
     }
   })

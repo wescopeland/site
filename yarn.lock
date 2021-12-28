@@ -7675,10 +7675,10 @@ responselike@^2.0.0:
   dependencies:
     lowercase-keys "^2.0.0"
 
-retroachievements-js@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/retroachievements-js/-/retroachievements-js-1.0.2.tgz#af297f6ab1934c2353eec3748c50ef76e9a79003"
-  integrity sha512-EHZ33Qj2nXf63H+rc1RTJKtc1JYpjEOfR7/cPAXFH8JPOcmgY9P5GYF0qNnHF/pGCY/AMWtUVamdaxZqJio/Hg==
+retroachievements-js@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/retroachievements-js/-/retroachievements-js-1.1.0.tgz#2540dac700cc3149dc2485050b76608194f91fd3"
+  integrity sha512-5uerB1KtjYLKQ/g/sf1mKOz2Y5L1YNaN1dKpcHqegMdF+Migxj/plDLc/Wdo3xgYHZ4zmEdpQmTZS+3V6Fc+Cw==
   dependencies:
     camelcase-keys "^6.2.2"
     isomorphic-unfetch "^3.1.0"
