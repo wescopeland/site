@@ -10,15 +10,19 @@ import {
   SiAngularuniversal,
   SiApollographql,
   SiCypress,
+  SiEthereum,
   SiFirebase,
   SiGithubactions,
   SiHeroku,
   SiJest,
   SiMaterialdesign,
   SiMaterialui,
+  SiNestjs,
   SiNextdotjs,
   SiNodedotjs,
+  SiNx,
   SiPwa,
+  SiRailway,
   SiRedux,
   SiRollupdotjs,
   SiTailwindcss,
@@ -28,6 +32,19 @@ import {
 import type { ProjectListElement } from "@/projects/models";
 
 export const projectsList: ProjectListElement[] = [
+  {
+    name: "crypto-portfolio",
+    description:
+      "Tracks token price and wallet values across five different blockchains.",
+    iconComponent: SiEthereum,
+    githubRepo: "wescopeland/crypto-portfolio",
+    techStackItems: [
+      { label: "NestJS", IconComponent: SiNestjs },
+      { label: "TypeScript", IconComponent: SiTypescript },
+      { label: "Nrwl Nx", IconComponent: SiNx },
+      { label: "Railway", IconComponent: SiRailway }
+    ]
+  },
   {
     name: "This Website",
     description: "You're here now!",
