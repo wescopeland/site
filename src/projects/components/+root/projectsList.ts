@@ -1,5 +1,5 @@
 import { FaPlaystation, FaReact } from "react-icons/fa";
-import { GiRetroController } from "react-icons/gi";
+import { GiRetroController, GiSattelite } from "react-icons/gi";
 import { HiOutlineDocumentReport, HiOutlineSearch } from "react-icons/hi";
 import { ImStatsDots } from "react-icons/im";
 import { MdOutlineFindInPage } from "react-icons/md";
@@ -33,11 +33,23 @@ import type { ProjectListElement } from "@/projects/models";
 
 export const projectsList: ProjectListElement[] = [
   {
+    name: "Hubble Bots",
+    description:
+      "Provides analytics in the DeFi-oriented Hubble Protocol Discord server.",
+    iconComponent: GiSattelite,
+    techStackItems: [
+      { label: "NestJS", IconComponent: SiNestjs },
+      { label: "TypeScript", IconComponent: SiTypescript },
+      { label: "Nrwl Nx", IconComponent: SiNx },
+      { label: "Railway", IconComponent: SiRailway }
+    ],
+    githubRepo: "wescopeland/hubble-bots"
+  },
+  {
     name: "crypto-portfolio",
     description:
       "Tracks token price and wallet values across five different blockchains.",
     iconComponent: SiEthereum,
-    githubRepo: "wescopeland/crypto-portfolio",
     techStackItems: [
       { label: "NestJS", IconComponent: SiNestjs },
       { label: "TypeScript", IconComponent: SiTypescript },

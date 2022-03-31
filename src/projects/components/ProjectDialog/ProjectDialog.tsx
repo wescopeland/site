@@ -61,7 +61,7 @@ export const ProjectDialog: VFC<ProjectDialogProps> = ({
                 "sm:w-3/4 md:min-w-[748px] md:max-w-[900px] sm:mx-auto sm:min-h-[auto] sm:rounded-lg"
               ])}
             >
-              <Dialog.Title className="text-3xl tracking-tight mt-12 sm:mt-0">
+              <Dialog.Title className="mt-12 text-3xl tracking-tight sm:mt-0">
                 {project.name}
               </Dialog.Title>
               <Dialog.Description className="text-gray-700 dark:text-gray-200">
@@ -72,12 +72,16 @@ export const ProjectDialog: VFC<ProjectDialogProps> = ({
 
               <div className="flex flex-col">
                 <div className="flex justify-around w-full py-4 bg-gray-50 dark:bg-gray-900">
-                  <a
-                    className="focus:outline-none focus-visible:ring-2"
-                    href={`https://github.com/${project.githubRepo}`}
-                  >
-                    Code
-                  </a>
+                  {project.githubRepo ? (
+                    <a
+                      className="focus:outline-none focus-visible:ring-2"
+                      href={`https://github.com/${project.githubRepo}`}
+                    >
+                      Code
+                    </a>
+                  ) : (
+                    <p>Code available on request</p>
+                  )}
 
                   {project.websiteUrl ? (
                     <a href={project.websiteUrl}>Website</a>

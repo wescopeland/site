@@ -6,8 +6,8 @@ export interface ProjectListElement {
   name: string;
   description: string;
   iconComponent: IconType;
-  githubRepo: string;
   techStackItems: TechStackElement[];
 
+  githubRepo?: string;
   websiteUrl?: string;
 }
