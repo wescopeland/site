@@ -1,10 +1,10 @@
+import type { BlogPost } from "contentlayer/generated";
 import type { VFC } from "react";
 
 import { Animate } from "@/core/components/Animate";
 import { H1 } from "@/core/components/H1";
 
 import { YearPostsBlock } from "../YearPostsBlock";
-import type { BlogPost } from ".contentlayer/types";
 
 export interface BlogRootProps {
   posts: Record<number, BlogPost[]>;

@@ -2,9 +2,9 @@ const { fontFamily } = require("tailwindcss/defaultTheme");
 const colors = require("tailwindcss/colors");
 
 module.exports = {
-  mode: "jit",
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   darkMode: "class",
+
   theme: {
     screens: {
       sm: "640px",
@@ -43,9 +43,11 @@ module.exports = {
       }
     }
   },
+
   variants: {
     transitionProperty: ["motion-safe", "motion-reduce"],
     extend: {}
   },
+
   plugins: [require("@tailwindcss/typography")]
 };
