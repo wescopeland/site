@@ -18,7 +18,7 @@ const BlogPost = defineDocumentType(() => ({
 
   name: "BlogPost",
   filePathPattern: "content/*.mdx",
-  bodyType: "mdx",
+  contentType: "mdx",
   fields: {
     title: { type: "string", required: true },
     publishedOn: { type: "string", required: true }

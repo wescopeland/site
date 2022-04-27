@@ -1,4 +1,4 @@
-import type { BlogPost } from ".contentlayer/types";
+import type { BlogPost } from "contentlayer/generated";
 
 export const categorizePostsByYear = (posts: BlogPost[]) => {
   const categorized: Record<number, BlogPost[]> = {};

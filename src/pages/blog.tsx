@@ -1,3 +1,4 @@
+import { allBlogPosts } from "contentlayer/generated";
 import type { ReactElement } from "react";
 
 import type { BlogRootProps } from "@/blog/components/BlogRoot";
@@ -5,8 +6,6 @@ import { BlogRoot } from "@/blog/components/BlogRoot";
 import { categorizePostsByYear } from "@/blog/utils/categorizePostsByYear";
 import { BaseLayout } from "@/core/layouts/BaseLayout";
 import type { AppPage } from "@/core/models";
-
-import { allBlogPosts } from ".contentlayer/data";
 
 const BlogPage: AppPage<BlogRootProps> = (props) => <BlogRoot {...props} />;
 

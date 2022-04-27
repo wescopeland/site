@@ -16,10 +16,16 @@
     "downlevelIteration": true,
     "jsx": "preserve",
     "paths": {
+      "contentlayer/generated": ["./.contentlayer/generated"],
       "@/*": ["src/*"]
     },
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".contentlayer/generated"
+  ],
   "exclude": ["node_modules"]
 }

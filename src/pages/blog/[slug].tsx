@@ -1,3 +1,4 @@
+import { allBlogPosts } from "contentlayer/generated";
 import type { GetStaticPropsContext } from "next";
 import type { ReactElement } from "react";
 
@@ -5,8 +6,6 @@ import type { BlogPostRootProps } from "@/blog/components/BlogPostRoot";
 import { BlogPostRoot } from "@/blog/components/BlogPostRoot";
 import { BaseLayout } from "@/core/layouts/BaseLayout";
 import type { AppPage } from "@/core/models";
-
-import { allBlogPosts } from ".contentlayer/data";
 
 const BlogPostPage: AppPage<BlogPostRootProps> = (props) => (
   <BlogPostRoot {...props} />
