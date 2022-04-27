@@ -16,7 +16,7 @@ export const SEO: VFC<SEOProps> = ({ pageDescription, pageTitle }) => {
   return (
     <Head>
       <title>{title}</title>
-      <meta charSet="utf-8" />
+      <meta charSet="utf8" />
       <meta name="description" content={description} />
     </Head>
   );
