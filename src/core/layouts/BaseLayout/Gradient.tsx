@@ -1,7 +1,7 @@
 import cc from "classcat";
-import type { VFC } from "react";
+import type { FC } from "react";
 
-export const Gradient: VFC = () => {
+export const Gradient: FC = () => {
   return (
     <div
       className={cc([

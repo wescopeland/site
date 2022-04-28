@@ -1,7 +1,7 @@
 import { Transition } from "@headlessui/react";
 import cc from "classcat";
 import dayjs from "dayjs";
-import type { VFC } from "react";
+import type { FC } from "react";
 
 import { ChartTooltipLineItem } from "@/core/components/ChartTooltipLineItem";
 import { getPsnTrophyColors } from "@/gaming-service/utils/getPsnTrophyColors";
@@ -20,7 +20,7 @@ interface CustomTooltipProps {
   payload: Array<any & { payload: ChartDatumWithCounts }>;
 }
 
-export const CustomTooltip: VFC<CustomTooltipProps> = ({ active, payload }) => {
+export const CustomTooltip: FC<CustomTooltipProps> = ({ active, payload }) => {
   const [value] = payload;
 
   if (!value) {

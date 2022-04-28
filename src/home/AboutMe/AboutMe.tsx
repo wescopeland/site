@@ -1,14 +1,14 @@
-import type { VFC } from "react";
+import type { FC } from "react";
 
 import { Animate } from "@/core/components/Animate";
 
 import { HighlightedText } from "../HighlightedText";
 
-export const AboutMe: VFC = () => {
+export const AboutMe: FC = () => {
   return (
     <>
       <Animate.FadeUpOnMount>
-        <h1 className="text-4xl mb-2 font-bold tracking-tight">
+        <h1 className="mb-2 text-4xl font-bold tracking-tight">
           👋&nbsp; I'm Wes.
         </h1>
       </Animate.FadeUpOnMount>

@@ -1,8 +1,12 @@
 import cc from "classcat";
-import type { FC, VFC } from "react";
+import type { FC, ReactNode } from "react";
 import { HiCheckCircle } from "react-icons/hi";
 
-export const GameListTable: VFC = () => {
+interface GameListTableProps {
+  children?: ReactNode;
+}
+
+export const GameListTable: FC<GameListTableProps> = ({ children }) => {
   return (
     <div
       className={cc([
@@ -12,7 +16,7 @@ export const GameListTable: VFC = () => {
       ])}
     >
       <div
-        className="grid gap-x-2 gap-y-4 divide-y divide-gray-900"
+        className="grid divide-y divide-gray-900 gap-x-2 gap-y-4"
         role="table"
       >
         <div
@@ -58,7 +62,7 @@ export const GameListTable: VFC = () => {
             42 of 59 <span className="text-sm text-lime-500">[A]</span>
           </TableCell>
           <TableCell end>
-            <div className="w-20 flex flex-col items-end">
+            <div className="flex flex-col items-end w-20">
               65.29%
               <div className="relative h-[3px] w-full bg-gray-700 rounded">
                 <span className="absolute left-0 bg-gray-400 h-full w-[65.29%]" />
@@ -80,10 +84,10 @@ export const GameListTable: VFC = () => {
             70 of 70 <span className="text-sm text-blue-200">[S]</span>
           </TableCell>
           <TableCell end>
-            <div className="w-20 flex flex-col items-end">
+            <div className="flex flex-col items-end w-20">
               100.00%
               <div className="relative h-[3px] w-full bg-gray-700 rounded-3xl">
-                <span className="absolute left-0 bg-gray-400 h-full w-full" />
+                <span className="absolute left-0 w-full h-full bg-gray-400" />
               </div>
             </div>
           </TableCell>
@@ -94,6 +98,7 @@ export const GameListTable: VFC = () => {
 };
 
 interface TableCellProps {
+  children?: ReactNode;
   start?: boolean;
   center?: boolean;
   end?: boolean;

@@ -1,7 +1,7 @@
 import { Transition } from "@headlessui/react";
 import cc from "classcat";
 import dayjs from "dayjs";
-import type { VFC } from "react";
+import type { FC } from "react";
 
 import { ChartTooltipLineItem } from "@/core/components/ChartTooltipLineItem";
 import type { ChartDatum } from "@/gaming/models";
@@ -15,7 +15,7 @@ interface CustomTooltipProps {
   payload: Array<any & { payload: ChartDatum }>;
 }
 
-export const CustomTooltip: VFC<CustomTooltipProps> = ({
+export const CustomTooltip: FC<CustomTooltipProps> = ({
   active,
   finalDataNode,
   payload

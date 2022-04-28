@@ -1,5 +1,5 @@
 import cc from "classcat";
-import type { VFC } from "react";
+import type { FC } from "react";
 
 import { Animate } from "@/core/components/Animate";
 import type { TechStackElement } from "@/projects/models";
@@ -8,7 +8,7 @@ interface TechStackProps {
   techStackElements: TechStackElement[];
 }
 
-export const TechStack: VFC<TechStackProps> = ({ techStackElements }) => {
+export const TechStack: FC<TechStackProps> = ({ techStackElements }) => {
   return (
     <>
       <p className="mb-2 text-sm font-semibold">Tech stack</p>
@@ -25,10 +25,10 @@ export const TechStack: VFC<TechStackProps> = ({ techStackElements }) => {
               ])}
             >
               {IconComponent ? (
-                <IconComponent className="justify-center flex w-full text-2xl text-gray-500 dark:text-gray-400" />
+                <IconComponent className="flex justify-center w-full text-2xl text-gray-500 dark:text-gray-400" />
               ) : null}
 
-              <span className="flex items-center flex-col mt-1 text-sm">
+              <span className="flex flex-col items-center mt-1 text-sm">
                 {label}
               </span>
             </li>

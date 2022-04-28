@@ -1,4 +1,4 @@
-import type { VFC } from "react";
+import type { FC } from "react";
 import { Area, AreaChart, ResponsiveContainer, Tooltip } from "recharts";
 
 import { AreaChartGradientStops } from "@/core/components/AreaChartGradientStops";
@@ -17,7 +17,7 @@ export interface TotalPointsChartProps {
   chartData: ChartDatum[];
 }
 
-export const TotalPointsChart: VFC<TotalPointsChartProps> = ({ chartData }) => {
+export const TotalPointsChart: FC<TotalPointsChartProps> = ({ chartData }) => {
   const finalDataNode =
     chartData.length > 0 ? chartData[chartData.length - 1] : null;
 

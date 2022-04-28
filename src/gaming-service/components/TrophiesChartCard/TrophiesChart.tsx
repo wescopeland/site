@@ -1,4 +1,4 @@
-import type { VFC } from "react";
+import type { FC } from "react";
 import { Area, AreaChart, ResponsiveContainer, Tooltip } from "recharts";
 
 import { AreaChartGradientStops } from "@/core/components/AreaChartGradientStops";
@@ -16,7 +16,7 @@ export interface TrophiesChartProps {
   chartData: TrophiesChartDatum[];
 }
 
-export const TrophiesChart: VFC<TrophiesChartProps> = ({ chartData }) => {
+export const TrophiesChart: FC<TrophiesChartProps> = ({ chartData }) => {
   if (chartData.length === 0) {
     return null;
   }

@@ -1,6 +1,6 @@
 import cc from "classcat";
 import Link from "next/link";
-import type { FC, VFC } from "react";
+import type { FC, ReactNode } from "react";
 import type { IconType } from "react-icons";
 import { ImArrowUpRight2 } from "react-icons/im";
 
@@ -17,7 +17,7 @@ interface ServiceSummaryCardProps {
   isDisabled?: boolean;
 }
 
-export const ServiceSummaryCard: VFC<ServiceSummaryCardProps> = ({
+export const ServiceSummaryCard: FC<ServiceSummaryCardProps> = ({
   bgColorClassName,
   IconComponent,
   labelCopy,
@@ -79,6 +79,7 @@ export const ServiceSummaryCard: VFC<ServiceSummaryCardProps> = ({
 };
 
 interface LinkWrapperProps {
+  children: ReactNode;
   isDisabled: boolean;
   platformId: GamingPlatformId;
 }

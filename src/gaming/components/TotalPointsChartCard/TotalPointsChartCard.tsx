@@ -1,4 +1,4 @@
-import type { VFC } from "react";
+import type { FC } from "react";
 import { memo } from "react";
 
 import { BaseChartCard } from "@/core/components/BaseChartCard";
@@ -7,7 +7,7 @@ import { useGamingContextSelector } from "@/gaming/state/gaming.context";
 
 import { DynamicTotalPointsChart } from "./TotalPointsChart";
 
-export const TotalPointsChartCard: VFC = memo(() => {
+export const TotalPointsChartCard: FC = memo(() => {
   const totalPointsChartData = useGamingContextSelector(
     (state) => state.totalPointsChartData
   );
@@ -30,7 +30,7 @@ export const TotalPointsChartCard: VFC = memo(() => {
             <DynamicTotalPointsChart chartData={totalPointsChartData} />
           </LoadOnVisible>
         ) : (
-          <div className="flex my-auto w-full h-full items-center justify-center">
+          <div className="flex items-center justify-center w-full h-full my-auto">
             <p className="text-sm text-gray-400 dark:text-gray-500">
               There is no data available.
             </p>

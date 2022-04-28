@@ -1,11 +1,15 @@
-import type { FC } from "react";
+import type { FC, ReactNode } from "react";
 
 import { AppBar } from "@/core/components/AppBar";
 import { SEO } from "@/core/components/SEO";
 
 import { Gradient } from "./Gradient";
 
-export const BaseLayout: FC = ({ children }) => {
+interface BaseLayoutProps {
+  children?: ReactNode;
+}
+
+export const BaseLayout: FC<BaseLayoutProps> = ({ children }) => {
   return (
     <>
       <SEO />

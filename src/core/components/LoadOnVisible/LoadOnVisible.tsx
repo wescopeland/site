@@ -1,7 +1,11 @@
-import type { FC } from "react";
-import useInView from "react-cool-inview";
+import type { FC, ReactNode } from "react";
+import { useInView } from "react-cool-inview";
 
-export const LoadOnVisible: FC = ({ children }) => {
+interface LoadOnVisibleProps {
+  children: ReactNode;
+}
+
+export const LoadOnVisible: FC<LoadOnVisibleProps> = ({ children }) => {
   const { observe, inView } = useInView<HTMLDivElement>({
     unobserveOnEnter: true,
     rootMargin: "50px"

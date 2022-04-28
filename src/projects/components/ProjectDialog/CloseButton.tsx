@@ -1,12 +1,12 @@
 import cc from "classcat";
-import type { VFC } from "react";
+import type { FC } from "react";
 import { CgClose } from "react-icons/cg";
 
 interface CloseButtonProps {
   onClose: () => any;
 }
 
-export const CloseButton: VFC<CloseButtonProps> = ({ onClose }) => {
+export const CloseButton: FC<CloseButtonProps> = ({ onClose }) => {
   return (
     <button
       aria-label="Close"

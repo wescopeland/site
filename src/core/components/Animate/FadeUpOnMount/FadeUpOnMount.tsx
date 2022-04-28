@@ -1,8 +1,9 @@
 import cc from "classcat";
-import type { FC } from "react";
+import type { FC, ReactNode } from "react";
 import { useTimeout } from "react-use";
 
 interface FadeUpOnMountProps {
+  children?: ReactNode;
   delay?: number;
 }
 

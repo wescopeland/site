@@ -1,12 +1,12 @@
-import type { VFC } from "react";
+import type { FC } from "react";
 
 import { BaseStatsCard } from "@/core/components/BaseStatsCard";
 
-export const CompletionsSummaryCard: VFC = () => {
+export const CompletionsSummaryCard: FC = () => {
   return (
     <BaseStatsCard headingLabel="Completion Stats" isUsingAccentedBackground>
       <div className="flex flex-col">
-        <p className="text-3xl text-black tracking-tight dark:text-white">
+        <p className="text-3xl tracking-tight text-black dark:text-white">
           59.63%
         </p>
 

@@ -1,5 +1,5 @@
 import cc from "classcat";
-import type { VFC } from "react";
+import type { FC } from "react";
 
 import type { GamingPlatformId } from "@/core/models";
 import { getGamingServiceColors } from "@/gaming/utils/getGamingServiceColors";
@@ -10,7 +10,7 @@ interface PlatformPinProps {
   platform: GamingPlatformId;
 }
 
-export const PlatformPin: VFC<PlatformPinProps> = ({ platform }) => {
+export const PlatformPin: FC<PlatformPinProps> = ({ platform }) => {
   return (
     <div className="flex items-center gap-x-1">
       <div
@@ -22,7 +22,7 @@ export const PlatformPin: VFC<PlatformPinProps> = ({ platform }) => {
         ])}
       />
 
-      <span className="text-black dark:text-white tracking-tight text-sm">
+      <span className="text-sm tracking-tight text-black dark:text-white">
         {platform === "psn" && "PSN"}
         {platform === "xbox" && "XBOX"}
         {platform === "ra" && "RETRO"}

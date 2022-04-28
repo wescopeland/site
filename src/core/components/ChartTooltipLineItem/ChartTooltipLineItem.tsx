@@ -1,5 +1,5 @@
 import cc from "classcat";
-import type { VFC } from "react";
+import type { FC } from "react";
 
 interface ChartTooltipLineItemProps {
   label: string;
@@ -8,7 +8,7 @@ interface ChartTooltipLineItemProps {
   swatchBgClassName?: string;
 }
 
-export const ChartTooltipLineItem: VFC<ChartTooltipLineItemProps> = ({
+export const ChartTooltipLineItem: FC<ChartTooltipLineItemProps> = ({
   label,
   value,
   swatchBgClassName

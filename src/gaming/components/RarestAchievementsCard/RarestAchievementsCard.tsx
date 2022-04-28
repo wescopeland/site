@@ -1,4 +1,4 @@
-import type { VFC } from "react";
+import type { FC } from "react";
 
 import { BaseStatsCard } from "@/core/components/BaseStatsCard";
 import { formatPercentage } from "@/core/utils/formatPercentage";
@@ -6,7 +6,7 @@ import { useGamingContextSelector } from "@/gaming/state/gaming.context";
 
 import { RarityListItem } from "../RarityListItem";
 
-export const RarestAchievementsCard: VFC = () => {
+export const RarestAchievementsCard: FC = () => {
   const rarestAchievements = useGamingContextSelector(
     (state) => state.rarestAchievements
   );
@@ -37,7 +37,7 @@ export const RarestAchievementsCard: VFC = () => {
           ))}
         </ol>
       ) : (
-        <div className="h-72 flex items-center justify-center">
+        <div className="flex items-center justify-center h-72">
           <p className="text-sm text-gray-400 dark:text-gray-500">
             There is no data available.
           </p>

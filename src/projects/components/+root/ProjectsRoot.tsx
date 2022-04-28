@@ -1,4 +1,4 @@
-import type { VFC } from "react";
+import type { FC } from "react";
 import { useState } from "react";
 
 import { Animate } from "@/core/components/Animate";
@@ -8,7 +8,7 @@ import { ProjectCard } from "../ProjectCard";
 import { ProjectDialog } from "../ProjectDialog";
 import { projectsList } from "./projectsList";
 
-export const ProjectsRoot: VFC = () => {
+export const ProjectsRoot: FC = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [openedProject, setOpenedProject] = useState<ProjectListElement>(
     projectsList[0]

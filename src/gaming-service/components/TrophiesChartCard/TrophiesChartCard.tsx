@@ -1,11 +1,11 @@
-import type { VFC } from "react";
+import type { FC } from "react";
 
 import { BaseChartCard } from "@/core/components/BaseChartCard";
 import { generateData } from "@/gaming-service/generateData";
 
 import { TrophiesChart } from "./TrophiesChart";
 
-export const TrophiesChartCard: VFC = () => {
+export const TrophiesChartCard: FC = () => {
   const data = generateData("2019-03-03");
   const finalDataNode = data.length > 0 ? data[data.length - 1] : null;
 
@@ -14,7 +14,7 @@ export const TrophiesChartCard: VFC = () => {
       {finalDataNode ? (
         <TrophiesChart chartData={data} />
       ) : (
-        <div className="flex w-full h-full my-auto items-center justify-center">
+        <div className="flex items-center justify-center w-full h-full my-auto">
           <p className="text-sm text-gray-400 dark:text-gray-500">
             There is no data available.
           </p>

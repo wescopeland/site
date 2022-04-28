@@ -5,7 +5,7 @@ import { BaseAnimation } from "../BaseAnimation";
 
 type GrowProps = Pick<
   BaseAnimationProps,
-  "as" | "canShow" | "delay" | "shouldAnimateOnMount"
+  "as" | "canShow" | "children" | "delay" | "shouldAnimateOnMount"
 >;
 
 export const Grow: FC<GrowProps> = ({

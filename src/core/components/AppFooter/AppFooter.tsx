@@ -1,8 +1,8 @@
-import type { VFC } from "react";
+import type { FC } from "react";
 
-export const AppFooter: VFC = () => {
+export const AppFooter: FC = () => {
   return (
-    <div className="flex text-sm mb-20 justify-between flex-col sm:flex-row">
+    <div className="flex flex-col justify-between mb-20 text-sm sm:flex-row">
       <p>
         <strong>Wes Copeland</strong> © 2021 &ndash; Present.
       </p>

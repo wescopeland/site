@@ -1,6 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import cc from "classcat";
-import type { VFC } from "react";
+import type { FC } from "react";
 import { Fragment } from "react";
 
 import type { ProjectListElement } from "@/projects/models";
@@ -14,7 +14,7 @@ interface ProjectDialogProps {
   onClose: () => any;
 }
 
-export const ProjectDialog: VFC<ProjectDialogProps> = ({
+export const ProjectDialog: FC<ProjectDialogProps> = ({
   project,
   isOpen,
   onClose

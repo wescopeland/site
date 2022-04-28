@@ -1,6 +1,6 @@
 import cc from "classcat";
 import Image from "next/image";
-import type { ReactNode, VFC } from "react";
+import type { FC, ReactNode } from "react";
 
 import type { GamingPlatformId } from "@/core/models";
 
@@ -15,7 +15,7 @@ interface RarityListItemProps {
   isUsingWideImage?: boolean;
 }
 
-export const RarityListItem: VFC<RarityListItemProps> = ({
+export const RarityListItem: FC<RarityListItemProps> = ({
   imageSrc,
   lineOneContent,
   lineTwoContent,
@@ -43,17 +43,17 @@ export const RarityListItem: VFC<RarityListItemProps> = ({
               className="bg-gray-900"
             />
           ) : (
-            <div className="bg-gray-900 w-full h-full" />
+            <div className="w-full h-full bg-gray-900" />
           )}
 
           <PlatformRibbon platform={platform} />
         </>
       </div>
 
-      <div className="ml-3 my-auto truncate">
+      <div className="my-auto ml-3 truncate">
         <>
-          <p className="truncate tracking-tight">{lineOneContent}</p>
-          <p className="my-auto truncate text-gray-700 dark:text-gray-300">
+          <p className="tracking-tight truncate">{lineOneContent}</p>
+          <p className="my-auto text-gray-700 truncate dark:text-gray-300">
             {lineTwoContent}
           </p>
         </>

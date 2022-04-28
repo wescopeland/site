@@ -1,10 +1,11 @@
 import { Transition } from "@headlessui/react";
 import cc from "classcat";
-import type { CSSProperties, ElementType, FC } from "react";
+import type { CSSProperties, ElementType, FC, ReactNode } from "react";
 
 export interface BaseAnimationProps {
   as?: ElementType<any>;
   canShow?: boolean;
+  children?: ReactNode;
   delay?: 50 | 100 | 150 | 200 | 300 | 500 | 700 | 1000;
   shouldAnimateOnMount?: boolean;
   enter?: string;

@@ -1,5 +1,5 @@
 import type { BlogPost } from "contentlayer/generated";
-import type { VFC } from "react";
+import type { FC } from "react";
 
 import { Animate } from "@/core/components/Animate";
 import { H1 } from "@/core/components/H1";
@@ -10,7 +10,7 @@ export interface BlogRootProps {
   posts: Record<number, BlogPost[]>;
 }
 
-export const BlogRoot: VFC<BlogRootProps> = ({ posts }) => {
+export const BlogRoot: FC<BlogRootProps> = ({ posts }) => {
   return (
     <>
       <Animate.FadeUpOnMount>

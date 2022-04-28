@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import type { FC, ReactNode } from "react";
 import {
   Context,
   createContext,
@@ -10,6 +10,7 @@ import type { GamingState } from "../models";
 const GamingContext = createContext<GamingState | null>(null);
 
 interface GamingStateProviderProps {
+  children: ReactNode;
   value: GamingState;
 }
 

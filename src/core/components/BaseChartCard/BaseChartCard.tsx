@@ -1,7 +1,8 @@
 import cc from "classcat";
-import type { FC } from "react";
+import type { FC, ReactNode } from "react";
 
 interface BaseChartCardProps {
+  children?: ReactNode;
   heading: string;
 
   isLoading?: boolean;
@@ -23,12 +24,12 @@ export const BaseChartCard: FC<BaseChartCardProps> = ({
       ])}
     >
       <div className="sm:-ml-4">
-        <p className="dark:text-gray-400 text-gray-500">{heading}</p>
+        <p className="text-gray-500 dark:text-gray-400">{heading}</p>
 
         {subheading ? (
           <p className="text-2xl tracking-wider text-black dark:text-white">
             {isLoading ? (
-              <span className="my-2 animate-pulse rounded bg-gray-100 dark:bg-gray-600 flex w-24 h-4">
+              <span className="flex w-24 h-4 my-2 bg-gray-100 rounded animate-pulse dark:bg-gray-600">
                 &nbsp;
               </span>
             ) : (

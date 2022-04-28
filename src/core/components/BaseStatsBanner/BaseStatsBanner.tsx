@@ -1,7 +1,11 @@
 import cc from "classcat";
-import type { FC } from "react";
+import type { FC, ReactNode } from "react";
 
-export const BaseStatsBanner: FC = ({ children }) => {
+interface BaseStatsBannerProps {
+  children?: ReactNode;
+}
+
+export const BaseStatsBanner: FC<BaseStatsBannerProps> = ({ children }) => {
   return (
     <div
       className={cc([

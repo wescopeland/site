@@ -1,4 +1,4 @@
-import type { VFC } from "react";
+import type { FC } from "react";
 
 import { BaseStatsBanner } from "@/core/components/BaseStatsBanner";
 import { formatPercentage } from "@/core/utils/formatPercentage";
@@ -7,7 +7,7 @@ import { useGamingContextSelector } from "@/gaming/state/gaming.context";
 
 import { PlatformPin } from "../PlatformPin";
 
-export const MostRecentCompletionCard: VFC = () => {
+export const MostRecentCompletionCard: FC = () => {
   const mostRecentCompletion = useGamingContextSelector(
     (state) => state.mostRecentCompletion
   );
@@ -18,13 +18,13 @@ export const MostRecentCompletionCard: VFC = () => {
 
   return (
     <BaseStatsBanner>
-      <div className="inline-flex flex-col md:flex-row flex-grow gap-x-2">
-        <p className="text-gray-500 dark:text-gray-400 tracking-tight">
+      <div className="inline-flex flex-col flex-grow md:flex-row gap-x-2">
+        <p className="tracking-tight text-gray-500 dark:text-gray-400">
           Most Recent Completion<span className="hidden sm:inline">:</span>
         </p>
         <div className="flex gap-x-3">
           <>
-            <p className="text-black dark:text-white flex">
+            <p className="flex text-black dark:text-white">
               {mostRecentCompletion.name}
             </p>
             <PlatformPin platform={mostRecentCompletion.service} />
@@ -36,13 +36,13 @@ export const MostRecentCompletionCard: VFC = () => {
         <>
           {mostRecentCompletion.completionRate && (
             <>
-              <p className="text-gray-500 dark:text-gray-400 tracking-tight">
+              <p className="tracking-tight text-gray-500 dark:text-gray-400">
                 Rarity:
               </p>
               <div className="flex gap-x-3">
                 <p className="text-black dark:text-white">
                   {formatPercentage(mostRecentCompletion.completionRate)}
-                  <span className="dark:text-gray-200 ml-1 text-sm tracking-tight">
+                  <span className="ml-1 text-sm tracking-tight dark:text-gray-200">
                     {mapPercentageToRarity(mostRecentCompletion.completionRate)}
                   </span>
                 </p>
@@ -52,7 +52,7 @@ export const MostRecentCompletionCard: VFC = () => {
         </>
       </div>
 
-      <div className="md:hidden flex gap-x-2 md:gap-x-0">
+      <div className="flex md:hidden gap-x-2 md:gap-x-0">
         <>
           {mostRecentCompletion.completionRate && (
             <>

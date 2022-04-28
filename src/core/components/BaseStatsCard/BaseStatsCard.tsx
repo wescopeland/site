@@ -1,7 +1,8 @@
 import cc from "classcat";
-import type { FC } from "react";
+import type { FC, ReactNode } from "react";
 
 interface BaseStatsCardProps {
+  children?: ReactNode;
   headingLabel?: string;
   isUsingAccentedBackground?: boolean;
 }
@@ -24,7 +25,7 @@ export const BaseStatsCard: FC<BaseStatsCardProps> = ({
     >
       <div className="flex items-center justify-between">
         {headingLabel ? (
-          <p className="dark:text-gray-400 text-gray-500">{headingLabel}</p>
+          <p className="text-gray-500 dark:text-gray-400">{headingLabel}</p>
         ) : null}
       </div>
 

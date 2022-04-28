@@ -1,9 +1,10 @@
 import cc from "classcat";
-import type { FC, ReactNode, VFC } from "react";
+import type { FC, ReactNode } from "react";
 import { Children, cloneElement } from "react";
 import { useTimeout } from "react-use";
 
 interface StaggerOnMountProps {
+  children?: ReactNode;
   delay?: number;
 }
 
@@ -33,7 +34,7 @@ interface StaggerChildProps {
   initialDelay?: number;
 }
 
-const StaggerChild: VFC<StaggerChildProps> = ({
+const StaggerChild: FC<StaggerChildProps> = ({
   child,
   childIndex,
   initialDelay

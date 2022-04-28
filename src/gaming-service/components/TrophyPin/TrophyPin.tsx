@@ -1,5 +1,5 @@
 import cc from "classcat";
-import type { VFC } from "react";
+import type { FC } from "react";
 
 interface TrophyPinProps {
   grade: "bronze" | "silver" | "gold" | "platinum" | "total";
@@ -8,7 +8,7 @@ interface TrophyPinProps {
   size?: "small" | "medium" | "3xl";
 }
 
-export const TrophyPin: VFC<TrophyPinProps> = ({
+export const TrophyPin: FC<TrophyPinProps> = ({
   grade,
   count,
   size = "small"

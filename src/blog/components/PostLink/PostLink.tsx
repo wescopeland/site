@@ -1,7 +1,7 @@
 import cc from "classcat";
 import dayjs from "dayjs";
 import Link from "next/link";
-import type { VFC } from "react";
+import type { FC } from "react";
 
 import { AppRoutes } from "@/core/utils/AppRoutes";
 
@@ -11,7 +11,7 @@ interface PostLinkProps {
   postSlug: string;
 }
 
-export const PostLink: VFC<PostLinkProps> = ({
+export const PostLink: FC<PostLinkProps> = ({
   postTitle,
   publishedOn,
   postSlug
@@ -27,11 +27,11 @@ export const PostLink: VFC<PostLinkProps> = ({
             "transition hover:no-underline font-normal"
           ])}
         >
-          <p className="transition group-active:scale-95 group-hover:translate-x-2 text-black dark:text-white">
+          <p className="text-black transition group-active:scale-95 group-hover:translate-x-2 dark:text-white">
             {postTitle}
           </p>
 
-          <p className="transition text-black dark:text-white whitespace-nowrap">
+          <p className="text-black transition dark:text-white whitespace-nowrap">
             {dayjs(publishedOn).format("MMM DD")}
           </p>
         </a>

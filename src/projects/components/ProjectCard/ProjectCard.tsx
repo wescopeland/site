@@ -1,5 +1,5 @@
 import cc from "classcat";
-import type { VFC } from "react";
+import type { FC } from "react";
 import type { IconType } from "react-icons";
 
 interface ProjectCardProps {
@@ -9,7 +9,7 @@ interface ProjectCardProps {
   onClick: (projectName: string) => any;
 }
 
-export const ProjectCard: VFC<ProjectCardProps> = ({
+export const ProjectCard: FC<ProjectCardProps> = ({
   IconComponent,
   name,
   description,

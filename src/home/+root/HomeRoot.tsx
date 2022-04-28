@@ -1,8 +1,8 @@
-import type { VFC } from "react";
+import type { FC } from "react";
 
 import { AboutMe } from "../AboutMe";
 
-export const HomeRoot: VFC = () => {
+export const HomeRoot: FC = () => {
   return (
     <>
       <AboutMe />

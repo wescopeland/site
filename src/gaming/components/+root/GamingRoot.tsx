@@ -1,4 +1,4 @@
-import type { VFC } from "react";
+import type { FC } from "react";
 
 import { Animate } from "@/core/components/Animate";
 import { H1 } from "@/core/components/H1";
@@ -11,7 +11,7 @@ import { RarestCompletionsCard } from "../RarestCompletionsCard";
 import { ServiceSummaryCardList } from "../ServiceSummaryCardList";
 import { TotalPointsChartCard } from "../TotalPointsChartCard";
 
-export const GamingRoot: VFC = () => {
+export const GamingRoot: FC = () => {
   return (
     <>
       <Animate.FadeUpOnMount>
@@ -25,7 +25,7 @@ export const GamingRoot: VFC = () => {
       <Animate.FadeUpOnMount delay={300}>
         <div className="space-y-4">
           <div>
-            <p className="text-lg font-light tracking-tight mb-2">Overview</p>
+            <p className="mb-2 text-lg font-light tracking-tight">Overview</p>
 
             <div className="grid sm:grid-cols-2 gap-y-2 gap-x-6">
               <MostRecentGameCard />

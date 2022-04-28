@@ -1,4 +1,4 @@
-import type { VFC } from "react";
+import type { FC } from "react";
 
 import { BaseStatsCard } from "@/core/components/BaseStatsCard";
 import { formatPercentage } from "@/core/utils/formatPercentage";
@@ -7,7 +7,7 @@ import { NormalizedGame } from "@/integrations/models";
 
 import { PlatformPin } from "../PlatformPin";
 
-export const MostRecentGameCard: VFC = () => {
+export const MostRecentGameCard: FC = () => {
   const mostRecentGame = useGamingContextSelector(
     (state) => state.mostRecentGame
   );
@@ -26,7 +26,7 @@ export const MostRecentGameCard: VFC = () => {
     <BaseStatsCard headingLabel="Most Recent Game" isUsingAccentedBackground>
       <div className="flex gap-x-3">
         <>
-          <p className="text-black dark:text-white flex">
+          <p className="flex text-black dark:text-white">
             {mostRecentGame.name}
           </p>
           <PlatformPin platform={mostRecentGame.service} />

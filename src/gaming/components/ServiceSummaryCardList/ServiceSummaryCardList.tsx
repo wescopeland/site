@@ -1,5 +1,5 @@
 import cc from "classcat";
-import type { VFC } from "react";
+import type { FC } from "react";
 import { FaPlaystation, FaXbox } from "react-icons/fa";
 import { MdGamepad } from "react-icons/md";
 
@@ -11,7 +11,7 @@ import { ServiceSummaryCard } from "./ServiceSummaryCard";
 
 const gamingServiceColors = getGamingServiceColors();
 
-export const ServiceSummaryCardList: VFC = () => {
+export const ServiceSummaryCardList: FC = () => {
   const [platinumCount, gamerscoreCount, masteryCount] =
     useGamingContextSelector((state) => [
       state.serviceSummaries.platinumCount,

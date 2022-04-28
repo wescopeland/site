@@ -1,5 +1,5 @@
 import type { BlogPost } from "contentlayer/generated";
-import type { VFC } from "react";
+import type { FC } from "react";
 
 import { PostLink } from "../PostLink";
 
@@ -8,7 +8,7 @@ interface YearPostsBlockProps {
   posts: BlogPost[];
 }
 
-export const YearPostsBlock: VFC<YearPostsBlockProps> = ({ year, posts }) => {
+export const YearPostsBlock: FC<YearPostsBlockProps> = ({ year, posts }) => {
   return (
     <div className="flex flex-col sm:flex-row">
       <h2 className="w-32 mb-2 text-2xl">{year}</h2>

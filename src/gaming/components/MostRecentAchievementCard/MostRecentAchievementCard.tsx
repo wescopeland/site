@@ -1,4 +1,4 @@
-import type { VFC } from "react";
+import type { FC } from "react";
 
 import { BaseStatsCard } from "@/core/components/BaseStatsCard";
 import { formatPercentage } from "@/core/utils/formatPercentage";
@@ -6,7 +6,7 @@ import { useGamingContextSelector } from "@/gaming/state/gaming.context";
 
 import { EarningsArrow } from "../EarningsArrow";
 
-export const MostRecentAchievementCard: VFC = () => {
+export const MostRecentAchievementCard: FC = () => {
   const mostRecentAchievement = useGamingContextSelector(
     (state) => state.mostRecentAchievement
   );
@@ -22,7 +22,7 @@ export const MostRecentAchievementCard: VFC = () => {
     >
       <div className="flex gap-x-3">
         <>
-          <p className="text-black dark:text-white flex">
+          <p className="flex text-black dark:text-white">
             {mostRecentAchievement.name}
           </p>
           <EarningsArrow>{mostRecentAchievement.earnedPoints}</EarningsArrow>

@@ -1,11 +1,15 @@
 import cc from "classcat";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import type { FC, VFC } from "react";
+import type { FC, ReactNode } from "react";
 
 import { AppRoutes } from "@/core/utils/AppRoutes";
 
-export const NavBar: VFC = () => {
+interface NavBarProps {
+  children?: ReactNode;
+}
+
+export const NavBar: FC<NavBarProps> = ({ children }) => {
   return (
     <div
       className={cc([
@@ -36,6 +40,7 @@ export const NavBar: VFC = () => {
 };
 
 interface NavBarLinkProps {
+  children: ReactNode;
   href: string;
 
   activeWhen?: boolean;

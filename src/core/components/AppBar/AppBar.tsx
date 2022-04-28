@@ -1,4 +1,4 @@
-import type { VFC } from "react";
+import type { FC } from "react";
 import { FiGithub, FiTwitter } from "react-icons/fi";
 
 import { NavBar } from "@/core/components/NavBar";
@@ -6,7 +6,7 @@ import { NavBar } from "@/core/components/NavBar";
 import { AppBarButton } from "./AppBarButton";
 import { DarkModeToggle } from "./DarkModeToggle";
 
-export const AppBar: VFC = () => {
+export const AppBar: FC = () => {
   return (
     <div className="z-50 flex items-center justify-between w-full p-4">
       <div className="flex items-center">

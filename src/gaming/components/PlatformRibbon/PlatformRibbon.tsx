@@ -1,5 +1,5 @@
 import cc from "classcat";
-import type { VFC } from "react";
+import type { FC } from "react";
 
 import type { GamingPlatformId } from "@/core/models";
 import { getGamingServiceColors } from "@/gaming/utils/getGamingServiceColors";
@@ -10,7 +10,7 @@ interface PlatformRibbonProps {
   platform: GamingPlatformId;
 }
 
-export const PlatformRibbon: VFC<PlatformRibbonProps> = ({ platform }) => {
+export const PlatformRibbon: FC<PlatformRibbonProps> = ({ platform }) => {
   let a11yLabel = "";
   if (platform === "psn") {
     a11yLabel = "PSN";

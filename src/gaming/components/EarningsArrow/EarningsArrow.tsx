@@ -1,8 +1,9 @@
 import cc from "classcat";
-import type { FC } from "react";
+import type { FC, ReactNode } from "react";
 import { ImArrowUp2 } from "react-icons/im";
 
 interface EarningsArrowProps {
+  children?: ReactNode;
   className?: string;
 }
 
