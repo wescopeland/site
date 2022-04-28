@@ -1,13 +1,16 @@
 import { useTheme } from "next-themes";
-import type { VFC } from "react";
+import { type FC, useEffect, useState } from "react";
 import { HiOutlineMoon, HiOutlineSun } from "react-icons/hi";
-import { useMountedState } from "react-use";
 
 import { AppBarButton } from "../AppBarButton";
 
-export const DarkModeToggle: VFC = () => {
-  const isMounted = useMountedState();
+export const DarkModeToggle: FC = () => {
+  const [isMounted, setIsMounted] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   if (!isMounted || resolvedTheme === undefined) {
     return <div style={{ minHeight: 40 }} />;
@@ -26,7 +29,7 @@ export const DarkModeToggle: VFC = () => {
       }}
     >
       <IconComponent />
-      <span className="hidden md:block ml-2">{labelText}</span>
+      <span className="hidden ml-2 md:block">{labelText}</span>
     </AppBarButton>
   );
 };
