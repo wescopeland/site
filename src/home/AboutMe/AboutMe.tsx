@@ -15,7 +15,10 @@ export const AboutMe: FC = () => {
 
       <Animate.FadeUpOnMount delay={200}>
         <p className="mb-4">
-          <HighlightedText>
+          <span className="sm:hidden font-semibold">
+            I'm building products and writing code
+          </span>
+          <HighlightedText className="hidden sm:inline">
             I'm building products and writing code
           </HighlightedText>{" "}
           at ApartmentAdvisor.
