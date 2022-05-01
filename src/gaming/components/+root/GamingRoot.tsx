@@ -1,7 +1,7 @@
 import type { FC } from "react";
 
-import { Animate } from "@/core/components/Animate";
-import { H1 } from "@/core/components/H1";
+import { Animate } from "@/common/components/Animate";
+import { H1 } from "@/common/components/H1";
 
 import { MostRecentAchievementCard } from "../MostRecentAchievementCard";
 import { MostRecentCompletionCard } from "../MostRecentCompletionCard";

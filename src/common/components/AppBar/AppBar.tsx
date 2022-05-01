@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { FiGithub, FiTwitter } from "react-icons/fi";
 
-import { NavBar } from "@/core/components/NavBar";
+import { NavBar } from "@/common/components/NavBar";
 
 import { AppBarButton } from "./AppBarButton";
 import { DarkModeToggle } from "./DarkModeToggle";

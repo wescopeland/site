@@ -1,6 +1,6 @@
 import type { FC } from "react";
 
-import { Animate } from "@/core/components/Animate";
+import { Animate } from "@/common/components/Animate";
 
 import { HighlightedText } from "../HighlightedText";
 

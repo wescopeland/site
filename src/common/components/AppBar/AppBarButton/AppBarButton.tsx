@@ -1,7 +1,7 @@
 import cc from "classcat";
 import type { ElementType, ReactNode } from "react";
 
-import type { PolymorphicComponentProps } from "@/core/models";
+import type { PolymorphicComponentProps } from "@/common/models";
 
 interface Props {
   children: ReactNode;

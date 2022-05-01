@@ -1,7 +1,7 @@
 import type { FC, ReactNode } from "react";
 
-import { AppBar } from "@/core/components/AppBar";
-import { SEO } from "@/core/components/SEO";
+import { AppBar } from "@/common/components/AppBar";
+import { SEO } from "@/common/components/SEO";
 
 import { Gradient } from "./Gradient";
 

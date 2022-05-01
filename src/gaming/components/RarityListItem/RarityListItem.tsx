@@ -2,7 +2,7 @@ import cc from "classcat";
 import Image from "next/image";
 import type { FC, ReactNode } from "react";
 
-import type { GamingPlatformId } from "@/core/models";
+import type { GamingPlatformId } from "@/common/models";
 
 import { PlatformRibbon } from "../PlatformRibbon";
 

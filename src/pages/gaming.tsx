@@ -1,7 +1,7 @@
 import type { ReactElement } from "react";
 
-import { BaseLayout } from "@/core/layouts/BaseLayout";
-import type { AppPage } from "@/core/models";
+import { BaseLayout } from "@/common/layouts/BaseLayout";
+import type { AppPage } from "@/common/models";
 import { GamingRoot } from "@/gaming/components/+root";
 import type { GamingState } from "@/gaming/models";
 import { buildGamingState } from "@/gaming/state/buildGamingState";

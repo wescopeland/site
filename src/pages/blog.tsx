@@ -4,8 +4,8 @@ import type { ReactElement } from "react";
 import type { BlogRootProps } from "@/blog/components/BlogRoot";
 import { BlogRoot } from "@/blog/components/BlogRoot";
 import { categorizePostsByYear } from "@/blog/utils/categorizePostsByYear";
-import { BaseLayout } from "@/core/layouts/BaseLayout";
-import type { AppPage } from "@/core/models";
+import { BaseLayout } from "@/common/layouts/BaseLayout";
+import type { AppPage } from "@/common/models";
 
 const BlogPage: AppPage<BlogRootProps> = (props) => <BlogRoot {...props} />;
 

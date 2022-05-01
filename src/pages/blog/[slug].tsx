@@ -4,8 +4,8 @@ import type { ReactElement } from "react";
 
 import type { BlogPostRootProps } from "@/blog/components/BlogPostRoot";
 import { BlogPostRoot } from "@/blog/components/BlogPostRoot";
-import { BaseLayout } from "@/core/layouts/BaseLayout";
-import type { AppPage } from "@/core/models";
+import { BaseLayout } from "@/common/layouts/BaseLayout";
+import type { AppPage } from "@/common/models";
 
 const BlogPostPage: AppPage<BlogPostRootProps> = (props) => (
   <BlogPostRoot {...props} />

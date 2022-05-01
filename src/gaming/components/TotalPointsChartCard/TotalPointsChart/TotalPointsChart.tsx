@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { Area, AreaChart, ResponsiveContainer, Tooltip } from "recharts";
 
-import { AreaChartGradientStops } from "@/core/components/AreaChartGradientStops";
+import { AreaChartGradientStops } from "@/common/components/AreaChartGradientStops";
 import type { ChartDatum } from "@/gaming/models";
 import { getGamingServiceColors } from "@/gaming/utils/getGamingServiceColors";
 

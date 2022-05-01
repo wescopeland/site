@@ -3,7 +3,7 @@ import type { FC } from "react";
 import { FaPlaystation, FaXbox } from "react-icons/fa";
 import { MdGamepad } from "react-icons/md";
 
-import { Animate } from "@/core/components/Animate";
+import { Animate } from "@/common/components/Animate";
 import { useGamingContextSelector } from "@/gaming/state/gaming.context";
 import { getGamingServiceColors } from "@/gaming/utils/getGamingServiceColors";
 

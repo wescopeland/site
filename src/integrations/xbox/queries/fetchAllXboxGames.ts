@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 
-import { mapPercentageToRarity } from "@/core/utils/mapPercentageToRarity";
+import { mapPercentageToRarity } from "@/common/utils/mapPercentageToRarity";
 import type {
   NormalizedAchievement,
   NormalizedGame

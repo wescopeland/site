@@ -3,7 +3,7 @@ import cc from "classcat";
 import dayjs from "dayjs";
 import type { FC } from "react";
 
-import { ChartTooltipLineItem } from "@/core/components/ChartTooltipLineItem";
+import { ChartTooltipLineItem } from "@/common/components/ChartTooltipLineItem";
 import type { ChartDatum } from "@/gaming/models";
 import { getGamingServiceColors } from "@/gaming/utils/getGamingServiceColors";
 

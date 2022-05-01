@@ -1,8 +1,8 @@
 import type { FC } from "react";
 import { memo } from "react";
 
-import { BaseChartCard } from "@/core/components/BaseChartCard";
-import { LoadOnVisible } from "@/core/components/LoadOnVisible";
+import { BaseChartCard } from "@/common/components/BaseChartCard";
+import { LoadOnVisible } from "@/common/components/LoadOnVisible";
 import { useGamingContextSelector } from "@/gaming/state/gaming.context";
 
 import { DynamicTotalPointsChart } from "./TotalPointsChart";

@@ -1,6 +1,6 @@
 import { subst } from "urlcat";
 
-import type { GamingPlatformId } from "@/core/models";
+import type { GamingPlatformId } from "@/common/models";
 
 const basePath = "/";
 const projectsPath = "/projects";

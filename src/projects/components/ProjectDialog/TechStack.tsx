@@ -1,7 +1,7 @@
 import cc from "classcat";
 import type { FC } from "react";
 
-import { Animate } from "@/core/components/Animate";
+import { Animate } from "@/common/components/Animate";
 import type { TechStackElement } from "@/projects/models";
 
 interface TechStackProps {

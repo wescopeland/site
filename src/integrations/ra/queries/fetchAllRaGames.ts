@@ -5,7 +5,7 @@ import type {
   UserGameCompletion
 } from "retroachievements-js";
 
-import { mapPercentageToRarity } from "@/core/utils/mapPercentageToRarity";
+import { mapPercentageToRarity } from "@/common/utils/mapPercentageToRarity";
 import type {
   NormalizedAchievement,
   NormalizedGame

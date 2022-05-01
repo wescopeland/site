@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import Link from "next/link";
 import type { FC } from "react";
 
-import { AppRoutes } from "@/core/utils/AppRoutes";
+import { AppRoutes } from "@/common/utils/AppRoutes";
 
 interface PostLinkProps {
   postTitle: string;

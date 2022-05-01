@@ -1,6 +1,6 @@
 import type { FC } from "react";
 
-import { BaseStatsCard } from "@/core/components/BaseStatsCard";
+import { BaseStatsCard } from "@/common/components/BaseStatsCard";
 
 import { TrophyPin } from "../TrophyPin";
 

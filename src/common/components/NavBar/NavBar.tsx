@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import type { FC, ReactNode } from "react";
 
-import { AppRoutes } from "@/core/utils/AppRoutes";
+import { AppRoutes } from "@/common/utils/AppRoutes";
 
 interface NavBarProps {
   children?: ReactNode;

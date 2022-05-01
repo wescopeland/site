@@ -1,6 +1,6 @@
 import type { FC } from "react";
 
-import { BaseChartCard } from "@/core/components/BaseChartCard";
+import { BaseChartCard } from "@/common/components/BaseChartCard";
 import { generateData } from "@/gaming-service/generateData";
 
 import { TrophiesChart } from "./TrophiesChart";

@@ -1,7 +1,7 @@
 import cc from "classcat";
 import type { FC } from "react";
 
-import type { GamingPlatformId } from "@/core/models";
+import type { GamingPlatformId } from "@/common/models";
 import { getGamingServiceColors } from "@/gaming/utils/getGamingServiceColors";
 
 const gamingServiceColors = getGamingServiceColors();

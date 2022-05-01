@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { useState } from "react";
 
-import { Animate } from "@/core/components/Animate";
+import { Animate } from "@/common/components/Animate";
 import type { ProjectListElement } from "@/projects/models";
 
 import { ProjectCard } from "../ProjectCard";

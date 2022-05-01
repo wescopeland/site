@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { Area, AreaChart, ResponsiveContainer, Tooltip } from "recharts";
 
-import { AreaChartGradientStops } from "@/core/components/AreaChartGradientStops";
+import { AreaChartGradientStops } from "@/common/components/AreaChartGradientStops";
 import type { TrophiesChartDatum } from "@/gaming-service/models";
 
 import type { ChartDatumWithCounts } from "./chart-datum-with-counts.model";

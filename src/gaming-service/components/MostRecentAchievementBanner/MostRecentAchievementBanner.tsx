@@ -1,6 +1,6 @@
 import type { FC } from "react";
 
-import { BaseStatsBanner } from "@/core/components/BaseStatsBanner";
+import { BaseStatsBanner } from "@/common/components/BaseStatsBanner";
 
 import { TrophyPin } from "../TrophyPin";
 

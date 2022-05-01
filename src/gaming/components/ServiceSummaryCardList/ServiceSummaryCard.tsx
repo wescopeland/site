@@ -4,8 +4,8 @@ import type { FC, ReactNode } from "react";
 import type { IconType } from "react-icons";
 import { ImArrowUpRight2 } from "react-icons/im";
 
-import type { GamingPlatformId } from "@/core/models";
-import { AppRoutes } from "@/core/utils/AppRoutes";
+import type { GamingPlatformId } from "@/common/models";
+import { AppRoutes } from "@/common/utils/AppRoutes";
 
 interface ServiceSummaryCardProps {
   bgColorClassName: string;

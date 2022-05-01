@@ -1,7 +1,7 @@
 import type { FC } from "react";
 
-import { BaseStatsCard } from "@/core/components/BaseStatsCard";
-import { formatPercentage } from "@/core/utils/formatPercentage";
+import { BaseStatsCard } from "@/common/components/BaseStatsCard";
+import { formatPercentage } from "@/common/utils/formatPercentage";
 import { useGamingContextSelector } from "@/gaming/state/gaming.context";
 import { NormalizedGame } from "@/integrations/models";
 

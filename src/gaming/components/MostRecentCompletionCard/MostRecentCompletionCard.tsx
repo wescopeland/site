@@ -1,8 +1,8 @@
 import type { FC } from "react";
 
-import { BaseStatsBanner } from "@/core/components/BaseStatsBanner";
-import { formatPercentage } from "@/core/utils/formatPercentage";
-import { mapPercentageToRarity } from "@/core/utils/mapPercentageToRarity";
+import { BaseStatsBanner } from "@/common/components/BaseStatsBanner";
+import { formatPercentage } from "@/common/utils/formatPercentage";
+import { mapPercentageToRarity } from "@/common/utils/mapPercentageToRarity";
 import { useGamingContextSelector } from "@/gaming/state/gaming.context";
 
 import { PlatformPin } from "../PlatformPin";

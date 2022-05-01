@@ -1,11 +1,11 @@
-import "@/core/styles/globals.css";
-import "@/core/styles/prism-theme.css";
+import "@/common/styles/globals.css";
+import "@/common/styles/prism-theme.css";
 
 import type { AppProps } from "next/app";
 import PlausibleProvider from "next-plausible";
 import { ThemeProvider } from "next-themes";
 
-import type { AppPage } from "@/core/models";
+import type { AppPage } from "@/common/models";
 
 type AppPropsWithLayout = AppProps & {
   Component: AppPage;
