@@ -10,7 +10,8 @@ module.exports = withBundleAnalyzer(
         "image.api.playstation.com",
         "s3-eu-west-1.amazonaws.com",
         "images-eds.xboxlive.com",
-        "retroachievements.org"
+        "retroachievements.org",
+        "image.xboxlive.com"
       ]
     }
   })
