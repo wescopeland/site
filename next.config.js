@@ -11,7 +11,8 @@ module.exports = withBundleAnalyzer(
         "s3-eu-west-1.amazonaws.com",
         "images-eds.xboxlive.com",
         "retroachievements.org",
-        "image.xboxlive.com"
+        "image.xboxlive.com",
+        "psnobj.prod.dl.playstation.net"
       ]
     }
   })

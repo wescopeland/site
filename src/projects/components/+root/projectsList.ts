@@ -25,6 +25,7 @@ import {
   SiRailway,
   SiRedux,
   SiRollupdotjs,
+  SiSolidity,
   SiTailwindcss,
   SiTypescript
 } from "react-icons/si";
@@ -33,17 +34,17 @@ import type { ProjectListElement } from "@/projects/models";
 
 export const projectsList: ProjectListElement[] = [
   {
-    name: "Hubble Bots",
+    name: "Hubble SP Autocompounder",
     description:
-      "Provides analytics in the DeFi-oriented Hubble Protocol Discord server.",
+      "Sells and autocompounds liquidation rewards on the Solana blockchain.",
     iconComponent: GiSattelite,
     techStackItems: [
       { label: "NestJS", IconComponent: SiNestjs },
       { label: "TypeScript", IconComponent: SiTypescript },
       { label: "Nrwl Nx", IconComponent: SiNx },
-      { label: "Railway", IconComponent: SiRailway }
+      { label: "web3", IconComponent: SiSolidity }
     ],
-    githubRepo: "wescopeland/hubble-bots"
+    githubRepo: "wescopeland/hubble-sp-autocompounder"
   },
   {
     name: "crypto-portfolio",
