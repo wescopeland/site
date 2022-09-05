@@ -15,7 +15,7 @@ export const AboutMe: FC = () => {
 
       <Animate.FadeUpOnMount delay={200}>
         <p className="mb-4">
-          <span className="sm:hidden font-semibold">
+          <span className="font-semibold sm:hidden">
             I'm building products and writing code
           </span>
           <HighlightedText className="hidden sm:inline">
@@ -25,10 +25,10 @@ export const AboutMe: FC = () => {
         </p>
 
         <p>
-          I'm passionate about front-end development, frameworks, DeFi/Web3, and
-          DX. After-hours, you'll find me completing video games on my backlog,
-          working on open source, or enjoying a nice IPA. I'm known for once
-          holding the world record for the highest score on Donkey Kong.
+          I'm passionate about front-end development, frameworks, testing, and
+          DX. After-hours, you'll find me working on open source, playing retro
+          games, or enjoying a nice cup of matcha. I'm known for once holding
+          the world record for the highest score on Donkey Kong.
         </p>
       </Animate.FadeUpOnMount>
     </>

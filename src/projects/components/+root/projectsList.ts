@@ -73,7 +73,7 @@ export const projectsList: ProjectListElement[] = [
   {
     name: "psn-api",
     description:
-      "Get trophy, user, and game data from the PlayStation Network.",
+      "Fetch trophy, user, and game data from the PlayStation Network.",
     iconComponent: FaPlaystation,
     githubRepo: "achievements-app/psn-api",
     websiteUrl: "https://psn-api.achievements.app",

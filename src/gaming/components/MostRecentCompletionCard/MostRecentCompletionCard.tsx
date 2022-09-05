@@ -24,7 +24,7 @@ export const MostRecentCompletionCard: FC = () => {
         </p>
         <div className="flex gap-x-3">
           <>
-            <p className="flex text-black dark:text-white">
+            <p className="flex items-center text-black dark:text-white">
               {mostRecentCompletion.name}
             </p>
             <PlatformPin platform={mostRecentCompletion.service} />
