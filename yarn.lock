@@ -5620,10 +5620,10 @@ protobufjs@^6.10.0:
     "@types/node" ">=13.7.0"
     long "^4.0.0"
 
-psn-api@^2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/psn-api/-/psn-api-2.7.0.tgz#69ea64ee67751ea0f72825af0b19a3f0edee26c4"
-  integrity sha512-8eUI+ZWOCgGEfkB03Vwl6vPePgtH8v79l/7zXKyNCWn/s/aptqsyDP/Y5WKhUEE3gWRUHi6vBzeFcox7p3+2ig==
+psn-api@^2.8.1:
+  version "2.8.1"
+  resolved "https://registry.yarnpkg.com/psn-api/-/psn-api-2.8.1.tgz#1e6e577a9b0e6bf9357b7938466c467d95237203"
+  integrity sha512-sB3qbpWUvemwf8W1+515QtC/DUI0tJhYPr4krWb7hWnu2jW0qtK0rIrgOJU74UIOmr1WqoTxXZBIwkr30OV4pg==
   dependencies:
     isomorphic-unfetch "^3.1.0"
 

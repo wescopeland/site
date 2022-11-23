@@ -24,7 +24,7 @@ export const fetchAllRaGames = async (
     userGameCompletionStats
   );
 
-  const limit = pLimit(3);
+  const limit = pLimit(2);
   const userGameProgressForGameIdPromises: Promise<GameInfoAndUserProgress>[] =
     [];
 
