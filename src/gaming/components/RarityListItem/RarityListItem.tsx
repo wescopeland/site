@@ -40,7 +40,7 @@ export const RarityListItem: FC<RarityListItemProps> = ({
               width={isUsingWideImage ? 106 : 52}
               height={isUsingWideImage ? 64 : 52}
               className="bg-gray-900 object-cover object-center h-full"
-              unoptimized={true}
+              unoptimized={platform === "psn"}
             />
           ) : (
             <div className="w-full h-full bg-gray-900" />
