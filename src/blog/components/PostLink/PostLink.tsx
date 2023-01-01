@@ -18,7 +18,11 @@ export const PostLink: FC<PostLinkProps> = ({
 }) => {
   return (
     <li className="list-none group">
-      <Link href={AppRoutes.BlogPostPage({ slug: postSlug })} passHref>
+      <Link
+        href={AppRoutes.BlogPostPage({ slug: postSlug })}
+        legacyBehavior
+        passHref
+      >
         <a
           className={cc([
             "flex gap-x-4 w-full group items-center justify-between",

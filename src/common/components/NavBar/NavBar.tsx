@@ -9,7 +9,7 @@ interface NavBarProps {
   children?: ReactNode;
 }
 
-export const NavBar: FC<NavBarProps> = ({ children }) => {
+export const NavBar: FC<NavBarProps> = () => {
   return (
     <div
       className={cc([
@@ -52,7 +52,7 @@ const NavBarLink: FC<NavBarLinkProps> = ({ children, href }) => {
   const isActive = href === "/" ? route === href : route.includes(href);
 
   return (
-    <Link href={href} passHref>
+    <Link legacyBehavior href={href} passHref>
       <a
         className={cc([
           "flex items-center justify-center",

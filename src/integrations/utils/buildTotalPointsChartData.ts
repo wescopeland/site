@@ -34,13 +34,23 @@ export const buildTotalPointsChartData = (
     }
   ];
 
+  const allAccountAchievementsSortedByDate = allAccountGames
+    .flatMap((game) => game.achievements)
+    .filter((achievement) => achievement.isEarned && achievement.earnedDateTime)
+    .filter((achievement) =>
+      dayjs(achievement.earnedDateTime).isAfter("2006", "year")
+    )
+    .sort((a, b) =>
+      dayjs(a.earnedDateTime).isAfter(dayjs(b.earnedDateTime)) ? 1 : -1
+    );
+
   // For every day, build a node for the chart.
   for (let i = 0; i < nodeCount; i += 1) {
     activeDate = dayjs(activeDate).add(1, "day");
 
     const achievementsEarnedOnDate = findAchievementsEarnedOnDate(
       activeDate.toISOString(),
-      allAccountGames
+      allAccountAchievementsSortedByDate
     );
 
     for (const achievement of achievementsEarnedOnDate) {

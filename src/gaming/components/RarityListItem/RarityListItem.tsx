@@ -36,11 +36,10 @@ export const RarityListItem: FC<RarityListItemProps> = ({
           {imageSrc ? (
             <Image
               src={imageSrc}
-              objectFit="cover"
-              objectPosition="center center"
+              alt="Achievement icon"
               width={isUsingWideImage ? 106 : 52}
               height={isUsingWideImage ? 64 : 52}
-              className="bg-gray-900"
+              className="bg-gray-900 object-cover object-center h-full"
             />
           ) : (
             <div className="w-full h-full bg-gray-900" />

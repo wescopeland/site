@@ -94,7 +94,11 @@ const LinkWrapper: FC<LinkWrapperProps> = ({
   }
 
   return (
-    <Link href={AppRoutes.GamingPlatformPage({ platformId })} passHref>
+    <Link
+      legacyBehavior
+      href={AppRoutes.GamingPlatformPage({ platformId })}
+      passHref
+    >
       {children}
     </Link>
   );

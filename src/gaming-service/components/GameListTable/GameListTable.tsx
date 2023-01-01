@@ -6,7 +6,7 @@ interface GameListTableProps {
   children?: ReactNode;
 }
 
-export const GameListTable: FC<GameListTableProps> = ({ children }) => {
+export const GameListTable: FC<GameListTableProps> = () => {
   return (
     <div
       className={cc([

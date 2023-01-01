@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 import type { NormalizedAchievement, NormalizedGame } from "../models";
 
 export const getFirstAchievement = (
@@ -8,7 +10,12 @@ export const getFirstAchievement = (
 
   // We're ultimately looking for the achievement with the
   // most oldest `earnedDateTime` value.
-  const allAchievements = allAccountGames.flatMap((game) => game.achievements);
+  const allAchievements = allAccountGames
+    .flatMap((game) => game.achievements)
+    .filter((achievement) => achievement.isEarned && achievement.earnedDateTime)
+    .filter((achievement) =>
+      dayjs(achievement.earnedDateTime).isAfter("2006", "year")
+    );
 
   for (const achievement of allAchievements) {
     if (achievement.isEarned && achievement.earnedDateTime) {
