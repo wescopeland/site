@@ -8,6 +8,7 @@ import type { GamingState } from "@/gaming/models";
 import { buildGamingState } from "@/gaming/state/buildGamingState";
 import { GamingStateProvider } from "@/gaming/state/gaming.context";
 import { fetchAllAchievementsAppGames } from "@/integrations/achievements-app/queries/fetchAllAchievementsAppGames";
+import { fetchAllHighPriorityUsers } from "@/integrations/achievements-app/queries/fetchAllHighPriorityUsers";
 import { normalizeAchievementsAppGamesResponse } from "@/integrations/achievements-app/utils/normalizeAchievementsAppGamesResponse";
 import { NormalizedGame } from "@/integrations/models";
 
@@ -25,7 +26,18 @@ GamingPage.getLayout = (page: ReactElement) => {
   return <BaseLayout>{page}</BaseLayout>;
 };
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
+export async function getStaticPaths() {
+  const allHighPriorityUsers = await fetchAllHighPriorityUsers();
+
+  return {
+    paths: allHighPriorityUsers.map((highPriorityUser) => ({
+      params: { targetUserName: highPriorityUser.userName }
+    })),
+    fallback: false
+  };
+}
+
+export async function getStaticProps(context: GetServerSidePropsContext) {
   const allGames: NormalizedGame[] = [];
 
   const targetUserName = context.params?.targetUserName as string;
@@ -48,7 +60,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   return {
     props: {
       initialState
-    }
+    },
+    revalidate: 300 // Five minutes
   };
 }
 

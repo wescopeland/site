@@ -44,7 +44,7 @@ export async function getStaticProps() {
     props: {
       initialState
     },
-    revalidate: 60 * 60 * 24 // one day
+    revalidate: 300 // Five minutes
   };
 }
 
